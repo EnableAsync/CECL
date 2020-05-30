@@ -24,7 +24,7 @@ message UploadTaskResp {
 
 
 message StopTaskReq {
-    Task task = 1;
+    int64 task_id = 1;
 }
 message StopTaskResp {
     Response resp = 1;
