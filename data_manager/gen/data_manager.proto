@@ -34,7 +34,7 @@ message StopTaskResp {
 }
 
 message GetTaskReq {
-    Task task = 1;
+    int64 task_id = 1;
 }
 message GetTaskResp {
     Response resp = 1;
