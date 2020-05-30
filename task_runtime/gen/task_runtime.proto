@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-// The task controller service definition.
-service DataManager {
+// The task runtime service definition.
+service TaskRuntime {
     // Add a task
-    rpc AddTask (AddTaskReq) returns (AddTaskResp) {
+    rpc UploadTask (UploadTaskReq) returns (UploadTaskResp) {
     }
 
     // Stop a task
@@ -13,18 +13,15 @@ service DataManager {
     // Get task information
     rpc GetTaskInfo (GetTaskInfoReq) returns (GetTaskInfoResp) {
     }
-
-    // Update task information
-    rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
-    }
 }
 
-message AddTaskReq {
+message UploadTaskReq {
     Task task = 1;
 }
-message AddTaskResp {
+message UploadTaskResp {
     Response resp = 1;
 }
+
 
 message StopTaskReq {
     Task task = 1;
@@ -33,6 +30,7 @@ message StopTaskResp {
     Response resp = 1;
 }
 
+
 message GetTaskInfoReq {
     int64 task_id = 1;
 }
@@ -40,14 +38,6 @@ message GetTaskInfoResp {
     Response resp = 1;
     Task task = 2;
 }
-
-message UpdateTaskReq {
-    Task task = 1;
-}
-message UpdateTaskResp {
-    Response resp = 1;
-}
-
 
 message Task {
     int64 task_id = 1;
@@ -58,8 +48,6 @@ message Task {
     string edgenodes = 6;
     string file = 7;
 }
-
-
 
 message Response {
     int32 code = 1;

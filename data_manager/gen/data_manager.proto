@@ -3,59 +3,63 @@ syntax = "proto3";
 // The data manager service definition.
 service DataManager {
     // Add a task
-    rpc AddTask (Task) returns (Reply) {
+    rpc AddTask (AddTaskReq) returns (AddTaskResp) {
     }
 
-    // Delete/Stop a task
-    rpc DeleteTask (Task) returns (Reply) {
+    // Stop a task
+    rpc StopTask (StopTaskReq) returns (StopTaskResp) {
     }
 
     // Get task information
-    rpc QueryTask (Task) returns (Reply) {
+    rpc GetTask (GetTaskReq) returns (GetTaskResp) {
     }
 
     // Update task information
-    rpc UpdateTask (Task) returns (Reply) {
-    }
-
-    // Add task's log
-    rpc AddCustomLog (TaskLog) returns (Reply) {
+    rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
     }
 }
 
 message AddTaskReq {
     Task task = 1;
 }
-
-message DelTaskReq {
-    Task task = 1;
+message AddTaskResp {
+    Response resp = 1;
 }
 
-message QueryTaskReq {
+message StopTaskReq {
     Task task = 1;
+}
+message StopTaskResp {
+    Response resp = 1;
+}
+
+message GetTaskReq {
+    Task task = 1;
+}
+message GetTaskResp {
+    Response resp = 1;
+    Task task = 2;
 }
 
 message UpdateTaskReq {
     Task task = 1;
 }
-
-message AddCustomLogReq {
-    TaskLog task_log = 1;
-}
-
-message TaskLog {
-    int64 task_id = 1;
-    string log = 2;
+message UpdateTaskResp {
+    Response resp = 1;
 }
 
 message Task {
     int64 task_id = 1;
-    int64 user_id = 2;
-    string runner = 3;
-    string file = 4;
+    string name = 2;
+    int32 create_time = 3;
+    int32 start_time = 4;
+    int32 union_train = 5;
+    string edgenodes = 6;
+    string file = 7;
 }
 
-message Reply {
+
+message Response {
     int32 code = 1;
     string message = 2;
 }
