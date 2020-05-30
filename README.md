@@ -40,3 +40,11 @@
 4. Server 调用 `Task Controller` 的 `AddTask` 方法将已传输完成的新 `Task` 添加至调度器
 5. `Task Controller` 调用 `Task Runtime` 的 `RunTask` 方法，执行 `Task`
 6. `Task Controller` 调用 `Data Manager` 的 `AddTask` 方法，记录执行信息
+
+## 联合 Task 运行流程
+1. Client 通过 `POST` 方法传输给 Server 脚本文件和配置文件
+2. Server 将脚本文件和训练集封装为 `Task`
+3. Server 调用 `Message Hub` 的 `UploadTask` 方法，通知 `Edge` 从 Server 拉取 `Task`
+4. Server 调用 `Task Controller` 的 `AddTask` 方法将已传输完成的 `Task` 添加至调度器
+5. `Task Controller` 调用 `Message Hub` 的 `RunTask` 方法，通知 `Edge` 执行 `Task`
+6. `Task Controller` 调用 `Data Manager` 的 `AddTask` 方法，记录执行信息
