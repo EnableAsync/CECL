@@ -65,3 +65,5 @@ message Response {
     int32 code = 1;
     string message = 2;
 }
+
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_controller/gen/task_controller.proto

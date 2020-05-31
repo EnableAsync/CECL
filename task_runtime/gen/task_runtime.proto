@@ -17,6 +17,8 @@ service TaskRuntime {
 
 message UploadTaskReq {
     Task task = 1;
+    bytes script = 2;
+    bytes config = 3;
 }
 message UploadTaskResp {
     Response resp = 1;
@@ -53,3 +55,6 @@ message Response {
     int32 code = 1;
     string message = 2;
 }
+
+
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
