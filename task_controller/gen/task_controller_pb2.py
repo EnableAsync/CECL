@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n)task_controller/gen/task_controller.proto\"!\n\nAddTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"&\n\x0b\x41\x64\x64TaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"?\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x13\n\x04task\x18\x02 \x01(\x0b\x32\x05.Task\"$\n\rUpdateTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\")\n\x0eUpdateTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xc5\x01\n\x0b\x44\x61taManager\x12&\n\x07\x41\x64\x64Task\x12\x0b.AddTaskReq\x1a\x0c.AddTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x12/\n\nUpdateTask\x12\x0e.UpdateTaskReq\x1a\x0f.UpdateTaskResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n)task_controller/gen/task_controller.proto\"!\n\nAddTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"&\n\x0b\x41\x64\x64TaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x10\n\x0eGetAllTasksReq\"*\n\x0fGetAllTasksResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"?\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x13\n\x04task\x18\x02 \x01(\x0b\x32\x05.Task\"$\n\rUpdateTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\")\n\x0eUpdateTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xfc\x01\n\x0eTaskController\x12&\n\x07\x41\x64\x64Task\x12\x0b.AddTaskReq\x1a\x0c.AddTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetAllTasks\x12\x0f.GetAllTasksReq\x1a\x10.GetAllTasksResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x12/\n\nUpdateTask\x12\x0e.UpdateTaskReq\x1a\x0f.UpdateTaskResp\"\x00\x62\x06proto3'
 )
 
 
@@ -148,6 +148,61 @@ _STOPTASKRESP = _descriptor.Descriptor(
 )
 
 
+_GETALLTASKSREQ = _descriptor.Descriptor(
+  name='GetAllTasksReq',
+  full_name='GetAllTasksReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=193,
+  serialized_end=209,
+)
+
+
+_GETALLTASKSRESP = _descriptor.Descriptor(
+  name='GetAllTasksResp',
+  full_name='GetAllTasksResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='GetAllTasksResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=211,
+  serialized_end=253,
+)
+
+
 _GETTASKINFOREQ = _descriptor.Descriptor(
   name='GetTaskInfoReq',
   full_name='GetTaskInfoReq',
@@ -174,8 +229,8 @@ _GETTASKINFOREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=193,
-  serialized_end=226,
+  serialized_start=255,
+  serialized_end=288,
 )
 
 
@@ -212,8 +267,8 @@ _GETTASKINFORESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=228,
-  serialized_end=291,
+  serialized_start=290,
+  serialized_end=353,
 )
 
 
@@ -243,8 +298,8 @@ _UPDATETASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=293,
-  serialized_end=329,
+  serialized_start=355,
+  serialized_end=391,
 )
 
 
@@ -274,8 +329,8 @@ _UPDATETASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=331,
-  serialized_end=372,
+  serialized_start=393,
+  serialized_end=434,
 )
 
 
@@ -347,8 +402,8 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=375,
-  serialized_end=507,
+  serialized_start=437,
+  serialized_end=569,
 )
 
 
@@ -385,13 +440,14 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=509,
-  serialized_end=550,
+  serialized_start=571,
+  serialized_end=612,
 )
 
 _ADDTASKREQ.fields_by_name['task'].message_type = _TASK
 _ADDTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STOPTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
+_GETALLTASKSRESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKINFORESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKINFORESP.fields_by_name['task'].message_type = _TASK
 _UPDATETASKREQ.fields_by_name['task'].message_type = _TASK
@@ -400,6 +456,8 @@ DESCRIPTOR.message_types_by_name['AddTaskReq'] = _ADDTASKREQ
 DESCRIPTOR.message_types_by_name['AddTaskResp'] = _ADDTASKRESP
 DESCRIPTOR.message_types_by_name['StopTaskReq'] = _STOPTASKREQ
 DESCRIPTOR.message_types_by_name['StopTaskResp'] = _STOPTASKRESP
+DESCRIPTOR.message_types_by_name['GetAllTasksReq'] = _GETALLTASKSREQ
+DESCRIPTOR.message_types_by_name['GetAllTasksResp'] = _GETALLTASKSRESP
 DESCRIPTOR.message_types_by_name['GetTaskInfoReq'] = _GETTASKINFOREQ
 DESCRIPTOR.message_types_by_name['GetTaskInfoResp'] = _GETTASKINFORESP
 DESCRIPTOR.message_types_by_name['UpdateTaskReq'] = _UPDATETASKREQ
@@ -435,6 +493,20 @@ StopTaskResp = _reflection.GeneratedProtocolMessageType('StopTaskResp', (_messag
   # @@protoc_insertion_point(class_scope:StopTaskResp)
   })
 _sym_db.RegisterMessage(StopTaskResp)
+
+GetAllTasksReq = _reflection.GeneratedProtocolMessageType('GetAllTasksReq', (_message.Message,), {
+  'DESCRIPTOR' : _GETALLTASKSREQ,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:GetAllTasksReq)
+  })
+_sym_db.RegisterMessage(GetAllTasksReq)
+
+GetAllTasksResp = _reflection.GeneratedProtocolMessageType('GetAllTasksResp', (_message.Message,), {
+  'DESCRIPTOR' : _GETALLTASKSRESP,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:GetAllTasksResp)
+  })
+_sym_db.RegisterMessage(GetAllTasksResp)
 
 GetTaskInfoReq = _reflection.GeneratedProtocolMessageType('GetTaskInfoReq', (_message.Message,), {
   'DESCRIPTOR' : _GETTASKINFOREQ,
@@ -480,18 +552,18 @@ _sym_db.RegisterMessage(Response)
 
 
 
-_DATAMANAGER = _descriptor.ServiceDescriptor(
-  name='DataManager',
-  full_name='DataManager',
+_TASKCONTROLLER = _descriptor.ServiceDescriptor(
+  name='TaskController',
+  full_name='TaskController',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=553,
-  serialized_end=750,
+  serialized_start=615,
+  serialized_end=867,
   methods=[
   _descriptor.MethodDescriptor(
     name='AddTask',
-    full_name='DataManager.AddTask',
+    full_name='TaskController.AddTask',
     index=0,
     containing_service=None,
     input_type=_ADDTASKREQ,
@@ -500,7 +572,7 @@ _DATAMANAGER = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='StopTask',
-    full_name='DataManager.StopTask',
+    full_name='TaskController.StopTask',
     index=1,
     containing_service=None,
     input_type=_STOPTASKREQ,
@@ -508,9 +580,18 @@ _DATAMANAGER = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='GetTaskInfo',
-    full_name='DataManager.GetTaskInfo',
+    name='GetAllTasks',
+    full_name='TaskController.GetAllTasks',
     index=2,
+    containing_service=None,
+    input_type=_GETALLTASKSREQ,
+    output_type=_GETALLTASKSRESP,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetTaskInfo',
+    full_name='TaskController.GetTaskInfo',
+    index=3,
     containing_service=None,
     input_type=_GETTASKINFOREQ,
     output_type=_GETTASKINFORESP,
@@ -518,16 +599,16 @@ _DATAMANAGER = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='UpdateTask',
-    full_name='DataManager.UpdateTask',
-    index=3,
+    full_name='TaskController.UpdateTask',
+    index=4,
     containing_service=None,
     input_type=_UPDATETASKREQ,
     output_type=_UPDATETASKRESP,
     serialized_options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_DATAMANAGER)
+_sym_db.RegisterServiceDescriptor(_TASKCONTROLLER)
 
-DESCRIPTOR.services_by_name['DataManager'] = _DATAMANAGER
+DESCRIPTOR.services_by_name['TaskController'] = _TASKCONTROLLER
 
 # @@protoc_insertion_point(module_scope)

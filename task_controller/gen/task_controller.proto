@@ -1,13 +1,17 @@
 syntax = "proto3";
 
 // The task controller service definition.
-service DataManager {
+service TaskController {
     // Add a task
     rpc AddTask (AddTaskReq) returns (AddTaskResp) {
     }
 
     // Stop a task
     rpc StopTask (StopTaskReq) returns (StopTaskResp) {
+    }
+
+    // Get all tasks
+    rpc GetAllTasks (GetAllTasksReq) returns (GetAllTasksResp) {
     }
 
     // Get task information
@@ -30,6 +34,13 @@ message StopTaskReq {
     int64 task_id = 1;
 }
 message StopTaskResp {
+    Response resp = 1;
+}
+
+message GetAllTasksReq {
+}
+
+message GetAllTasksResp {
     Response resp = 1;
 }
 

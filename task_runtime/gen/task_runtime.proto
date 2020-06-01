@@ -2,8 +2,12 @@ syntax = "proto3";
 
 // The task runtime service definition.
 service TaskRuntime {
-    // Add a task
+    // Add task's file
     rpc UploadTask (UploadTaskReq) returns (UploadTaskResp) {
+    }
+
+    // Run a task
+    rpc StartTask (StartTaskReq) returns (StartTaskResp) {
     }
 
     // Stop a task
@@ -24,6 +28,13 @@ message UploadTaskResp {
     Response resp = 1;
 }
 
+message StartTaskReq {
+    int64 task_id = 1;
+}
+
+message StartTaskResp {
+    Response resp = 1;
+}
 
 message StopTaskReq {
     int64 task_id = 1;
@@ -38,23 +49,22 @@ message GetTaskInfoReq {
 }
 message GetTaskInfoResp {
     Response resp = 1;
-    Task task = 2;
 }
 
 message Task {
     int64 task_id = 1;
     string name = 2;
-    int32 create_time = 3;
-    int32 start_time = 4;
-    int32 union_train = 5;
-    string edgenodes = 6;
-    string file = 7;
+    int64 create_time = 3;
+    int64 start_time = 4;
+    int64 end_time = 5;
+    int32 union_train = 6;
+    string edgenodes = 7;
+    string file = 8;
 }
 
 message Response {
     int32 code = 1;
     string message = 2;
 }
-
 
 // python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto

@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n#task_runtime/gen/task_runtime.proto\"D\n\rUploadTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\")\n\x0eUploadTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"?\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x13\n\x04task\x18\x02 \x01(\x0b\x32\x05.Task\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\x9d\x01\n\x0bTaskRuntime\x12/\n\nUploadTask\x12\x0e.UploadTaskReq\x1a\x0f.UploadTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n#task_runtime/gen/task_runtime.proto\"D\n\rUploadTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\")\n\x0eUploadTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1f\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"(\n\rStartTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"*\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x96\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x03\x12\x12\n\nstart_time\x18\x04 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x11\n\tedgenodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xcb\x01\n\x0bTaskRuntime\x12/\n\nUploadTask\x12\x0e.UploadTaskReq\x1a\x0f.UploadTaskResp\"\x00\x12,\n\tStartTask\x12\r.StartTaskReq\x1a\x0e.StartTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x62\x06proto3'
 )
 
 
@@ -100,6 +100,68 @@ _UPLOADTASKRESP = _descriptor.Descriptor(
 )
 
 
+_STARTTASKREQ = _descriptor.Descriptor(
+  name='StartTaskReq',
+  full_name='StartTaskReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_id', full_name='StartTaskReq.task_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=152,
+  serialized_end=183,
+)
+
+
+_STARTTASKRESP = _descriptor.Descriptor(
+  name='StartTaskResp',
+  full_name='StartTaskResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='StartTaskResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=185,
+  serialized_end=225,
+)
+
+
 _STOPTASKREQ = _descriptor.Descriptor(
   name='StopTaskReq',
   full_name='StopTaskReq',
@@ -126,8 +188,8 @@ _STOPTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=152,
-  serialized_end=182,
+  serialized_start=227,
+  serialized_end=257,
 )
 
 
@@ -157,8 +219,8 @@ _STOPTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=184,
-  serialized_end=223,
+  serialized_start=259,
+  serialized_end=298,
 )
 
 
@@ -188,8 +250,8 @@ _GETTASKINFOREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=225,
-  serialized_end=258,
+  serialized_start=300,
+  serialized_end=333,
 )
 
 
@@ -207,13 +269,6 @@ _GETTASKINFORESP = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='task', full_name='GetTaskInfoResp.task', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -226,8 +281,8 @@ _GETTASKINFORESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=260,
-  serialized_end=323,
+  serialized_start=335,
+  serialized_end=377,
 )
 
 
@@ -254,35 +309,42 @@ _TASK = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='create_time', full_name='Task.create_time', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='start_time', full_name='Task.start_time', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='union_train', full_name='Task.union_train', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      name='end_time', full_name='Task.end_time', index=4,
+      number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='edgenodes', full_name='Task.edgenodes', index=5,
-      number=6, type=9, cpp_type=9, label=1,
+      name='union_train', full_name='Task.union_train', index=5,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='edgenodes', full_name='Task.edgenodes', index=6,
+      number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='file', full_name='Task.file', index=6,
-      number=7, type=9, cpp_type=9, label=1,
+      name='file', full_name='Task.file', index=7,
+      number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -299,8 +361,8 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=326,
-  serialized_end=458,
+  serialized_start=380,
+  serialized_end=530,
 )
 
 
@@ -337,17 +399,19 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=460,
-  serialized_end=501,
+  serialized_start=532,
+  serialized_end=573,
 )
 
 _UPLOADTASKREQ.fields_by_name['task'].message_type = _TASK
 _UPLOADTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
+_STARTTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STOPTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKINFORESP.fields_by_name['resp'].message_type = _RESPONSE
-_GETTASKINFORESP.fields_by_name['task'].message_type = _TASK
 DESCRIPTOR.message_types_by_name['UploadTaskReq'] = _UPLOADTASKREQ
 DESCRIPTOR.message_types_by_name['UploadTaskResp'] = _UPLOADTASKRESP
+DESCRIPTOR.message_types_by_name['StartTaskReq'] = _STARTTASKREQ
+DESCRIPTOR.message_types_by_name['StartTaskResp'] = _STARTTASKRESP
 DESCRIPTOR.message_types_by_name['StopTaskReq'] = _STOPTASKREQ
 DESCRIPTOR.message_types_by_name['StopTaskResp'] = _STOPTASKRESP
 DESCRIPTOR.message_types_by_name['GetTaskInfoReq'] = _GETTASKINFOREQ
@@ -369,6 +433,20 @@ UploadTaskResp = _reflection.GeneratedProtocolMessageType('UploadTaskResp', (_me
   # @@protoc_insertion_point(class_scope:UploadTaskResp)
   })
 _sym_db.RegisterMessage(UploadTaskResp)
+
+StartTaskReq = _reflection.GeneratedProtocolMessageType('StartTaskReq', (_message.Message,), {
+  'DESCRIPTOR' : _STARTTASKREQ,
+  '__module__' : 'task_runtime.gen.task_runtime_pb2'
+  # @@protoc_insertion_point(class_scope:StartTaskReq)
+  })
+_sym_db.RegisterMessage(StartTaskReq)
+
+StartTaskResp = _reflection.GeneratedProtocolMessageType('StartTaskResp', (_message.Message,), {
+  'DESCRIPTOR' : _STARTTASKRESP,
+  '__module__' : 'task_runtime.gen.task_runtime_pb2'
+  # @@protoc_insertion_point(class_scope:StartTaskResp)
+  })
+_sym_db.RegisterMessage(StartTaskResp)
 
 StopTaskReq = _reflection.GeneratedProtocolMessageType('StopTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _STOPTASKREQ,
@@ -420,8 +498,8 @@ _TASKRUNTIME = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=504,
-  serialized_end=661,
+  serialized_start=576,
+  serialized_end=779,
   methods=[
   _descriptor.MethodDescriptor(
     name='UploadTask',
@@ -433,9 +511,18 @@ _TASKRUNTIME = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='StartTask',
+    full_name='TaskRuntime.StartTask',
+    index=1,
+    containing_service=None,
+    input_type=_STARTTASKREQ,
+    output_type=_STARTTASKRESP,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='StopTask',
     full_name='TaskRuntime.StopTask',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_STOPTASKREQ,
     output_type=_STOPTASKRESP,
@@ -444,7 +531,7 @@ _TASKRUNTIME = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTaskInfo',
     full_name='TaskRuntime.GetTaskInfo',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_GETTASKINFOREQ,
     output_type=_GETTASKINFORESP,

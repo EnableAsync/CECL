@@ -4,7 +4,7 @@ import grpc
 from task_controller.gen import task_controller_pb2 as task__controller_dot_gen_dot_task__controller__pb2
 
 
-class DataManagerStub(object):
+class TaskControllerStub(object):
     """The task controller service definition.
     """
 
@@ -15,28 +15,33 @@ class DataManagerStub(object):
             channel: A grpc.Channel.
         """
         self.AddTask = channel.unary_unary(
-                '/DataManager/AddTask',
+                '/TaskController/AddTask',
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskResp.FromString,
                 )
         self.StopTask = channel.unary_unary(
-                '/DataManager/StopTask',
+                '/TaskController/StopTask',
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskResp.FromString,
                 )
+        self.GetAllTasks = channel.unary_unary(
+                '/TaskController/GetAllTasks',
+                request_serializer=task__controller_dot_gen_dot_task__controller__pb2.GetAllTasksReq.SerializeToString,
+                response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.GetAllTasksResp.FromString,
+                )
         self.GetTaskInfo = channel.unary_unary(
-                '/DataManager/GetTaskInfo',
+                '/TaskController/GetTaskInfo',
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.GetTaskInfoReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.GetTaskInfoResp.FromString,
                 )
         self.UpdateTask = channel.unary_unary(
-                '/DataManager/UpdateTask',
+                '/TaskController/UpdateTask',
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskResp.FromString,
                 )
 
 
-class DataManagerServicer(object):
+class TaskControllerServicer(object):
     """The task controller service definition.
     """
 
@@ -49,6 +54,13 @@ class DataManagerServicer(object):
 
     def StopTask(self, request, context):
         """Stop a task
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAllTasks(self, request, context):
+        """Get all tasks
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -69,7 +81,7 @@ class DataManagerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_DataManagerServicer_to_server(servicer, server):
+def add_TaskControllerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'AddTask': grpc.unary_unary_rpc_method_handler(
                     servicer.AddTask,
@@ -80,6 +92,11 @@ def add_DataManagerServicer_to_server(servicer, server):
                     servicer.StopTask,
                     request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskReq.FromString,
                     response_serializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskResp.SerializeToString,
+            ),
+            'GetAllTasks': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllTasks,
+                    request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.GetAllTasksReq.FromString,
+                    response_serializer=task__controller_dot_gen_dot_task__controller__pb2.GetAllTasksResp.SerializeToString,
             ),
             'GetTaskInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTaskInfo,
@@ -93,12 +110,12 @@ def add_DataManagerServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'DataManager', rpc_method_handlers)
+            'TaskController', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class DataManager(object):
+class TaskController(object):
     """The task controller service definition.
     """
 
@@ -112,7 +129,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/AddTask',
+        return grpc.experimental.unary_unary(request, target, '/TaskController/AddTask',
             task__controller_dot_gen_dot_task__controller__pb2.AddTaskReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.AddTaskResp.FromString,
             options, channel_credentials,
@@ -128,9 +145,25 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/StopTask',
+        return grpc.experimental.unary_unary(request, target, '/TaskController/StopTask',
             task__controller_dot_gen_dot_task__controller__pb2.StopTaskReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.StopTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAllTasks(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskController/GetAllTasks',
+            task__controller_dot_gen_dot_task__controller__pb2.GetAllTasksReq.SerializeToString,
+            task__controller_dot_gen_dot_task__controller__pb2.GetAllTasksResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -144,7 +177,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/GetTaskInfo',
+        return grpc.experimental.unary_unary(request, target, '/TaskController/GetTaskInfo',
             task__controller_dot_gen_dot_task__controller__pb2.GetTaskInfoReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.GetTaskInfoResp.FromString,
             options, channel_credentials,
@@ -160,7 +193,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/UpdateTask',
+        return grpc.experimental.unary_unary(request, target, '/TaskController/UpdateTask',
             task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskResp.FromString,
             options, channel_credentials,

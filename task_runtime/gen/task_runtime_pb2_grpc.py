@@ -19,6 +19,11 @@ class TaskRuntimeStub(object):
                 request_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.UploadTaskReq.SerializeToString,
                 response_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.UploadTaskResp.FromString,
                 )
+        self.StartTask = channel.unary_unary(
+                '/TaskRuntime/StartTask',
+                request_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.StartTaskReq.SerializeToString,
+                response_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.StartTaskResp.FromString,
+                )
         self.StopTask = channel.unary_unary(
                 '/TaskRuntime/StopTask',
                 request_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.StopTaskReq.SerializeToString,
@@ -36,7 +41,14 @@ class TaskRuntimeServicer(object):
     """
 
     def UploadTask(self, request, context):
-        """Add a task
+        """Add task's file
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StartTask(self, request, context):
+        """Run a task
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -63,6 +75,11 @@ def add_TaskRuntimeServicer_to_server(servicer, server):
                     servicer.UploadTask,
                     request_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.UploadTaskReq.FromString,
                     response_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.UploadTaskResp.SerializeToString,
+            ),
+            'StartTask': grpc.unary_unary_rpc_method_handler(
+                    servicer.StartTask,
+                    request_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.StartTaskReq.FromString,
+                    response_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.StartTaskResp.SerializeToString,
             ),
             'StopTask': grpc.unary_unary_rpc_method_handler(
                     servicer.StopTask,
@@ -98,6 +115,22 @@ class TaskRuntime(object):
         return grpc.experimental.unary_unary(request, target, '/TaskRuntime/UploadTask',
             task__runtime_dot_gen_dot_task__runtime__pb2.UploadTaskReq.SerializeToString,
             task__runtime_dot_gen_dot_task__runtime__pb2.UploadTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StartTask(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskRuntime/StartTask',
+            task__runtime_dot_gen_dot_task__runtime__pb2.StartTaskReq.SerializeToString,
+            task__runtime_dot_gen_dot_task__runtime__pb2.StartTaskResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
