@@ -49,6 +49,11 @@ class DataManagerStub(object):
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskResp.FromString,
                 )
+        self.AddCustomLog = channel.unary_unary(
+                '/DataManager/AddCustomLog',
+                request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.SerializeToString,
+                response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.FromString,
+                )
 
 
 class DataManagerServicer(object):
@@ -104,6 +109,13 @@ class DataManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddCustomLog(self, request, context):
+        """Add task script log
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -141,6 +153,11 @@ def add_DataManagerServicer_to_server(servicer, server):
                     servicer.UpdateTask,
                     request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskReq.FromString,
                     response_serializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskResp.SerializeToString,
+            ),
+            'AddCustomLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddCustomLog,
+                    request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.FromString,
+                    response_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -262,5 +279,21 @@ class DataManager(object):
         return grpc.experimental.unary_unary(request, target, '/DataManager/UpdateTask',
             data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddCustomLog(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataManager/AddCustomLog',
+            data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.SerializeToString,
+            data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

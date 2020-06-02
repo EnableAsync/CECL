@@ -33,7 +33,11 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
         return task_runtime_pb2.UploadTaskResp(resp=task_runtime_pb2.Response(code=0, message="success"))
 
     def StartTask(self, request, context):
-        return super().StartTask(request, context)
+        task: Task = request.task
+        script_path = '{}/{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id, task.file)
+        if not os.path.exists(script_path):
+            return task_runtime_pb2.StartTaskResp(
+                resp=task_runtime_pb2.Response(code=10000, message="Script not uploaded"))
 
     def StopTask(self, request, context):
         return super().StopTask(request, context)

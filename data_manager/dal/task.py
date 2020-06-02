@@ -2,6 +2,7 @@ import pymysql
 import time
 from datetime import datetime
 from data_manager.model.task import Task
+from data_manager.model.custom_log import CustomLog
 
 
 class Db:
@@ -129,17 +130,40 @@ class Db:
             print(e)
             self.db.rollback()
 
+    def add_custom_log(self, task_log: CustomLog):
+        sql = """insert into cecl.task_log(task_id, content, time) 
+        values (%s, %s, %s)"""
+        try:
+            self.cursor.execute(
+                sql,
+                args=(
+                    task_log.task_id,
+                    task_log.content,
+                    datetime.fromtimestamp(task_log.time),
+                ))
+            self.db.commit()
+        except ValueError as e:
+            print(e)
+            self.db.rollback()
+
 
 if __name__ == '__main__':
     now = int(time.time())
     now = datetime.fromtimestamp(now)
     db = Db()
-    t = Task(
+    # t = Task(
+    #     task_id=1,
+    #     name="test_task",
+    #     create_time=int(time.time()),
+    #     union_train=0,
+    #     edgenodes='nodes',
+    #     file='train.py'
+    # )
+    # db.add_task(t)
+
+    log = CustomLog(
         task_id=1,
-        name="test_task",
-        create_time=int(time.time()),
-        union_train=0,
-        edgenodes='nodes',
-        file='train.py'
+        content='Test!!',
+        time=int(time.time())
     )
-    db.add_task(t)
+    db.add_custom_log(log)

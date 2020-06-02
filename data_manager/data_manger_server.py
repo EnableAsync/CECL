@@ -3,6 +3,7 @@ import time
 import data_manager.dal.task
 import json
 from data_manager.model.task import Task
+from data_manager.model.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
 
 import grpc
@@ -79,6 +80,24 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             t.status,
         ))
         return data_manager_pb2.UpdateTaskResp(resp=data_manager_pb2.Response(code=0, message="success"))
+
+    def AddCustomLog(self, request, context):
+        t: CustomLog = request.custom_log
+        if t.task_id == 0:
+            return data_manager_pb2.AddCustomLogResp(
+                resp=data_manager_pb2.Response(code=10001, message="task id can't be zero"))
+        if t.content == '':
+            return data_manager_pb2.AddCustomLogResp(
+                resp=data_manager_pb2.Response(code=10001, message="content can't be empty"))
+        if time == 0:
+            return data_manager_pb2.AddCustomLogResp(
+                resp=data_manager_pb2.Response(code=10001, message="time can't be zero"))
+        self.db.add_custom_log(CustomLog(
+            t.task_id,
+            t.content,
+            t.time
+        ))
+        return data_manager_pb2.AddCustomLogResp(resp=data_manager_pb2.Response(code=0, message="success"))
 
     # # 工作函数
     # def SayHello(self, request, context):

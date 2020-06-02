@@ -29,6 +29,10 @@ service DataManager {
     // Update task information
     rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
     }
+
+    // Add task script log
+    rpc AddCustomLog (AddCustomLogReq) returns (AddCustomLogResp) {
+    }
 }
 
 message AddTaskReq {
@@ -87,6 +91,20 @@ message UpdateTaskReq {
 
 message UpdateTaskResp {
     Response resp = 1;
+}
+
+message AddCustomLogReq {
+    CustomLog custom_log = 1;
+}
+
+message AddCustomLogResp {
+    Response resp = 1;
+}
+
+message CustomLog {
+    int64 task_id = 1;
+    string content = 2;
+    int64 time = 3;
 }
 
 message Task {
