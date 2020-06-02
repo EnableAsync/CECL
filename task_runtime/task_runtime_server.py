@@ -12,11 +12,17 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
+    def __init__(self):
+        self.tasks: dict = {}
 
     def UploadTask(self, request, context):
         task: Task = request.task
         script = request.script
         config = request.config
+
+        if task.task_id == 0:
+            return task_runtime_pb2.UploadTaskResp(
+                resp=task_runtime_pb2.Response(code=10001, message="task id can't be empty"))
 
         os.makedirs('{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id))
 
@@ -30,10 +36,17 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
         config_file.write(config)
         config_file.close()
 
+        self.tasks[task.task_id] = task
+
         return task_runtime_pb2.UploadTaskResp(resp=task_runtime_pb2.Response(code=0, message="success"))
 
     def StartTask(self, request, context):
-        task: Task = request.task
+        task_id: int = request.task_id
+        if task_id not in self.tasks:
+            return task_runtime_pb2.StartTaskResp(
+                resp=task_runtime_pb2.Response(code=10000, message="Task not found"))
+
+        task: Task = self.tasks[task_id]
         script_path = '{}/{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id, task.file)
         if not os.path.exists(script_path):
             return task_runtime_pb2.StartTaskResp(
