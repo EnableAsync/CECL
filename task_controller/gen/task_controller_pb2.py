@@ -18,10 +18,117 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n)task_controller/gen/task_controller.proto\"!\n\nAddTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"&\n\x0b\x41\x64\x64TaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x10\n\x0eGetAllTasksReq\"*\n\x0fGetAllTasksResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"?\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x13\n\x04task\x18\x02 \x01(\x0b\x32\x05.Task\"$\n\rUpdateTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\")\n\x0eUpdateTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xfc\x01\n\x0eTaskController\x12&\n\x07\x41\x64\x64Task\x12\x0b.AddTaskReq\x1a\x0c.AddTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetAllTasks\x12\x0f.GetAllTasksReq\x1a\x10.GetAllTasksResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x12/\n\nUpdateTask\x12\x0e.UpdateTaskReq\x1a\x0f.UpdateTaskResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n)task_controller/gen/task_controller.proto\"9\n\x17\x41\x64\x64\x43ustomLogCallbackReq\x12\x1e\n\ncustom_log\x18\x01 \x01(\x0b\x32\n.CustomLog\"3\n\x18\x41\x64\x64\x43ustomLogCallbackResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\";\n\tCustomLog\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\x03\"!\n\nAddTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"&\n\x0b\x41\x64\x64TaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x10\n\x0eGetAllTasksReq\"*\n\x0fGetAllTasksResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"?\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x13\n\x04task\x18\x02 \x01(\x0b\x32\x05.Task\"$\n\rUpdateTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\")\n\x0eUpdateTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xcb\x02\n\x0eTaskController\x12&\n\x07\x41\x64\x64Task\x12\x0b.AddTaskReq\x1a\x0c.AddTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetAllTasks\x12\x0f.GetAllTasksReq\x1a\x10.GetAllTasksResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x12/\n\nUpdateTask\x12\x0e.UpdateTaskReq\x1a\x0f.UpdateTaskResp\"\x00\x12M\n\x14\x41\x64\x64\x43ustomLogCallback\x12\x18.AddCustomLogCallbackReq\x1a\x19.AddCustomLogCallbackResp\"\x00\x62\x06proto3'
 )
 
 
+
+
+_ADDCUSTOMLOGCALLBACKREQ = _descriptor.Descriptor(
+  name='AddCustomLogCallbackReq',
+  full_name='AddCustomLogCallbackReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='custom_log', full_name='AddCustomLogCallbackReq.custom_log', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=45,
+  serialized_end=102,
+)
+
+
+_ADDCUSTOMLOGCALLBACKRESP = _descriptor.Descriptor(
+  name='AddCustomLogCallbackResp',
+  full_name='AddCustomLogCallbackResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='AddCustomLogCallbackResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=104,
+  serialized_end=155,
+)
+
+
+_CUSTOMLOG = _descriptor.Descriptor(
+  name='CustomLog',
+  full_name='CustomLog',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_id', full_name='CustomLog.task_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='CustomLog.content', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='CustomLog.time', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=157,
+  serialized_end=216,
+)
 
 
 _ADDTASKREQ = _descriptor.Descriptor(
@@ -50,8 +157,8 @@ _ADDTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=45,
-  serialized_end=78,
+  serialized_start=218,
+  serialized_end=251,
 )
 
 
@@ -81,8 +188,8 @@ _ADDTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=80,
-  serialized_end=118,
+  serialized_start=253,
+  serialized_end=291,
 )
 
 
@@ -112,8 +219,8 @@ _STOPTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=120,
-  serialized_end=150,
+  serialized_start=293,
+  serialized_end=323,
 )
 
 
@@ -143,8 +250,8 @@ _STOPTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=152,
-  serialized_end=191,
+  serialized_start=325,
+  serialized_end=364,
 )
 
 
@@ -167,8 +274,8 @@ _GETALLTASKSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=193,
-  serialized_end=209,
+  serialized_start=366,
+  serialized_end=382,
 )
 
 
@@ -198,8 +305,8 @@ _GETALLTASKSRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=211,
-  serialized_end=253,
+  serialized_start=384,
+  serialized_end=426,
 )
 
 
@@ -229,8 +336,8 @@ _GETTASKINFOREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=255,
-  serialized_end=288,
+  serialized_start=428,
+  serialized_end=461,
 )
 
 
@@ -267,8 +374,8 @@ _GETTASKINFORESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=290,
-  serialized_end=353,
+  serialized_start=463,
+  serialized_end=526,
 )
 
 
@@ -298,8 +405,8 @@ _UPDATETASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=355,
-  serialized_end=391,
+  serialized_start=528,
+  serialized_end=564,
 )
 
 
@@ -329,8 +436,8 @@ _UPDATETASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=393,
-  serialized_end=434,
+  serialized_start=566,
+  serialized_end=607,
 )
 
 
@@ -402,8 +509,8 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=437,
-  serialized_end=569,
+  serialized_start=610,
+  serialized_end=742,
 )
 
 
@@ -440,10 +547,12 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=571,
-  serialized_end=612,
+  serialized_start=744,
+  serialized_end=785,
 )
 
+_ADDCUSTOMLOGCALLBACKREQ.fields_by_name['custom_log'].message_type = _CUSTOMLOG
+_ADDCUSTOMLOGCALLBACKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _ADDTASKREQ.fields_by_name['task'].message_type = _TASK
 _ADDTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STOPTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
@@ -452,6 +561,9 @@ _GETTASKINFORESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKINFORESP.fields_by_name['task'].message_type = _TASK
 _UPDATETASKREQ.fields_by_name['task'].message_type = _TASK
 _UPDATETASKRESP.fields_by_name['resp'].message_type = _RESPONSE
+DESCRIPTOR.message_types_by_name['AddCustomLogCallbackReq'] = _ADDCUSTOMLOGCALLBACKREQ
+DESCRIPTOR.message_types_by_name['AddCustomLogCallbackResp'] = _ADDCUSTOMLOGCALLBACKRESP
+DESCRIPTOR.message_types_by_name['CustomLog'] = _CUSTOMLOG
 DESCRIPTOR.message_types_by_name['AddTaskReq'] = _ADDTASKREQ
 DESCRIPTOR.message_types_by_name['AddTaskResp'] = _ADDTASKRESP
 DESCRIPTOR.message_types_by_name['StopTaskReq'] = _STOPTASKREQ
@@ -465,6 +577,27 @@ DESCRIPTOR.message_types_by_name['UpdateTaskResp'] = _UPDATETASKRESP
 DESCRIPTOR.message_types_by_name['Task'] = _TASK
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+AddCustomLogCallbackReq = _reflection.GeneratedProtocolMessageType('AddCustomLogCallbackReq', (_message.Message,), {
+  'DESCRIPTOR' : _ADDCUSTOMLOGCALLBACKREQ,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:AddCustomLogCallbackReq)
+  })
+_sym_db.RegisterMessage(AddCustomLogCallbackReq)
+
+AddCustomLogCallbackResp = _reflection.GeneratedProtocolMessageType('AddCustomLogCallbackResp', (_message.Message,), {
+  'DESCRIPTOR' : _ADDCUSTOMLOGCALLBACKRESP,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:AddCustomLogCallbackResp)
+  })
+_sym_db.RegisterMessage(AddCustomLogCallbackResp)
+
+CustomLog = _reflection.GeneratedProtocolMessageType('CustomLog', (_message.Message,), {
+  'DESCRIPTOR' : _CUSTOMLOG,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:CustomLog)
+  })
+_sym_db.RegisterMessage(CustomLog)
 
 AddTaskReq = _reflection.GeneratedProtocolMessageType('AddTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _ADDTASKREQ,
@@ -558,8 +691,8 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=615,
-  serialized_end=867,
+  serialized_start=788,
+  serialized_end=1119,
   methods=[
   _descriptor.MethodDescriptor(
     name='AddTask',
@@ -604,6 +737,15 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_UPDATETASKREQ,
     output_type=_UPDATETASKRESP,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddCustomLogCallback',
+    full_name='TaskController.AddCustomLogCallback',
+    index=5,
+    containing_service=None,
+    input_type=_ADDCUSTOMLOGCALLBACKREQ,
+    output_type=_ADDCUSTOMLOGCALLBACKRESP,
     serialized_options=None,
   ),
 ])

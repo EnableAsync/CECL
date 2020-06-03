@@ -21,6 +21,24 @@ service TaskController {
     // Update task information
     rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
     }
+
+    // Add task script log, will be called by task runtime
+    rpc AddCustomLogCallback (AddCustomLogCallbackReq) returns (AddCustomLogCallbackResp) {
+    }
+}
+
+message AddCustomLogCallbackReq {
+    CustomLog custom_log = 1;
+}
+
+message AddCustomLogCallbackResp {
+    Response resp = 1;
+}
+
+message CustomLog {
+    int64 task_id = 1;
+    string content = 2;
+    int64 time = 3;
 }
 
 message AddTaskReq {

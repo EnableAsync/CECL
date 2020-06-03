@@ -39,6 +39,11 @@ class TaskControllerStub(object):
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskResp.FromString,
                 )
+        self.AddCustomLogCallback = channel.unary_unary(
+                '/TaskController/AddCustomLogCallback',
+                request_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackReq.SerializeToString,
+                response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackResp.FromString,
+                )
 
 
 class TaskControllerServicer(object):
@@ -80,6 +85,13 @@ class TaskControllerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddCustomLogCallback(self, request, context):
+        """Add task script log, will be called by task runtime
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TaskControllerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -107,6 +119,11 @@ def add_TaskControllerServicer_to_server(servicer, server):
                     servicer.UpdateTask,
                     request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskReq.FromString,
                     response_serializer=task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskResp.SerializeToString,
+            ),
+            'AddCustomLogCallback': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddCustomLogCallback,
+                    request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackReq.FromString,
+                    response_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -196,5 +213,21 @@ class TaskController(object):
         return grpc.experimental.unary_unary(request, target, '/TaskController/UpdateTask',
             task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.UpdateTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddCustomLogCallback(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskController/AddCustomLogCallback',
+            task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackReq.SerializeToString,
+            task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
