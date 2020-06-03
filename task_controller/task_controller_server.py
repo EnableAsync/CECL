@@ -4,6 +4,7 @@ import json
 from task_controller.model.task import Task
 from task_controller.model.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
+from task_controller.client.data_manger_client import DataManager
 
 import grpc
 
@@ -15,7 +16,30 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
 
     def __init__(self):
-        pass
+        self.db = DataManager()
+
+    def AddCustomLogCallback(self, request, context):
+        log: CustomLog = request.custom_log
+        resp = self.db.add_custom_log(log).resp
+        return task_controller_pb2.AddCustomLogCallbackResp(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message,
+        ))
+
+    def AddTask(self, request, context):
+        return super().AddTask(request, context)
+
+    def StopTask(self, request, context):
+        return super().StopTask(request, context)
+
+    def GetAllTasks(self, request, context):
+        return super().GetAllTasks(request, context)
+
+    def GetTaskInfo(self, request, context):
+        return super().GetTaskInfo(request, context)
+
+    def UpdateTask(self, request, context):
+        return super().UpdateTask(request, context)
 
     # # 工作函数
     # def SayHello(self, request, context):

@@ -4,6 +4,7 @@ import grpc
 import time
 from data_manager.gen import data_manager_pb2, data_manager_pb2_grpc
 from task_controller.model.task import Task
+from task_controller.model.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
 
 
@@ -61,20 +62,36 @@ class DataManager:
             )
         ))
 
+    def add_custom_log(self, task_log: CustomLog):
+        return self.stub.AddCustomLog(data_manager_pb2.AddCustomLogReq(
+            custom_log=data_manager_pb2.CustomLog(
+                task_id=task_log.task_id,
+                content=task_log.content,
+                time=task_log.time,
+            )
+        ))
+
 
 if __name__ == '__main__':
     dm = DataManager()
-    task = Task(
-        task_id=1,
-        name="test_task",
-        create_time=int(time.time()),
-        union_train=0,
-        edgenodes='nodes',
-        file='train.py'
-    )
+    # task = Task(
+    #     task_id=1,
+    #     name="test_task",
+    #     create_time=int(time.time()),
+    #     union_train=0,
+    #     edgenodes='nodes',
+    #     file='train.py'
+    # )
     # dm.add_task(task)
     # dm.start_task(2, int(time.time()))
     # dm.stop_task(2, int(time.time()))
     # dm.finish_task(2, int(time.time()))
-    ret = dm.get_all_tasks()
-    print(ret.resp)
+    # ret = dm.get_all_tasks()
+    # print(ret.resp)
+
+    log = CustomLog(
+        task_id=1,
+        content='Test!!',
+        time=int(time.time())
+    )
+    dm.add_custom_log(log)

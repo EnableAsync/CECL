@@ -1,8 +1,10 @@
 from concurrent import futures
 import time
 import os
+from task_runtime.util.get_file_path import get_config_path, get_script_path
 from conf import TASK_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
 from task_runtime.model.task import Task
+from task_runtime.logic.start_task import start_task
 
 import grpc
 
@@ -16,27 +18,40 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
         self.tasks: dict = {}
 
     def UploadTask(self, request, context):
-        task: Task = request.task
+        request_task = request.task
+        task: Task = Task(
+            task_id=request_task.task_id,
+            name=request_task.name,
+            create_time=request_task.create_time,
+            start_time=request_task.start_time,
+            end_time=request_task.end_time,
+            union_train=request_task.union_train,
+            edgenodes=request_task.edgenodes,
+            file=request_task.file,
+            status=0
+        )
         script = request.script
         config = request.config
 
-        if task.task_id == 0:
+        if request_task.task_id == 0:
             return task_runtime_pb2.UploadTaskResp(
                 resp=task_runtime_pb2.Response(code=10001, message="task id can't be empty"))
 
-        os.makedirs('{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id))
+        upload_path = '{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, request_task.task_id)
+        if not os.path.exists(upload_path):
+            os.makedirs(upload_path)
 
-        script_path = '{}/{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id, task.file)
+        script_path = get_script_path(request_task)
         script_file = open(script_path, 'wb')
         script_file.write(script)
         script_file.close()
 
-        config_path = '{}/{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id, 'config.json')
+        config_path = get_config_path(request_task)
         config_file = open(config_path, 'wb')
         config_file.write(config)
         config_file.close()
 
-        self.tasks[task.task_id] = task
+        self.tasks[request_task.task_id] = task
 
         return task_runtime_pb2.UploadTaskResp(resp=task_runtime_pb2.Response(code=0, message="success"))
 
@@ -47,10 +62,14 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
                 resp=task_runtime_pb2.Response(code=10000, message="Task not found"))
 
         task: Task = self.tasks[task_id]
+        print(task)
         script_path = '{}/{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id, task.file)
         if not os.path.exists(script_path):
             return task_runtime_pb2.StartTaskResp(
                 resp=task_runtime_pb2.Response(code=10000, message="Script not uploaded"))
+        start_task(task)
+        return task_runtime_pb2.StartTaskResp(
+            resp=task_runtime_pb2.Response(code=0, message="success"))
 
     def StopTask(self, request, context):
         return super().StopTask(request, context)

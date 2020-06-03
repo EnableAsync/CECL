@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+// Prevent method conflicts
+package DataManager;
+
 // The data manager service definition.
 service DataManager {
     // Add a task

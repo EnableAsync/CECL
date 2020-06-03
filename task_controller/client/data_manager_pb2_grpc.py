@@ -15,39 +15,44 @@ class DataManagerStub(object):
             channel: A grpc.Channel.
         """
         self.AddTask = channel.unary_unary(
-                '/DataManager/AddTask',
+                '/DataManager.DataManager/AddTask',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskResp.FromString,
                 )
         self.StartTask = channel.unary_unary(
-                '/DataManager/StartTask',
+                '/DataManager.DataManager/StartTask',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.StartTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.StartTaskResp.FromString,
                 )
         self.StopTask = channel.unary_unary(
-                '/DataManager/StopTask',
+                '/DataManager.DataManager/StopTask',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.StopTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.StopTaskResp.FromString,
                 )
         self.FinishTask = channel.unary_unary(
-                '/DataManager/FinishTask',
+                '/DataManager.DataManager/FinishTask',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.FinishTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.FinishTaskResp.FromString,
                 )
         self.GetTask = channel.unary_unary(
-                '/DataManager/GetTask',
+                '/DataManager.DataManager/GetTask',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskResp.FromString,
                 )
         self.GetAllTasks = channel.unary_unary(
-                '/DataManager/GetAllTasks',
+                '/DataManager.DataManager/GetAllTasks',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetAllTasksReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetAllTasksResp.FromString,
                 )
         self.UpdateTask = channel.unary_unary(
-                '/DataManager/UpdateTask',
+                '/DataManager.DataManager/UpdateTask',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskResp.FromString,
+                )
+        self.AddCustomLog = channel.unary_unary(
+                '/DataManager.DataManager/AddCustomLog',
+                request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.SerializeToString,
+                response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.FromString,
                 )
 
 
@@ -104,6 +109,13 @@ class DataManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddCustomLog(self, request, context):
+        """Add task script log
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -142,9 +154,14 @@ def add_DataManagerServicer_to_server(servicer, server):
                     request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskReq.FromString,
                     response_serializer=data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskResp.SerializeToString,
             ),
+            'AddCustomLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddCustomLog,
+                    request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.FromString,
+                    response_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'DataManager', rpc_method_handlers)
+            'DataManager.DataManager', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -163,7 +180,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/AddTask',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/AddTask',
             data__manager_dot_gen_dot_data__manager__pb2.AddTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.AddTaskResp.FromString,
             options, channel_credentials,
@@ -179,7 +196,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/StartTask',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/StartTask',
             data__manager_dot_gen_dot_data__manager__pb2.StartTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.StartTaskResp.FromString,
             options, channel_credentials,
@@ -195,7 +212,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/StopTask',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/StopTask',
             data__manager_dot_gen_dot_data__manager__pb2.StopTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.StopTaskResp.FromString,
             options, channel_credentials,
@@ -211,7 +228,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/FinishTask',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/FinishTask',
             data__manager_dot_gen_dot_data__manager__pb2.FinishTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.FinishTaskResp.FromString,
             options, channel_credentials,
@@ -227,7 +244,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/GetTask',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/GetTask',
             data__manager_dot_gen_dot_data__manager__pb2.GetTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.GetTaskResp.FromString,
             options, channel_credentials,
@@ -243,7 +260,7 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/GetAllTasks',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/GetAllTasks',
             data__manager_dot_gen_dot_data__manager__pb2.GetAllTasksReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.GetAllTasksResp.FromString,
             options, channel_credentials,
@@ -259,8 +276,24 @@ class DataManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/DataManager/UpdateTask',
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/UpdateTask',
             data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.UpdateTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddCustomLog(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/AddCustomLog',
+            data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.SerializeToString,
+            data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

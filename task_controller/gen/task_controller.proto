@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package TaskController;
+
 // The task controller service definition.
 service TaskController {
     // Add a task

@@ -30,6 +30,11 @@ class TaskRuntime:
             config=config,
         ))
 
+    def start_task(self, task_id: int):
+        return self.stub.StartTask(task_runtime_pb2.StartTaskReq(
+            task_id=task_id
+        ))
+
 
 if __name__ == '__main__':
     tr = TaskRuntime()
@@ -43,3 +48,4 @@ if __name__ == '__main__':
     )
     file = open('./test/train.py', 'rb')
     tr.upload_task(task, file.read(), b'')
+    print(tr.start_task(1).resp.message)
