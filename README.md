@@ -1,6 +1,6 @@
 # CECL
 
-![Python application](https://github.com/wingsjj/CECL/workflows/Python%20application/badge.svg)
+[![CECL](https://github.com/wingsjj/CECL/workflows/Python%20application/badge.svg)](https://github.com/wingsjj/CECL/actions)
 
 ## 文件目录说明
 
