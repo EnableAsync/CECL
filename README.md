@@ -1,5 +1,7 @@
 # CECL
 
+![Python application](https://github.com/wingsjj/CECL/workflows/Python%20application/badge.svg)
+
 ## 文件目录说明
 
 | 目录 | 说明 |
