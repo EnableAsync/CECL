@@ -46,6 +46,6 @@ if __name__ == '__main__':
         edgenodes='nodes',
         file='train.py'
     )
-    file = open('./test/train.py', 'rb')
+    file = open('./test/99.55%.py', 'rb')
     tr.upload_task(task, file.read(), b'')
     print(tr.start_task(1).resp.message)

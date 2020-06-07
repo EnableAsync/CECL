@@ -20,7 +20,7 @@ service TaskController {
     rpc GetTaskInfo (GetTaskInfoReq) returns (GetTaskInfoResp) {
     }
 
-    // Update task information
+    // Update a task
     rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
     }
 
