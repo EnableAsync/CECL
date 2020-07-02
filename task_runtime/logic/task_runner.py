@@ -5,6 +5,12 @@ from task_runtime.util.get_file_path import get_script_path
 import subprocess
 import time
 
+tasks = {}
+
+
+def exist_task(task: Task):
+    return tasks.get(task) is not None
+
 
 def start_task(task: Task):
     print('start_task')
@@ -13,6 +19,7 @@ def start_task(task: Task):
     try:
         sub = subprocess.Popen(
             ['python', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        tasks[task] = sub
         tc.add_custom_log_callback(CustomLog(
             task_id=task.task_id,
             content=sub.stdout.read().decode('utf8'),
@@ -36,3 +43,18 @@ def start_task(task: Task):
             content=str(e),
             time=int(time.time())
         ))
+
+
+def stop_task(task: Task) -> bool:
+    if not exist_task(task):
+        return False
+
+    sub: subprocess.Popen = tasks[task]
+    sub.kill()
+    tc = TaskController()
+    tc.add_custom_log_callback(CustomLog(
+        task_id=task.task_id,
+        content='[stop]',
+        time=int(time.time())
+    ))
+    return True

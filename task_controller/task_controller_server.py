@@ -5,6 +5,7 @@ from task_controller.model.task import Task
 from task_controller.model.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
 from task_controller.client.data_manger_client import DataManager
+from task_controller.client.task_runtime_client import TaskRuntime
 
 import grpc
 
@@ -17,6 +18,8 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
 
     def __init__(self):
         self.db = DataManager()
+        self.runtime = TaskRuntime()
+        self.tasks = []
 
     def AddCustomLogCallback(self, request, context):
         log: CustomLog = request.custom_log
@@ -27,10 +30,38 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
         ))
 
     def AddTask(self, request, context):
-        return super().AddTask(request, context)
+        request_task = request.task
+        task: Task = Task(
+            task_id=request_task.task_id,
+            name=request_task.name,
+            create_time=request_task.create_time,
+            start_time=request_task.start_time,
+            end_time=request_task.end_time,
+            union_train=request_task.union_train,
+            edgenodes=request_task.edgenodes,
+            file=request_task.file,
+            status=0
+        )
+        self.tasks.append(task)
+        resp = self.db.add_task(task).resp
+        return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message,
+        ))
 
     def StopTask(self, request, context):
-        return super().StopTask(request, context)
+        task_id: int = request.task_id
+        resp = self.runtime.stop_task(task_id).resp
+        if resp.code != 0:
+            return task_controller_pb2.StopTaskReq(resp=task_controller_pb2.Response(
+                code=resp.code,
+                message=resp.message
+            ))
+        resp = self.db.stop_task(task_id, int(time.time()))
+        return task_controller_pb2.StopTaskReq(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message
+        ))
 
     def GetAllTasks(self, request, context):
         return super().GetAllTasks(request, context)

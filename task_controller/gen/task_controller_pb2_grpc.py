@@ -79,7 +79,7 @@ class TaskControllerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def UpdateTask(self, request, context):
-        """Update task information
+        """Update a task
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

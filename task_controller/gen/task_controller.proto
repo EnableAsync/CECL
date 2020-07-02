@@ -85,9 +85,10 @@ message Task {
     string name = 2;
     int32 create_time = 3;
     int32 start_time = 4;
-    int32 union_train = 5;
-    string edgenodes = 6;
-    string file = 7;
+    int64 end_time = 5;
+    int32 union_train = 6;
+    string edgenodes = 7;
+    string file = 8;
 }
 
 

@@ -4,7 +4,7 @@ import os
 from task_runtime.util.get_file_path import get_config_path, get_script_path
 from conf import TASK_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
 from task_runtime.model.task import Task
-from task_runtime.logic.start_task import start_task
+from task_runtime.logic.task_runner import start_task, stop_task
 
 import grpc
 
@@ -72,7 +72,13 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
             resp=task_runtime_pb2.Response(code=0, message="success"))
 
     def StopTask(self, request, context):
-        return super().StopTask(request, context)
+        task_id: int = request.task_id
+        if task_id not in self.tasks:
+            return task_runtime_pb2.StartTaskResp(
+                resp=task_runtime_pb2.Response(code=10000, message="Task not found"))
+        if stop_task(self.tasks[task_id]):
+            return task_runtime_pb2.StopTaskResp(
+                resp=task_runtime_pb2.Response(code=0, message="success"))
 
     def GetTaskInfo(self, request, context):
         return super().GetTaskInfo(request, context)
