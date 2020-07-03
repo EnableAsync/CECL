@@ -19,6 +19,14 @@
 3. 执行 `task_controller` 中的 `task_controller_server.py`
 4. 测试执行 `task_runtime` 中的 `/gen/task_runtime_client.py`
 
+## 接口说明
+1. 需要的文件有
+   - python 训练脚本
+   - python 预测脚本
+   - 运行所需环境 `requirements.txt`
+2. 接口运行流程
+   1. 运行 python 训练脚本
+   2. 当训练完毕之后，部署脚本，并开放接口
 
 ## 实体对象定义
 
