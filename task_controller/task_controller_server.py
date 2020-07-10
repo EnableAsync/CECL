@@ -44,6 +44,16 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
         )
         self.tasks.append(task)
         resp = self.db.add_task(task).resp
+        resp = task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message,
+        ))
+        if resp.code != 0:
+            return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
+                code=resp.code,
+                message=resp.message,
+            ))
+        resp = self.runtime.start_task(request_task.task_id)
         return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
             code=resp.code,
             message=resp.message,

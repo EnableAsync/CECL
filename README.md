@@ -81,8 +81,28 @@
 5. `Task Controller` 调用 `Message Hub` 的 `StartTask` 方法，通知 `Edge` 执行 `Task`
 6. `Task Controller` 调用 `Data Manager` 的 `AddTask` 方法，记录执行信息
 
+## 联邦学习
+
+1. `Edge` 端传递梯度参数至云端
+2. 云端计算整合为一个梯度
+3. 云端下发梯度到 `Edge`
+
 ## Task 描述性信息修改
 
 1. Client 通过 `POST` 方法传输给 Server 脚本文件和配置文件
 2. Server 将脚本文件和训练集封装为 `Task`
 3. `Task Controller` 调用 `Data Manager` 的 `UpdateTask` 方法，更新信息
+
+
+## Controller 调度
+
+有一个 `Task` 就执行一个
+
+## Message Hub 双向通信
+
+一个云端对应多个 `Edge` 端
+
+## 部署
+
+
+## 测试

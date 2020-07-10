@@ -31,6 +31,9 @@ class Db:
                     task.status
                 ))
             self.db.commit()
+            sql = """select max(id) from cecl.task"""
+            self.cursor.execute(sql)
+            return self.cursor.fetchone()
         except ValueError as e:
             print(e)
             self.db.rollback()

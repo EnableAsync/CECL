@@ -22,7 +22,7 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
         print(request.task)
         # status:0 -> ready
         t: Task = request.task
-        self.db.add_task(Task(
+        task_id = self.db.add_task(Task(
             t.task_id,
             t.name,
             t.create_time,
@@ -33,7 +33,7 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             t.file,
             0,
         ))
-        return data_manager_pb2.AddTaskResp(resp=data_manager_pb2.Response(code=0, message="success"))
+        return data_manager_pb2.AddTaskResp(resp=data_manager_pb2.Response(code=0, message=str(task_id)))
 
     def StartTask(self, request, context):
         self.db.start_task(Task(
