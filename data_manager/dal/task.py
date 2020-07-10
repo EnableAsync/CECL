@@ -7,7 +7,7 @@ from data_manager.model.custom_log import CustomLog
 
 class Db:
     def __init__(self):
-        self.db = pymysql.connect("localhost", "root", "root")
+        self.db = pymysql.connect("localhost", "root", "root", cursorclass=pymysql.cursors.DictCursor)
         self.cursor = self.db.cursor()
         self.cursor.execute("SELECT VERSION()")
         data = self.cursor.fetchone()
