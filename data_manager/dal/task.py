@@ -31,7 +31,7 @@ class Db:
                     task.status
                 ))
             self.db.commit()
-            sql = """select max(id) from cecl.task"""
+            sql = """select max(id) as id from cecl.task"""
             self.cursor.execute(sql)
             return self.cursor.fetchone()
         except ValueError as e:
@@ -89,7 +89,7 @@ class Db:
         unix_timestamp(create_time) as create_time, 
         unix_timestamp(start_time) as start_time, 
         unix_timestamp(end_time) as end_time, 
-        union_train, edgenodes, file, status from cecl.task"""
+        union_train, edgenodes, file, status from cecl.task order by id desc"""
         try:
             self.cursor.execute(sql)
             return list(self.cursor.fetchall())

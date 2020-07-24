@@ -33,9 +33,11 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             t.file,
             0,
         ))
-        return data_manager_pb2.AddTaskResp(resp=data_manager_pb2.Response(code=0, message=str(task_id)))
+        return data_manager_pb2.AddTaskResp(resp=data_manager_pb2.Response(code=0, message=json.dumps(task_id)))
 
     def StartTask(self, request, context):
+        print("start task:" + str(request.task_id))
+        print("time:" + str(request.start_time))
         self.db.start_task(Task(
             task_id=request.task_id,
             start_time=request.start_time,
@@ -64,7 +66,7 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
     def GetAllTasks(self, request, context):
         print(self.db.get_all_tasks())
         return data_manager_pb2.GetAllTasksResp(
-            resp=data_manager_pb2.Response(code=1, message=json.dumps(self.db.get_all_tasks())))
+            resp=data_manager_pb2.Response(code=0, message=json.dumps(self.db.get_all_tasks())))
 
     def UpdateTask(self, request, context):
         t: Task = request.task

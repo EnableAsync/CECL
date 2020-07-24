@@ -8,8 +8,16 @@ service TaskController {
     rpc AddTask (AddTaskReq) returns (AddTaskResp) {
     }
 
+    // Start a task
+    rpc StartTask(StartTaskReq) returns (StartTaskResp) {
+    }
+
     // Stop a task
     rpc StopTask (StopTaskReq) returns (StopTaskResp) {
+    }
+
+    // It will be called when task finished
+    rpc FinishTask(FinishTaskReq) returns (FinishTaskResp) {
     }
 
     // Get all tasks
@@ -27,6 +35,23 @@ service TaskController {
     // Add task script log, will be called by task runtime
     rpc AddCustomLogCallback (AddCustomLogCallbackReq) returns (AddCustomLogCallbackResp) {
     }
+}
+
+message FinishTaskReq {
+    int64 task_id = 1;
+}
+
+message FinishTaskResp {
+    Response resp = 2;
+}
+
+message StartTaskReq {
+    int64 task_id = 1;
+    int64 start_time = 2;
+}
+
+message StartTaskResp {
+    Response resp = 1;
 }
 
 message AddCustomLogCallbackReq {
@@ -52,6 +77,7 @@ message AddTaskResp {
 
 message StopTaskReq {
     int64 task_id = 1;
+    int64 stop_time = 2;
 }
 message StopTaskResp {
     Response resp = 1;

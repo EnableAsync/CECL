@@ -3,22 +3,9 @@ from __future__ import print_function
 import grpc
 import time
 from task_controller.gen import task_controller_pb2, task_controller_pb2_grpc
+from task_controller.model.task import Task
 from task_controller.model.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
-
-
-class Task:
-    def __init__(self, task_id=0, name='', create_time=0, start_time=0, end_time=0, union_train=0, edgenodes='',
-                 file='', status=0):
-        self.task_id = task_id
-        self.name = name
-        self.create_time = create_time
-        self.start_time = start_time
-        self.end_time = end_time
-        self.union_train = union_train
-        self.edgenodes = edgenodes
-        self.file = file
-        self.status = status
 
 
 class TaskController:
@@ -51,7 +38,14 @@ class TaskController:
 
     def stop_task(self, task_id: int):
         return self.stub.StopTask(task_controller_pb2.StopTaskReq(
-            task_id=task_id
+            task_id=task_id,
+            stop_time=int(time.time())
+        ))
+
+    def start_task(self, task_id: int):
+        return self.stub.StartTask(task_controller_pb2.StartTaskReq(
+            task_id=task_id,
+            start_time=int(time.time())
         ))
 
 

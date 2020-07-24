@@ -4,7 +4,7 @@ import grpc
 import time
 from task_controller.gen import task_controller_pb2, task_controller_pb2_grpc
 from task_controller.model.task import Task
-from task_runtime.model.custom_log import CustomLog
+from task_controller.model.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
 
 
@@ -20,6 +20,37 @@ class TaskController:
                 content=custom_log.content,
                 time=custom_log.time,
             )
+        ))
+
+    def add_task(self, t: Task):
+        return self.stub.AddTask(task_controller_pb2.AddTaskReq(
+            task=task_controller_pb2.Task(
+                task_id=t.task_id,
+                name=t.name,
+                create_time=t.create_time,
+                start_time=0,
+                end_time=0,
+                union_train=t.union_train,
+                edgenodes=t.edgenodes,
+                file=t.file
+            )
+        ))
+
+    def stop_task(self, task_id: int):
+        return self.stub.StopTask(task_controller_pb2.StopTaskReq(
+            task_id=task_id,
+            stop_time=int(time.time())
+        ))
+
+    def start_task(self, task_id: int):
+        return self.stub.StartTask(task_controller_pb2.StartTaskReq(
+            task_id=task_id,
+            start_time=int(time.time())
+        ))
+
+    def finish_task(self, task_id: int):
+        return self.stub.FinishTask(task_controller_pb2.FinishTaskReq(
+            task_id=task_id
         ))
 
 
@@ -40,9 +71,9 @@ if __name__ == '__main__':
     # ret = dm.get_all_tasks()
     # print(ret.resp)
 
-    # log = CustomLog(
-    #     task_id=1,
-    #     content='Test!!',
-    #     time=int(time.time())
-    # )
-    # tc.add_custom_log_callback(log)
+    log = CustomLog(
+        task_id=1,
+        content='Test!!',
+        time=int(time.time())
+    )
+    tc.add_custom_log_callback(log)

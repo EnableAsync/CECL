@@ -19,10 +19,20 @@ class TaskControllerStub(object):
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskResp.FromString,
                 )
+        self.StartTask = channel.unary_unary(
+                '/TaskController.TaskController/StartTask',
+                request_serializer=task__controller_dot_gen_dot_task__controller__pb2.StartTaskReq.SerializeToString,
+                response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.StartTaskResp.FromString,
+                )
         self.StopTask = channel.unary_unary(
                 '/TaskController.TaskController/StopTask',
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskResp.FromString,
+                )
+        self.FinishTask = channel.unary_unary(
+                '/TaskController.TaskController/FinishTask',
+                request_serializer=task__controller_dot_gen_dot_task__controller__pb2.FinishTaskReq.SerializeToString,
+                response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.FinishTaskResp.FromString,
                 )
         self.GetAllTasks = channel.unary_unary(
                 '/TaskController.TaskController/GetAllTasks',
@@ -57,8 +67,22 @@ class TaskControllerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def StartTask(self, request, context):
+        """Start a task
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StopTask(self, request, context):
         """Stop a task
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def FinishTask(self, request, context):
+        """It will be called when task finished
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -100,10 +124,20 @@ def add_TaskControllerServicer_to_server(servicer, server):
                     request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskReq.FromString,
                     response_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskResp.SerializeToString,
             ),
+            'StartTask': grpc.unary_unary_rpc_method_handler(
+                    servicer.StartTask,
+                    request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.StartTaskReq.FromString,
+                    response_serializer=task__controller_dot_gen_dot_task__controller__pb2.StartTaskResp.SerializeToString,
+            ),
             'StopTask': grpc.unary_unary_rpc_method_handler(
                     servicer.StopTask,
                     request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskReq.FromString,
                     response_serializer=task__controller_dot_gen_dot_task__controller__pb2.StopTaskResp.SerializeToString,
+            ),
+            'FinishTask': grpc.unary_unary_rpc_method_handler(
+                    servicer.FinishTask,
+                    request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.FinishTaskReq.FromString,
+                    response_serializer=task__controller_dot_gen_dot_task__controller__pb2.FinishTaskResp.SerializeToString,
             ),
             'GetAllTasks': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllTasks,
@@ -153,6 +187,22 @@ class TaskController(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def StartTask(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskController.TaskController/StartTask',
+            task__controller_dot_gen_dot_task__controller__pb2.StartTaskReq.SerializeToString,
+            task__controller_dot_gen_dot_task__controller__pb2.StartTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def StopTask(request,
             target,
             options=(),
@@ -165,6 +215,22 @@ class TaskController(object):
         return grpc.experimental.unary_unary(request, target, '/TaskController.TaskController/StopTask',
             task__controller_dot_gen_dot_task__controller__pb2.StopTaskReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.StopTaskResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FinishTask(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskController.TaskController/FinishTask',
+            task__controller_dot_gen_dot_task__controller__pb2.FinishTaskReq.SerializeToString,
+            task__controller_dot_gen_dot_task__controller__pb2.FinishTaskResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 

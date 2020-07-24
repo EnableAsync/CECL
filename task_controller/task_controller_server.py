@@ -44,19 +44,37 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
         )
         self.tasks.append(task)
         resp = self.db.add_task(task).resp
-        resp = task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
-            code=resp.code,
-            message=resp.message,
-        ))
-        if resp.code != 0:
-            return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
-                code=resp.code,
-                message=resp.message,
-            ))
-        resp = self.runtime.start_task(request_task.task_id)
+        print("add task:" + resp.message)
         return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
             code=resp.code,
             message=resp.message,
+        ))
+
+        # if resp.code != 0:
+        #     return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
+        #         code=resp.code,
+        #         message=resp.message,
+        #     ))
+        # resp = self.runtime.start_task(request_task.task_id).resp
+        # return task_controller_pb2.AddTaskResp(resp=task_controller_pb2.Response(
+        #     code=resp.code,
+        #     message=resp.message,
+        # ))
+
+    def StartTask(self, request, context):
+        task_id: int = request.task_id
+        print("start task task id:" + str(task_id))
+        resp = self.runtime.start_task(task_id).resp
+        print("start task runtime code:" + str(resp.code))
+        if resp.code != 0:
+            return task_controller_pb2.StartTaskResp(resp=task_controller_pb2.Response(
+                code=resp.code,
+                message=resp.message
+            ))
+        resp = self.db.start_task(task_id, int(time.time())).resp
+        return task_controller_pb2.StartTaskResp(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message
         ))
 
     def StopTask(self, request, context):
@@ -69,6 +87,14 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
             ))
         resp = self.db.stop_task(task_id, int(time.time()))
         return task_controller_pb2.StopTaskReq(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message
+        ))
+
+    def FinishTask(self, request, context):
+        task_id: int = request.task_id
+        resp = self.db.finish_task(task_id, int(time.time())).resp
+        return task_controller_pb2.FinishTaskResp(resp=task_controller_pb2.Response(
             code=resp.code,
             message=resp.message
         ))

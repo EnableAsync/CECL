@@ -25,6 +25,7 @@ def start_task(task: Task):
             content=sub.stdout.read().decode('utf8'),
             time=int(time.time())
         ))
+        tc.finish_task(task.task_id)
 
         # while sub.poll() is None:
         #     out = sub.stdout.readline()

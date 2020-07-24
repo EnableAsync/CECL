@@ -38,6 +38,18 @@ class TaskController:
 
     def stop_task(self, task_id: int):
         return self.stub.StopTask(task_controller_pb2.StopTaskReq(
+            task_id=task_id,
+            stop_time=int(time.time())
+        ))
+
+    def start_task(self, task_id: int):
+        return self.stub.StartTask(task_controller_pb2.StartTaskReq(
+            task_id=task_id,
+            start_time=int(time.time())
+        ))
+
+    def finish_task(self, task_id: int):
+        return self.stub.FinishTask(task_controller_pb2.FinishTaskReq(
             task_id=task_id
         ))
 

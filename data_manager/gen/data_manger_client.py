@@ -89,9 +89,10 @@ if __name__ == '__main__':
     # ret = dm.get_all_tasks()
     # print(ret.resp)
 
-    log = CustomLog(
-        task_id=1,
-        content='Test!!',
-        time=int(time.time())
-    )
-    dm.add_custom_log(log)
+    # log = CustomLog(
+    #     task_id=1,
+    #     content='Test!!',
+    #     time=int(time.time())
+    # )
+    # dm.add_custom_log(log)
+    dm.get_all_tasks()
