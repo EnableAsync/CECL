@@ -149,6 +149,18 @@ class Db:
             print(e)
             self.db.rollback()
 
+    def get_task_log(self, task_id):
+        sql = """select id, task_id, content, unix_timestamp(time) as time from cecl.task_log where task_id = %s"""
+        try:
+            self.cursor.execute(
+                sql,
+                args=(
+                    task_id
+                ))
+            return self.cursor.fetchall()
+        except ValueError as e:
+            print(e)
+
 
 if __name__ == '__main__':
     now = int(time.time())
@@ -164,9 +176,10 @@ if __name__ == '__main__':
     # )
     # db.add_task(t)
 
-    log = CustomLog(
-        task_id=1,
-        content='Test!!',
-        time=int(time.time())
-    )
-    db.add_custom_log(log)
+    # log = CustomLog(
+    #     task_id=1,
+    #     content='Test!!',
+    #     time=int(time.time())
+    # )
+    # db.add_custom_log(log)
+    print(db.get_task_log(52))

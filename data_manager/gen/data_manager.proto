@@ -36,9 +36,19 @@ service DataManager {
     // Add task script log
     rpc AddCustomLog (AddCustomLogReq) returns (AddCustomLogResp) {
     }
+
+    // Get task logs
+    rpc GetTaskLog(GetTaskLogReq) returns (GetTaskLogResp) {
+    }
 }
 
+message GetTaskLogReq {
+    int64 task_id = 1;
+}
 
+message GetTaskLogResp {
+    Response resp = 1;
+}
 
 message AddTaskReq {
     Task task = 1;

@@ -60,5 +60,11 @@ def get_tasks():
     return {'code': resp.code, 'msg': resp.message}
 
 
+@app.route('/task/log/<task_id>', methods=['GET'])
+def get_task_log(task_id):
+    resp = dm.get_task_log(int(task_id)).resp
+    return {'code': resp.code, 'msg': resp.message}
+
+
 if __name__ == '__main__':
     app.run()

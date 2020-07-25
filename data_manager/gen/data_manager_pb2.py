@@ -18,10 +18,72 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='DataManager',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n#data_manager/gen/data_manager.proto\x12\x0b\x44\x61taManager\"-\n\nAddTaskReq\x12\x1f\n\x04task\x18\x01 \x01(\x0b\x32\x11.DataManager.Task\"2\n\x0b\x41\x64\x64TaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"3\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x12\n\nstart_time\x18\x02 \x01(\x03\"4\n\rStartTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"1\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x11\n\tstop_time\x18\x02 \x01(\x03\"3\n\x0cStopTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"5\n\rFinishTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x13\n\x0b\x66inish_time\x18\x02 \x01(\x03\"5\n\x0e\x46inishTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"\x1d\n\nGetTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"2\n\x0bGetTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"\x10\n\x0eGetAllTasksReq\"6\n\x0fGetAllTasksResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"0\n\rUpdateTaskReq\x12\x1f\n\x04task\x18\x01 \x01(\x0b\x32\x11.DataManager.Task\"5\n\x0eUpdateTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"=\n\x0f\x41\x64\x64\x43ustomLogReq\x12*\n\ncustom_log\x18\x01 \x01(\x0b\x32\x16.DataManager.CustomLog\"7\n\x10\x41\x64\x64\x43ustomLogResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\";\n\tCustomLog\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\x03\"\x96\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x03\x12\x12\n\nstart_time\x18\x04 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x11\n\tedgenodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xc3\x04\n\x0b\x44\x61taManager\x12>\n\x07\x41\x64\x64Task\x12\x17.DataManager.AddTaskReq\x1a\x18.DataManager.AddTaskResp\"\x00\x12\x44\n\tStartTask\x12\x19.DataManager.StartTaskReq\x1a\x1a.DataManager.StartTaskResp\"\x00\x12\x41\n\x08StopTask\x12\x18.DataManager.StopTaskReq\x1a\x19.DataManager.StopTaskResp\"\x00\x12G\n\nFinishTask\x12\x1a.DataManager.FinishTaskReq\x1a\x1b.DataManager.FinishTaskResp\"\x00\x12>\n\x07GetTask\x12\x17.DataManager.GetTaskReq\x1a\x18.DataManager.GetTaskResp\"\x00\x12J\n\x0bGetAllTasks\x12\x1b.DataManager.GetAllTasksReq\x1a\x1c.DataManager.GetAllTasksResp\"\x00\x12G\n\nUpdateTask\x12\x1a.DataManager.UpdateTaskReq\x1a\x1b.DataManager.UpdateTaskResp\"\x00\x12M\n\x0c\x41\x64\x64\x43ustomLog\x12\x1c.DataManager.AddCustomLogReq\x1a\x1d.DataManager.AddCustomLogResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n#data_manager/gen/data_manager.proto\x12\x0b\x44\x61taManager\" \n\rGetTaskLogReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"5\n\x0eGetTaskLogResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"-\n\nAddTaskReq\x12\x1f\n\x04task\x18\x01 \x01(\x0b\x32\x11.DataManager.Task\"2\n\x0b\x41\x64\x64TaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"3\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x12\n\nstart_time\x18\x02 \x01(\x03\"4\n\rStartTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"1\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x11\n\tstop_time\x18\x02 \x01(\x03\"3\n\x0cStopTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"5\n\rFinishTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x13\n\x0b\x66inish_time\x18\x02 \x01(\x03\"5\n\x0e\x46inishTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"\x1d\n\nGetTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"2\n\x0bGetTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"\x10\n\x0eGetAllTasksReq\"6\n\x0fGetAllTasksResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"0\n\rUpdateTaskReq\x12\x1f\n\x04task\x18\x01 \x01(\x0b\x32\x11.DataManager.Task\"5\n\x0eUpdateTaskResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\"=\n\x0f\x41\x64\x64\x43ustomLogReq\x12*\n\ncustom_log\x18\x01 \x01(\x0b\x32\x16.DataManager.CustomLog\"7\n\x10\x41\x64\x64\x43ustomLogResp\x12#\n\x04resp\x18\x01 \x01(\x0b\x32\x15.DataManager.Response\";\n\tCustomLog\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\x03\"\x96\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x03\x12\x12\n\nstart_time\x18\x04 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x11\n\tedgenodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\x8c\x05\n\x0b\x44\x61taManager\x12>\n\x07\x41\x64\x64Task\x12\x17.DataManager.AddTaskReq\x1a\x18.DataManager.AddTaskResp\"\x00\x12\x44\n\tStartTask\x12\x19.DataManager.StartTaskReq\x1a\x1a.DataManager.StartTaskResp\"\x00\x12\x41\n\x08StopTask\x12\x18.DataManager.StopTaskReq\x1a\x19.DataManager.StopTaskResp\"\x00\x12G\n\nFinishTask\x12\x1a.DataManager.FinishTaskReq\x1a\x1b.DataManager.FinishTaskResp\"\x00\x12>\n\x07GetTask\x12\x17.DataManager.GetTaskReq\x1a\x18.DataManager.GetTaskResp\"\x00\x12J\n\x0bGetAllTasks\x12\x1b.DataManager.GetAllTasksReq\x1a\x1c.DataManager.GetAllTasksResp\"\x00\x12G\n\nUpdateTask\x12\x1a.DataManager.UpdateTaskReq\x1a\x1b.DataManager.UpdateTaskResp\"\x00\x12M\n\x0c\x41\x64\x64\x43ustomLog\x12\x1c.DataManager.AddCustomLogReq\x1a\x1d.DataManager.AddCustomLogResp\"\x00\x12G\n\nGetTaskLog\x12\x1a.DataManager.GetTaskLogReq\x1a\x1b.DataManager.GetTaskLogResp\"\x00\x62\x06proto3'
 )
 
 
+
+
+_GETTASKLOGREQ = _descriptor.Descriptor(
+  name='GetTaskLogReq',
+  full_name='DataManager.GetTaskLogReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_id', full_name='DataManager.GetTaskLogReq.task_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=52,
+  serialized_end=84,
+)
+
+
+_GETTASKLOGRESP = _descriptor.Descriptor(
+  name='GetTaskLogResp',
+  full_name='DataManager.GetTaskLogResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='DataManager.GetTaskLogResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=86,
+  serialized_end=139,
+)
 
 
 _ADDTASKREQ = _descriptor.Descriptor(
@@ -50,8 +112,8 @@ _ADDTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=52,
-  serialized_end=97,
+  serialized_start=141,
+  serialized_end=186,
 )
 
 
@@ -81,8 +143,8 @@ _ADDTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=99,
-  serialized_end=149,
+  serialized_start=188,
+  serialized_end=238,
 )
 
 
@@ -119,8 +181,8 @@ _STARTTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=151,
-  serialized_end=202,
+  serialized_start=240,
+  serialized_end=291,
 )
 
 
@@ -150,8 +212,8 @@ _STARTTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=204,
-  serialized_end=256,
+  serialized_start=293,
+  serialized_end=345,
 )
 
 
@@ -188,8 +250,8 @@ _STOPTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=258,
-  serialized_end=307,
+  serialized_start=347,
+  serialized_end=396,
 )
 
 
@@ -219,8 +281,8 @@ _STOPTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=309,
-  serialized_end=360,
+  serialized_start=398,
+  serialized_end=449,
 )
 
 
@@ -257,8 +319,8 @@ _FINISHTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=362,
-  serialized_end=415,
+  serialized_start=451,
+  serialized_end=504,
 )
 
 
@@ -288,8 +350,8 @@ _FINISHTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=417,
-  serialized_end=470,
+  serialized_start=506,
+  serialized_end=559,
 )
 
 
@@ -319,8 +381,8 @@ _GETTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=472,
-  serialized_end=501,
+  serialized_start=561,
+  serialized_end=590,
 )
 
 
@@ -350,8 +412,8 @@ _GETTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=503,
-  serialized_end=553,
+  serialized_start=592,
+  serialized_end=642,
 )
 
 
@@ -374,8 +436,8 @@ _GETALLTASKSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=555,
-  serialized_end=571,
+  serialized_start=644,
+  serialized_end=660,
 )
 
 
@@ -405,8 +467,8 @@ _GETALLTASKSRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=573,
-  serialized_end=627,
+  serialized_start=662,
+  serialized_end=716,
 )
 
 
@@ -436,8 +498,8 @@ _UPDATETASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=629,
-  serialized_end=677,
+  serialized_start=718,
+  serialized_end=766,
 )
 
 
@@ -467,8 +529,8 @@ _UPDATETASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=679,
-  serialized_end=732,
+  serialized_start=768,
+  serialized_end=821,
 )
 
 
@@ -498,8 +560,8 @@ _ADDCUSTOMLOGREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=734,
-  serialized_end=795,
+  serialized_start=823,
+  serialized_end=884,
 )
 
 
@@ -529,8 +591,8 @@ _ADDCUSTOMLOGRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=797,
-  serialized_end=852,
+  serialized_start=886,
+  serialized_end=941,
 )
 
 
@@ -574,8 +636,8 @@ _CUSTOMLOG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=854,
-  serialized_end=913,
+  serialized_start=943,
+  serialized_end=1002,
 )
 
 
@@ -654,8 +716,8 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=916,
-  serialized_end=1066,
+  serialized_start=1005,
+  serialized_end=1155,
 )
 
 
@@ -692,10 +754,11 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1068,
-  serialized_end=1109,
+  serialized_start=1157,
+  serialized_end=1198,
 )
 
+_GETTASKLOGRESP.fields_by_name['resp'].message_type = _RESPONSE
 _ADDTASKREQ.fields_by_name['task'].message_type = _TASK
 _ADDTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STARTTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
@@ -707,6 +770,8 @@ _UPDATETASKREQ.fields_by_name['task'].message_type = _TASK
 _UPDATETASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _ADDCUSTOMLOGREQ.fields_by_name['custom_log'].message_type = _CUSTOMLOG
 _ADDCUSTOMLOGRESP.fields_by_name['resp'].message_type = _RESPONSE
+DESCRIPTOR.message_types_by_name['GetTaskLogReq'] = _GETTASKLOGREQ
+DESCRIPTOR.message_types_by_name['GetTaskLogResp'] = _GETTASKLOGRESP
 DESCRIPTOR.message_types_by_name['AddTaskReq'] = _ADDTASKREQ
 DESCRIPTOR.message_types_by_name['AddTaskResp'] = _ADDTASKRESP
 DESCRIPTOR.message_types_by_name['StartTaskReq'] = _STARTTASKREQ
@@ -727,6 +792,20 @@ DESCRIPTOR.message_types_by_name['CustomLog'] = _CUSTOMLOG
 DESCRIPTOR.message_types_by_name['Task'] = _TASK
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+GetTaskLogReq = _reflection.GeneratedProtocolMessageType('GetTaskLogReq', (_message.Message,), {
+  'DESCRIPTOR' : _GETTASKLOGREQ,
+  '__module__' : 'data_manager.gen.data_manager_pb2'
+  # @@protoc_insertion_point(class_scope:DataManager.GetTaskLogReq)
+  })
+_sym_db.RegisterMessage(GetTaskLogReq)
+
+GetTaskLogResp = _reflection.GeneratedProtocolMessageType('GetTaskLogResp', (_message.Message,), {
+  'DESCRIPTOR' : _GETTASKLOGRESP,
+  '__module__' : 'data_manager.gen.data_manager_pb2'
+  # @@protoc_insertion_point(class_scope:DataManager.GetTaskLogResp)
+  })
+_sym_db.RegisterMessage(GetTaskLogResp)
 
 AddTaskReq = _reflection.GeneratedProtocolMessageType('AddTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _ADDTASKREQ,
@@ -869,8 +948,8 @@ _DATAMANAGER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1112,
-  serialized_end=1691,
+  serialized_start=1201,
+  serialized_end=1853,
   methods=[
   _descriptor.MethodDescriptor(
     name='AddTask',
@@ -942,6 +1021,15 @@ _DATAMANAGER = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ADDCUSTOMLOGREQ,
     output_type=_ADDCUSTOMLOGRESP,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetTaskLog',
+    full_name='DataManager.DataManager.GetTaskLog',
+    index=8,
+    containing_service=None,
+    input_type=_GETTASKLOGREQ,
+    output_type=_GETTASKLOGRESP,
     serialized_options=None,
   ),
 ])

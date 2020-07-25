@@ -71,6 +71,11 @@ class DataManager:
             )
         ))
 
+    def get_task_log(self, task_id):
+        return self.stub.GetTaskLog(data_manager_pb2.GetTaskReq(
+            task_id=task_id
+        ))
+
 
 if __name__ == '__main__':
     dm = DataManager()
@@ -89,9 +94,10 @@ if __name__ == '__main__':
     # ret = dm.get_all_tasks()
     # print(ret.resp)
 
-    log = CustomLog(
-        task_id=1,
-        content='Test!!',
-        time=int(time.time())
-    )
-    dm.add_custom_log(log)
+    # log = CustomLog(
+    #     task_id=1,
+    #     content='Test!!',
+    #     time=int(time.time())
+    # )
+    # dm.add_custom_log(log)
+    dm.get_all_tasks()

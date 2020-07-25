@@ -52,6 +52,7 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
         return data_manager_pb2.StopTaskResp(resp=data_manager_pb2.Response(code=0, message="success"))
 
     def FinishTask(self, request, context):
+        print("finish task")
         self.db.finish_task(Task(
             task_id=request.task_id,
             end_time=request.finish_time,
@@ -100,6 +101,10 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             t.time
         ))
         return data_manager_pb2.AddCustomLogResp(resp=data_manager_pb2.Response(code=0, message="success"))
+
+    def GetTaskLog(self, request, context):
+        return data_manager_pb2.GetAllTasksResp(
+            resp=data_manager_pb2.Response(code=0, message=json.dumps(self.db.get_task_log(request.task_id))))
 
     # # 工作函数
     # def SayHello(self, request, context):

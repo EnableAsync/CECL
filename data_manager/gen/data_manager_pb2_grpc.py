@@ -54,6 +54,11 @@ class DataManagerStub(object):
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.FromString,
                 )
+        self.GetTaskLog = channel.unary_unary(
+                '/DataManager.DataManager/GetTaskLog',
+                request_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.SerializeToString,
+                response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.FromString,
+                )
 
 
 class DataManagerServicer(object):
@@ -116,6 +121,13 @@ class DataManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetTaskLog(self, request, context):
+        """Get task logs
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -158,6 +170,11 @@ def add_DataManagerServicer_to_server(servicer, server):
                     servicer.AddCustomLog,
                     request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.FromString,
                     response_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.SerializeToString,
+            ),
+            'GetTaskLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTaskLog,
+                    request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.FromString,
+                    response_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -295,5 +312,21 @@ class DataManager(object):
         return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/AddCustomLog',
             data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.AddCustomLogResp.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTaskLog(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/GetTaskLog',
+            data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.SerializeToString,
+            data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

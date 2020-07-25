@@ -71,6 +71,11 @@ class DataManager:
             )
         ))
 
+    def get_task_log(self, task_id):
+        return self.stub.GetTaskLog(data_manager_pb2.GetTaskReq(
+            task_id=task_id
+        ))
+
 
 if __name__ == '__main__':
     dm = DataManager()
