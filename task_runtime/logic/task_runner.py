@@ -18,25 +18,35 @@ def start_task(task: Task):
     tc = TaskController()
     try:
         sub = subprocess.Popen(
-            ['python', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            ['python3', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         tasks[task] = sub
-        tc.add_custom_log_callback(CustomLog(
-            task_id=task.task_id,
-            content=sub.stdout.read().decode('utf8'),
-            time=int(time.time())
-        ))
-        tc.finish_task(task.task_id)
+        # tc.add_custom_log_callback(CustomLog(
+        #     task_id=task.task_id,
+        #     content=sub.stdout.read().decode('utf8'),
+        #     time=int(time.time())
+        # ))
 
-        # while sub.poll() is None:
-        #     out = sub.stdout.readline()
-        #     line = out.strip()
-        #     if line:
-        #         print(line)
-        #         tc.add_custom_log_callback(CustomLog(
-        #             task_id=task.task_id,
-        #             content=line,
-        #             time=int(time.time())
-        #         ))
+        while sub.poll() is None:
+            out = sub.stdout.readline()
+            line = out.strip()
+            if line:
+                print(line)
+                tc.add_custom_log_callback(CustomLog(
+                    task_id=task.task_id,
+                    content=line,
+                    time=int(time.time())
+                ))
+        if sub.returncode == 0:
+            print('Subprogram success')
+            tc.finish_task(task.task_id)
+        else:
+            print('Subprogram failed')
+            tc.add_custom_log_callback(CustomLog(
+                task_id=task.task_id,
+                content=sub.stdout.read().decode('utf8'),
+                time=int(time.time())
+            ))
+            tc.stop_task(task.task_id)
     except Exception as e:
         print('[error]' + str(e))
         tc.add_custom_log_callback(CustomLog(

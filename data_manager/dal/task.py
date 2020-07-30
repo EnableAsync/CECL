@@ -80,6 +80,7 @@ class Db:
                     task.task_id,
                 ))
             self.db.commit()
+            print("set task:{} finished!".format(task.task_id))
         except ValueError as e:
             print(e)
             self.db.rollback()

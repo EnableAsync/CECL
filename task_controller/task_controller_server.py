@@ -6,6 +6,7 @@ from task_controller.model.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
 from task_controller.client.data_manger_client import DataManager
 from task_controller.client.task_runtime_client import TaskRuntime
+# from grpc_reflection.v1alpha import reflection
 
 import grpc
 
@@ -64,6 +65,7 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
     def StartTask(self, request, context):
         task_id: int = request.task_id
         print("start task task id:" + str(task_id))
+        resp = self.db.start_task(task_id, int(time.time())).resp
         resp = self.runtime.start_task(task_id).resp
         print("start task runtime code:" + str(resp.code))
         if resp.code != 0:
@@ -71,7 +73,6 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
                 code=resp.code,
                 message=resp.message
             ))
-        resp = self.db.start_task(task_id, int(time.time())).resp
         return task_controller_pb2.StartTaskResp(resp=task_controller_pb2.Response(
             code=resp.code,
             message=resp.message
@@ -121,6 +122,12 @@ def serve():
     # gRPC 服务器
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     task_controller_pb2_grpc.add_TaskControllerServicer_to_server(TaskController(), server)
+
+    # SERVICE_NAMES = (
+    #     task_controller_pb2.DESCRIPTOR.services_by_name['TaskController'].full_name,
+    #     reflection.SERVICE_NAME
+    # )
+    # reflection.enable_server_reflection(SERVICE_NAMES, server)
     server.add_insecure_port(TASK_CONTROLLER_SERVER)
     server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
     try:
