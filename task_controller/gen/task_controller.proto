@@ -42,7 +42,7 @@ message FinishTaskReq {
 }
 
 message FinishTaskResp {
-    Response resp = 2;
+    Response resp = 1;
 }
 
 message StartTaskReq {
