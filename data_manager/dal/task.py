@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 from data_manager.model.task import Task
 from data_manager.model.custom_log import CustomLog
-from DBUtils.PooledDB import PooledDB, SharedDBConnection
+from DBUtils.PooledDB import PooledDB
 
 
 class Db:

@@ -6,7 +6,8 @@ from server.client.data_manger_client import DataManager
 from server.client.task_runtime_client import TaskRuntime
 from flask_cors import CORS
 import json
-import time
+import message_hub.client.deploy_controller_client
+import message_hub.client.deploy_runtime_client
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -14,6 +15,9 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 tc = TaskController()
 dm = DataManager()
 tr = TaskRuntime()
+
+dc = message_hub.client.deploy_controller_client.TaskController()
+dr = message_hub.client.deploy_runtime_client.TaskRuntime()
 
 
 @app.route('/')
@@ -64,6 +68,46 @@ def get_tasks():
 def get_task_log(task_id):
     resp = dm.get_task_log(int(task_id)).resp
     return {'code': resp.code, 'msg': resp.message}
+
+
+@app.route('/task/deploy/<task_id>', methods=['GET'])
+def deploy(task_id):
+    model_name = request.form['model']
+    print('get file:{}/{}'.format(task_id, model_name))
+
+    # get model file
+    model_task = Task(task_id=task_id, file=model_name)
+    resp = tr.get_file(model_task)
+    if resp.resp.code != 0:
+        print("get model file fail")
+        return {'code': resp.resp.code, 'msg': resp.resp.message}
+    model_file = resp.script
+
+    # upload model file
+    resp = dr.upload_task(model_task, model_file, b'').resp
+    print(resp)
+    if resp.resp.code != 0:
+        print("upload model file fail")
+        return {'code': resp.resp.code, 'msg': resp.resp.message}
+
+    # create model task
+    name = request.form['name']
+    create_time = int(request.form['create_time'])
+    file = request.form['file']
+    print(file)
+    t: Task = Task(
+        name=name, create_time=create_time, file=file
+    )
+    task_id: int = json.loads(dc.add_task(t).resp.message)['id']
+    t.task_id = task_id
+    f = open(STATIC_PATH + file, 'rb')
+
+    # upload model predict script
+    resp = dr.upload_task(t, f.read(), b'').resp
+    print(resp)
+
+    # start model
+    return {'code': dc.start_task(task_id).resp.code}
 
 
 if __name__ == '__main__':

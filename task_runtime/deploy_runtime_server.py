@@ -2,7 +2,7 @@ from concurrent import futures
 import time
 import os
 from task_runtime.util.get_file_path import get_config_path, get_script_path
-from conf import TASK_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
+from conf import DEPLOY_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
 from task_runtime.model.task import Task
 from task_runtime.logic.task_runner import start_task, stop_task
 
@@ -103,16 +103,9 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
                 config=b''
             )
         file_path = get_script_path(task)
-        if not os.path.exists(file_path):
-            return task_runtime_pb2.GetTaskFileResp(
-                resp=task_runtime_pb2.Response(code=10001, message="file is not exists"),
-                script=b'',
-                config=b''
-            )
         file = open(file_path, 'rb')
         file_bytes = file.read()
         file.close()
-        print("get file:{}".format(file_path))
         return task_runtime_pb2.GetTaskFileResp(
             resp=task_runtime_pb2.Response(code=0, message='success'),
             script=file_bytes,
@@ -132,7 +125,7 @@ def serve():
     # gRPC 服务器
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     task_runtime_pb2_grpc.add_TaskRuntimeServicer_to_server(TaskRuntime(), server)
-    server.add_insecure_port(TASK_RUNTIME_SERVER)
+    server.add_insecure_port(DEPLOY_RUNTIME_SERVER)
     server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
     try:
         while True:

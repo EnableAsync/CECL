@@ -2,69 +2,83 @@ syntax = "proto3";
 
 // The task runtime service definition.
 service TaskRuntime {
-    // Add task's file
-    rpc UploadTask (UploadTaskReq) returns (UploadTaskResp) {
-    }
+  // Add task's file
+  rpc UploadTask (UploadTaskReq) returns (UploadTaskResp) {
+  }
 
-    // Run a task
-    rpc StartTask (StartTaskReq) returns (StartTaskResp) {
-    }
+  // Run a task
+  rpc StartTask (StartTaskReq) returns (StartTaskResp) {
+  }
 
-    // Stop a task
-    rpc StopTask (StopTaskReq) returns (StopTaskResp) {
-    }
+  // Stop a task
+  rpc StopTask (StopTaskReq) returns (StopTaskResp) {
+  }
 
-    // Get task information
-    rpc GetTaskInfo (GetTaskInfoReq) returns (GetTaskInfoResp) {
-    }
+  // Get task information
+  rpc GetTaskInfo (GetTaskInfoReq) returns (GetTaskInfoResp) {
+  }
+
+  // Get task file
+  rpc GetTaskFile (GetTaskFileReq) returns (GetTaskFileResp) {
+  }
+}
+
+message GetTaskFileReq {
+  Task task = 1;
+}
+
+message GetTaskFileResp {
+  Response resp = 1;
+  bytes script = 2;
+  bytes config = 3;
 }
 
 message UploadTaskReq {
-    Task task = 1;
-    bytes script = 2;
-    bytes config = 3;
+  Task task = 1;
+  bytes script = 2;
+  bytes config = 3;
 }
 message UploadTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message StartTaskReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 
 message StartTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message StopTaskReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 message StopTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 
 message GetTaskInfoReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 message GetTaskInfoResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message Task {
-    int64 task_id = 1;
-    string name = 2;
-    int64 create_time = 3;
-    int64 start_time = 4;
-    int64 end_time = 5;
-    int32 union_train = 6;
-    string edgenodes = 7;
-    string file = 8;
+  int64 task_id = 1;
+  string name = 2;
+  int64 create_time = 3;
+  int64 start_time = 4;
+  int64 end_time = 5;
+  int32 union_train = 6;
+  string edgenodes = 7;
+  string file = 8;
 }
 
 message Response {
-    int32 code = 1;
-    string message = 2;
+  int32 code = 1;
+  string message = 2;
 }
 
 // python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto

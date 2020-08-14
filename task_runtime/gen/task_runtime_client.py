@@ -40,6 +40,19 @@ class TaskRuntime:
             task_id=task_id
         ))
 
+    def get_file(self, t: Task):
+        return self.stub.GetTaskFile(task_runtime_pb2.GetTaskFileReq(
+            task=task_runtime_pb2.Task(
+                task_id=t.task_id,
+                name=t.name,
+                create_time=t.create_time,
+                start_time=0,
+                end_time=0,
+                union_train=t.union_train,
+                edgenodes=t.edgenodes,
+                file=t.file),
+        ))
+
 
 if __name__ == '__main__':
     tr = TaskRuntime()

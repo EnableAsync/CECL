@@ -5,138 +5,138 @@ package DataManager;
 
 // The data manager service definition.
 service DataManager {
-    // Add a task
-    rpc AddTask (AddTaskReq) returns (AddTaskResp) {
-    }
+  // Add a task
+  rpc AddTask (AddTaskReq) returns (AddTaskResp) {
+  }
 
-    // Start a task
-    rpc StartTask (StartTaskReq) returns (StartTaskResp) {
-    }
+  // Start a task
+  rpc StartTask (StartTaskReq) returns (StartTaskResp) {
+  }
 
-    // Stop a task
-    rpc StopTask (StopTaskReq) returns (StopTaskResp) {
-    }
+  // Stop a task
+  rpc StopTask (StopTaskReq) returns (StopTaskResp) {
+  }
 
-    // Will be called when a task finished
-    rpc FinishTask (FinishTaskReq) returns (FinishTaskResp) {
-    }
+  // Will be called when a task finished
+  rpc FinishTask (FinishTaskReq) returns (FinishTaskResp) {
+  }
 
-    // Get task information
-    rpc GetTask (GetTaskReq) returns (GetTaskResp) {
-    }
+  // Get task information
+  rpc GetTask (GetTaskReq) returns (GetTaskResp) {
+  }
 
-    // Get all tasks
-    rpc GetAllTasks (GetAllTasksReq) returns (GetAllTasksResp) {
-    }
+  // Get all tasks
+  rpc GetAllTasks (GetAllTasksReq) returns (GetAllTasksResp) {
+  }
 
-    // Update task information
-    rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
-    }
+  // Update task information
+  rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
+  }
 
-    // Add task script log
-    rpc AddCustomLog (AddCustomLogReq) returns (AddCustomLogResp) {
-    }
+  // Add task script log
+  rpc AddCustomLog (AddCustomLogReq) returns (AddCustomLogResp) {
+  }
 
-    // Get task logs
-    rpc GetTaskLog(GetTaskLogReq) returns (GetTaskLogResp) {
-    }
+  // Get task logs
+  rpc GetTaskLog(GetTaskLogReq) returns (GetTaskLogResp) {
+  }
 }
 
 message GetTaskLogReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 
 message GetTaskLogResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message AddTaskReq {
-    Task task = 1;
+  Task task = 1;
 }
 
 message AddTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message StartTaskReq {
-    int64 task_id = 1;
-    int64 start_time = 2;
+  int64 task_id = 1;
+  int64 start_time = 2;
 }
 
 message StartTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message StopTaskReq {
-    int64 task_id = 1;
-    int64 stop_time = 2;
+  int64 task_id = 1;
+  int64 stop_time = 2;
 }
 
 message StopTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message FinishTaskReq {
-    int64 task_id = 1;
-    int64 finish_time = 2;
+  int64 task_id = 1;
+  int64 finish_time = 2;
 }
 
 message FinishTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message GetTaskReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 
 message GetTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message GetAllTasksReq {
 }
 
 message GetAllTasksResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message UpdateTaskReq {
-    Task task = 1;
+  Task task = 1;
 }
 
 message UpdateTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message AddCustomLogReq {
-    CustomLog custom_log = 1;
+  CustomLog custom_log = 1;
 }
 
 message AddCustomLogResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message CustomLog {
-    int64 task_id = 1;
-    string content = 2;
-    int64 time = 3;
+  int64 task_id = 1;
+  string content = 2;
+  int64 time = 3;
 }
 
 message Task {
-    int64 task_id = 1;
-    string name = 2;
-    int64 create_time = 3;
-    int64 start_time = 4;
-    int64 end_time = 5;
-    int32 union_train = 6;
-    string edgenodes = 7;
-    string file = 8;
+  int64 task_id = 1;
+  string name = 2;
+  int64 create_time = 3;
+  int64 start_time = 4;
+  int64 end_time = 5;
+  int32 union_train = 6;
+  string edgenodes = 7;
+  string file = 8;
 }
 
 
 message Response {
-    int32 code = 1;
-    string message = 2;
+  int32 code = 1;
+  string message = 2;
 }
 
 // python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./data_manager/gen/data_manager.proto

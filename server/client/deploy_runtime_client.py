@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import grpc
 import time
-from conf import TASK_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
+from conf import DEPLOY_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
 from task_runtime.model.task import Task
 
 import grpc
@@ -12,7 +12,7 @@ from task_runtime.gen import task_runtime_pb2, task_runtime_pb2_grpc
 
 class TaskRuntime:
     def __init__(self):
-        channel = grpc.insecure_channel(TASK_RUNTIME_SERVER)
+        channel = grpc.insecure_channel(DEPLOY_RUNTIME_SERVER)
         self.stub = task_runtime_pb2_grpc.TaskRuntimeStub(channel)
 
     def upload_task(self, t: Task, script: bytes, config: bytes):

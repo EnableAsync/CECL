@@ -2,7 +2,7 @@ from task_runtime.model.custom_log import CustomLog
 from task_runtime.model.task import Task
 from task_runtime.client.task_controller_client import TaskController
 from task_runtime.client.data_manger_client import DataManager
-from task_runtime.util.get_file_path import get_script_path
+from task_runtime.util.get_file_path import get_script_path, get_script_work_path
 import subprocess
 import time
 
@@ -21,7 +21,8 @@ def start_task(task: Task):
     try:
         print('script path:' + get_script_path(task))
         sub = subprocess.Popen(
-            ['python', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            ['python', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            cwd=get_script_work_path(task))
         tasks[task] = sub
         # tc.add_custom_log_callback(CustomLog(
         #     task_id=task.task_id,
