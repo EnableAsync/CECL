@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package MessageHub;
+
 // The message hub service definition.
 service MessageHub {
   // Send file to edges

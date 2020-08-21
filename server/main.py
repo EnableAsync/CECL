@@ -70,30 +70,16 @@ def get_task_log(task_id):
     return {'code': resp.code, 'msg': resp.message}
 
 
-@app.route('/task/deploy/<task_id>', methods=['GET'])
+@app.route('/task/deploy/<task_id>', methods=['POST'])
 def deploy(task_id):
     model_name = request.form['model']
+    deploy_task_id = int(task_id)
     print('get file:{}/{}'.format(task_id, model_name))
-
-    # get model file
-    model_task = Task(task_id=task_id, file=model_name)
-    resp = tr.get_file(model_task)
-    if resp.resp.code != 0:
-        print("get model file fail")
-        return {'code': resp.resp.code, 'msg': resp.resp.message}
-    model_file = resp.script
-
-    # upload model file
-    resp = dr.upload_task(model_task, model_file, b'').resp
-    print(resp)
-    if resp.resp.code != 0:
-        print("upload model file fail")
-        return {'code': resp.resp.code, 'msg': resp.resp.message}
 
     # create model task
     name = request.form['name']
     create_time = int(request.form['create_time'])
-    file = request.form['file']
+    file = secure_filename(request.form['file'])
     print(file)
     t: Task = Task(
         name=name, create_time=create_time, file=file
@@ -106,8 +92,26 @@ def deploy(task_id):
     resp = dr.upload_task(t, f.read(), b'').resp
     print(resp)
 
+    # get model file
+    model_task = Task(task_id=deploy_task_id, file=model_name)
+    resp = tr.get_file(model_task)
+    if resp.resp.code != 0:
+        print("get model file fail")
+        return {'code': resp.resp.code, 'msg': resp.resp.message}
+    model_file = resp.script
+    # print(model_file)
+
+    # upload model file
+    resp = dr.upload_task(Task(task_id=t.task_id, file=model_name), model_file, b'1').resp
+    print("upload model to {} success".format(t.task_id))
+    print(resp)
+    if resp.code != 0:
+        print("upload model file fail")
+        return {'code': resp.code, 'msg': resp.message}
+
     # start model
-    return {'code': dc.start_task(task_id).resp.code}
+    resp = dc.start_task(task_id).resp
+    return {'code': resp.code, 'msg': resp.message}
 
 
 if __name__ == '__main__':

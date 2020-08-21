@@ -16,22 +16,22 @@ class MessageHubStub(object):
             channel: A grpc.Channel.
         """
         self.SendFile = channel.unary_unary(
-                '/MessageHub/SendFile',
+                '/MessageHub.MessageHub/SendFile',
                 request_serializer=message__hub_dot_gen_dot_message__hub__pb2.SendFileReq.SerializeToString,
                 response_deserializer=message__hub_dot_gen_dot_message__hub__pb2.SendFileResp.FromString,
                 )
         self.SendTask = channel.unary_unary(
-                '/MessageHub/SendTask',
+                '/MessageHub.MessageHub/SendTask',
                 request_serializer=message__hub_dot_gen_dot_message__hub__pb2.SendTaskReq.SerializeToString,
                 response_deserializer=message__hub_dot_gen_dot_message__hub__pb2.SendTaskResp.FromString,
                 )
         self.RunTask = channel.unary_unary(
-                '/MessageHub/RunTask',
+                '/MessageHub.MessageHub/RunTask',
                 request_serializer=message__hub_dot_gen_dot_message__hub__pb2.RunTaskReq.SerializeToString,
                 response_deserializer=message__hub_dot_gen_dot_message__hub__pb2.RunTaskResp.FromString,
                 )
         self.StopTask = channel.unary_unary(
-                '/MessageHub/StopTask',
+                '/MessageHub.MessageHub/StopTask',
                 request_serializer=message__hub_dot_gen_dot_message__hub__pb2.StopTaskReq.SerializeToString,
                 response_deserializer=message__hub_dot_gen_dot_message__hub__pb2.StopTaskResp.FromString,
                 )
@@ -94,7 +94,7 @@ def add_MessageHubServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'MessageHub', rpc_method_handlers)
+            'MessageHub.MessageHub', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -114,7 +114,7 @@ class MessageHub(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/MessageHub/SendFile',
+        return grpc.experimental.unary_unary(request, target, '/MessageHub.MessageHub/SendFile',
             message__hub_dot_gen_dot_message__hub__pb2.SendFileReq.SerializeToString,
             message__hub_dot_gen_dot_message__hub__pb2.SendFileResp.FromString,
             options, channel_credentials,
@@ -131,7 +131,7 @@ class MessageHub(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/MessageHub/SendTask',
+        return grpc.experimental.unary_unary(request, target, '/MessageHub.MessageHub/SendTask',
             message__hub_dot_gen_dot_message__hub__pb2.SendTaskReq.SerializeToString,
             message__hub_dot_gen_dot_message__hub__pb2.SendTaskResp.FromString,
             options, channel_credentials,
@@ -148,7 +148,7 @@ class MessageHub(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/MessageHub/RunTask',
+        return grpc.experimental.unary_unary(request, target, '/MessageHub.MessageHub/RunTask',
             message__hub_dot_gen_dot_message__hub__pb2.RunTaskReq.SerializeToString,
             message__hub_dot_gen_dot_message__hub__pb2.RunTaskResp.FromString,
             options, channel_credentials,
@@ -165,7 +165,7 @@ class MessageHub(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/MessageHub/StopTask',
+        return grpc.experimental.unary_unary(request, target, '/MessageHub.MessageHub/StopTask',
             message__hub_dot_gen_dot_message__hub__pb2.StopTaskReq.SerializeToString,
             message__hub_dot_gen_dot_message__hub__pb2.StopTaskResp.FromString,
             options, channel_credentials,

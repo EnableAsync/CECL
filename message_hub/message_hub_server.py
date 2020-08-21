@@ -38,7 +38,10 @@ class MessageHub(message_hub_pb2_grpc.MessageHubServicer):
 
 def serve():
     # gRPC 服务器
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=6))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=6), options=[
+        ('grpc.max_send_message_length', 10 * 1024 * 1024),
+        ('grpc.max_receive_message_length', 10 * 1024 * 1024),
+    ])
     message_hub_pb2_grpc.add_MessageHubServicer_to_server(MessageHub(), server)
     server.add_insecure_port(MESSAGE_HUB_SERVER)
     server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。

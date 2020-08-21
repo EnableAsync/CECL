@@ -120,7 +120,10 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
 
 def serve():
     # gRPC 服务器
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=[
+        ('grpc.max_send_message_length', 10 * 1024 * 1024),
+        ('grpc.max_receive_message_length', 10 * 1024 * 1024),
+    ])
     task_controller_pb2_grpc.add_TaskControllerServicer_to_server(TaskController(), server)
 
     # SERVICE_NAMES = (

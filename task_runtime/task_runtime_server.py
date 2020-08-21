@@ -51,7 +51,8 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
         config_file.write(config)
         config_file.close()
 
-        self.tasks[request_task.task_id] = task
+        if task.task_id not in self.tasks:
+            self.tasks[request_task.task_id] = task
 
         return task_runtime_pb2.UploadTaskResp(resp=task_runtime_pb2.Response(code=0, message="success"))
 
@@ -130,7 +131,10 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
 
 def serve():
     # gRPC 服务器
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=[
+        ('grpc.max_send_message_length', 10 * 1024 * 1024),
+        ('grpc.max_receive_message_length', 10 * 1024 * 1024),
+    ])
     task_runtime_pb2_grpc.add_TaskRuntimeServicer_to_server(TaskRuntime(), server)
     server.add_insecure_port(TASK_RUNTIME_SERVER)
     server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。

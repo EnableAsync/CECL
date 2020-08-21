@@ -15,11 +15,11 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='message_hub/gen/message_hub.proto',
-  package='',
+  package='MessageHub',
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n!message_hub/gen/message_hub.proto\"B\n\x0bSendFileReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\"\'\n\x0cSendFileResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\"\n\x0bSendTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"#\n\x0cSendTaskResp\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"\x1d\n\nRunTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"&\n\x0bRunTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xb5\x01\n\nMessageHub\x12)\n\x08SendFile\x12\x0c.SendFileReq\x1a\r.SendFileResp\"\x00\x12)\n\x08SendTask\x12\x0c.SendTaskReq\x1a\r.SendTaskResp\"\x00\x12&\n\x07RunTask\x12\x0b.RunTaskReq\x1a\x0c.RunTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n!message_hub/gen/message_hub.proto\x12\nMessageHub\"M\n\x0bSendFileReq\x12\x1e\n\x04task\x18\x01 \x01(\x0b\x32\x10.MessageHub.Task\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\"2\n\x0cSendFileResp\x12\"\n\x04resp\x18\x01 \x01(\x0b\x32\x14.MessageHub.Response\"-\n\x0bSendTaskReq\x12\x1e\n\x04task\x18\x01 \x01(\x0b\x32\x10.MessageHub.Task\".\n\x0cSendTaskResp\x12\x1e\n\x04task\x18\x01 \x01(\x0b\x32\x10.MessageHub.Task\"\x1d\n\nRunTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"1\n\x0bRunTaskResp\x12\"\n\x04resp\x18\x01 \x01(\x0b\x32\x14.MessageHub.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"2\n\x0cStopTaskResp\x12\"\n\x04resp\x18\x01 \x01(\x0b\x32\x14.MessageHub.Response\"\x84\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x13\n\x0bunion_train\x18\x05 \x01(\x05\x12\x11\n\tedgenodes\x18\x06 \x01(\t\x12\x0c\n\x04\x66ile\x18\x07 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\x8d\x02\n\nMessageHub\x12?\n\x08SendFile\x12\x17.MessageHub.SendFileReq\x1a\x18.MessageHub.SendFileResp\"\x00\x12?\n\x08SendTask\x12\x17.MessageHub.SendTaskReq\x1a\x18.MessageHub.SendTaskResp\"\x00\x12<\n\x07RunTask\x12\x16.MessageHub.RunTaskReq\x1a\x17.MessageHub.RunTaskResp\"\x00\x12?\n\x08StopTask\x12\x17.MessageHub.StopTaskReq\x1a\x18.MessageHub.StopTaskResp\"\x00\x62\x06proto3'
 )
 
 
@@ -27,28 +27,28 @@ DESCRIPTOR = _descriptor.FileDescriptor(
 
 _SENDFILEREQ = _descriptor.Descriptor(
   name='SendFileReq',
-  full_name='SendFileReq',
+  full_name='MessageHub.SendFileReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task', full_name='SendFileReq.task', index=0,
+      name='task', full_name='MessageHub.SendFileReq.task', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='script', full_name='SendFileReq.script', index=1,
+      name='script', full_name='MessageHub.SendFileReq.script', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='config', full_name='SendFileReq.config', index=2,
+      name='config', full_name='MessageHub.SendFileReq.config', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -66,21 +66,21 @@ _SENDFILEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=37,
-  serialized_end=103,
+  serialized_start=49,
+  serialized_end=126,
 )
 
 
 _SENDFILERESP = _descriptor.Descriptor(
   name='SendFileResp',
-  full_name='SendFileResp',
+  full_name='MessageHub.SendFileResp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='resp', full_name='SendFileResp.resp', index=0,
+      name='resp', full_name='MessageHub.SendFileResp.resp', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -98,21 +98,21 @@ _SENDFILERESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=105,
-  serialized_end=144,
+  serialized_start=128,
+  serialized_end=178,
 )
 
 
 _SENDTASKREQ = _descriptor.Descriptor(
   name='SendTaskReq',
-  full_name='SendTaskReq',
+  full_name='MessageHub.SendTaskReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task', full_name='SendTaskReq.task', index=0,
+      name='task', full_name='MessageHub.SendTaskReq.task', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -130,21 +130,21 @@ _SENDTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=146,
-  serialized_end=180,
+  serialized_start=180,
+  serialized_end=225,
 )
 
 
 _SENDTASKRESP = _descriptor.Descriptor(
   name='SendTaskResp',
-  full_name='SendTaskResp',
+  full_name='MessageHub.SendTaskResp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task', full_name='SendTaskResp.task', index=0,
+      name='task', full_name='MessageHub.SendTaskResp.task', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -162,21 +162,21 @@ _SENDTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=182,
-  serialized_end=217,
+  serialized_start=227,
+  serialized_end=273,
 )
 
 
 _RUNTASKREQ = _descriptor.Descriptor(
   name='RunTaskReq',
-  full_name='RunTaskReq',
+  full_name='MessageHub.RunTaskReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_id', full_name='RunTaskReq.task_id', index=0,
+      name='task_id', full_name='MessageHub.RunTaskReq.task_id', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -194,21 +194,21 @@ _RUNTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=219,
-  serialized_end=248,
+  serialized_start=275,
+  serialized_end=304,
 )
 
 
 _RUNTASKRESP = _descriptor.Descriptor(
   name='RunTaskResp',
-  full_name='RunTaskResp',
+  full_name='MessageHub.RunTaskResp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='resp', full_name='RunTaskResp.resp', index=0,
+      name='resp', full_name='MessageHub.RunTaskResp.resp', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -226,21 +226,21 @@ _RUNTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=250,
-  serialized_end=288,
+  serialized_start=306,
+  serialized_end=355,
 )
 
 
 _STOPTASKREQ = _descriptor.Descriptor(
   name='StopTaskReq',
-  full_name='StopTaskReq',
+  full_name='MessageHub.StopTaskReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_id', full_name='StopTaskReq.task_id', index=0,
+      name='task_id', full_name='MessageHub.StopTaskReq.task_id', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -258,21 +258,21 @@ _STOPTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=290,
-  serialized_end=320,
+  serialized_start=357,
+  serialized_end=387,
 )
 
 
 _STOPTASKRESP = _descriptor.Descriptor(
   name='StopTaskResp',
-  full_name='StopTaskResp',
+  full_name='MessageHub.StopTaskResp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='resp', full_name='StopTaskResp.resp', index=0,
+      name='resp', full_name='MessageHub.StopTaskResp.resp', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -290,63 +290,63 @@ _STOPTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=322,
-  serialized_end=361,
+  serialized_start=389,
+  serialized_end=439,
 )
 
 
 _TASK = _descriptor.Descriptor(
   name='Task',
-  full_name='Task',
+  full_name='MessageHub.Task',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_id', full_name='Task.task_id', index=0,
+      name='task_id', full_name='MessageHub.Task.task_id', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='name', full_name='Task.name', index=1,
+      name='name', full_name='MessageHub.Task.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='create_time', full_name='Task.create_time', index=2,
+      name='create_time', full_name='MessageHub.Task.create_time', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='start_time', full_name='Task.start_time', index=3,
+      name='start_time', full_name='MessageHub.Task.start_time', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='union_train', full_name='Task.union_train', index=4,
+      name='union_train', full_name='MessageHub.Task.union_train', index=4,
       number=5, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='edgenodes', full_name='Task.edgenodes', index=5,
+      name='edgenodes', full_name='MessageHub.Task.edgenodes', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='file', full_name='Task.file', index=6,
+      name='file', full_name='MessageHub.Task.file', index=6,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -364,28 +364,28 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=364,
-  serialized_end=496,
+  serialized_start=442,
+  serialized_end=574,
 )
 
 
 _RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='Response',
+  full_name='MessageHub.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='code', full_name='Response.code', index=0,
+      name='code', full_name='MessageHub.Response.code', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='message', full_name='Response.message', index=1,
+      name='message', full_name='MessageHub.Response.message', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -403,8 +403,8 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=498,
-  serialized_end=539,
+  serialized_start=576,
+  serialized_end=617,
 )
 
 _SENDFILEREQ.fields_by_name['task'].message_type = _TASK
@@ -428,70 +428,70 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 SendFileReq = _reflection.GeneratedProtocolMessageType('SendFileReq', (_message.Message,), {
   'DESCRIPTOR' : _SENDFILEREQ,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:SendFileReq)
+  # @@protoc_insertion_point(class_scope:MessageHub.SendFileReq)
   })
 _sym_db.RegisterMessage(SendFileReq)
 
 SendFileResp = _reflection.GeneratedProtocolMessageType('SendFileResp', (_message.Message,), {
   'DESCRIPTOR' : _SENDFILERESP,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:SendFileResp)
+  # @@protoc_insertion_point(class_scope:MessageHub.SendFileResp)
   })
 _sym_db.RegisterMessage(SendFileResp)
 
 SendTaskReq = _reflection.GeneratedProtocolMessageType('SendTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _SENDTASKREQ,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:SendTaskReq)
+  # @@protoc_insertion_point(class_scope:MessageHub.SendTaskReq)
   })
 _sym_db.RegisterMessage(SendTaskReq)
 
 SendTaskResp = _reflection.GeneratedProtocolMessageType('SendTaskResp', (_message.Message,), {
   'DESCRIPTOR' : _SENDTASKRESP,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:SendTaskResp)
+  # @@protoc_insertion_point(class_scope:MessageHub.SendTaskResp)
   })
 _sym_db.RegisterMessage(SendTaskResp)
 
 RunTaskReq = _reflection.GeneratedProtocolMessageType('RunTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _RUNTASKREQ,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:RunTaskReq)
+  # @@protoc_insertion_point(class_scope:MessageHub.RunTaskReq)
   })
 _sym_db.RegisterMessage(RunTaskReq)
 
 RunTaskResp = _reflection.GeneratedProtocolMessageType('RunTaskResp', (_message.Message,), {
   'DESCRIPTOR' : _RUNTASKRESP,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:RunTaskResp)
+  # @@protoc_insertion_point(class_scope:MessageHub.RunTaskResp)
   })
 _sym_db.RegisterMessage(RunTaskResp)
 
 StopTaskReq = _reflection.GeneratedProtocolMessageType('StopTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _STOPTASKREQ,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:StopTaskReq)
+  # @@protoc_insertion_point(class_scope:MessageHub.StopTaskReq)
   })
 _sym_db.RegisterMessage(StopTaskReq)
 
 StopTaskResp = _reflection.GeneratedProtocolMessageType('StopTaskResp', (_message.Message,), {
   'DESCRIPTOR' : _STOPTASKRESP,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:StopTaskResp)
+  # @@protoc_insertion_point(class_scope:MessageHub.StopTaskResp)
   })
 _sym_db.RegisterMessage(StopTaskResp)
 
 Task = _reflection.GeneratedProtocolMessageType('Task', (_message.Message,), {
   'DESCRIPTOR' : _TASK,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:Task)
+  # @@protoc_insertion_point(class_scope:MessageHub.Task)
   })
 _sym_db.RegisterMessage(Task)
 
 Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
   'DESCRIPTOR' : _RESPONSE,
   '__module__' : 'message_hub.gen.message_hub_pb2'
-  # @@protoc_insertion_point(class_scope:Response)
+  # @@protoc_insertion_point(class_scope:MessageHub.Response)
   })
 _sym_db.RegisterMessage(Response)
 
@@ -499,17 +499,17 @@ _sym_db.RegisterMessage(Response)
 
 _MESSAGEHUB = _descriptor.ServiceDescriptor(
   name='MessageHub',
-  full_name='MessageHub',
+  full_name='MessageHub.MessageHub',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=542,
-  serialized_end=723,
+  serialized_start=620,
+  serialized_end=889,
   methods=[
   _descriptor.MethodDescriptor(
     name='SendFile',
-    full_name='MessageHub.SendFile',
+    full_name='MessageHub.MessageHub.SendFile',
     index=0,
     containing_service=None,
     input_type=_SENDFILEREQ,
@@ -519,7 +519,7 @@ _MESSAGEHUB = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='SendTask',
-    full_name='MessageHub.SendTask',
+    full_name='MessageHub.MessageHub.SendTask',
     index=1,
     containing_service=None,
     input_type=_SENDTASKREQ,
@@ -529,7 +529,7 @@ _MESSAGEHUB = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='RunTask',
-    full_name='MessageHub.RunTask',
+    full_name='MessageHub.MessageHub.RunTask',
     index=2,
     containing_service=None,
     input_type=_RUNTASKREQ,
@@ -539,7 +539,7 @@ _MESSAGEHUB = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='StopTask',
-    full_name='MessageHub.StopTask',
+    full_name='MessageHub.MessageHub.StopTask',
     index=3,
     containing_service=None,
     input_type=_STOPTASKREQ,
