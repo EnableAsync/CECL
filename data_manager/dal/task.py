@@ -1,9 +1,10 @@
 import pymysql
+# import sqlite3
 import time
 from datetime import datetime
 from data_manager.model.task import Task
 from data_manager.model.custom_log import CustomLog
-from DBUtils.PooledDB import PooledDB
+from dbutils.pooled_db import PooledDB
 
 
 class Db:
@@ -26,7 +27,8 @@ class Db:
             port=3306,
             user='root',
             password='root',
-            charset='utf8'
+            charset='utf8',
+            # database='../database/data.db'
         )
         conn = self.pool.connection()
         # self.db = pymysql.connect("localhost", "root", "root", cursorclass=pymysql.cursors.DictCursor)
