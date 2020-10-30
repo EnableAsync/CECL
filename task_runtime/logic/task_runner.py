@@ -22,17 +22,15 @@ def start_task(task: Task):
         print('script path:' + get_script_path(task))
         sub = subprocess.Popen(
             ['python', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            cwd=get_script_work_path(task))
-        tasks[task] = sub
+            cwd=get_script_work_path(task), bufsize=1)
+
         # tc.add_custom_log_callback(CustomLog(
         #     task_id=task.task_id,
         #     content=sub.stdout.read().decode('utf8'),
         #     time=int(time.time())
         # ))
 
-        while sub.poll() is None:
-            out = sub.stdout.readline()
-            line = out.strip()
+        for line in iter(sub.stdout.readline, b''):
             if line:
                 print(line)
                 dm.add_custom_log(CustomLog(
@@ -40,6 +38,20 @@ def start_task(task: Task):
                     content=line,
                     time=int(time.time())
                 ))
+        sub.stdout.close()
+        # sub.wait(5)
+
+        # while sub.poll() is None:
+        #     out = sub.stdout.readline()
+        #     line = out.strip()
+        #     if line:
+        #         print(line)
+        #         dm.add_custom_log(CustomLog(
+        #             task_id=task.task_id,
+        #             content=line,
+        #             time=int(time.time())
+        #         ))
+
         if sub.returncode == 0:
             print('Subprogram success')
             tc.finish_task(task.task_id)
