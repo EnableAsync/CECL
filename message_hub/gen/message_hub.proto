@@ -4,68 +4,87 @@ package MessageHub;
 
 // The message hub service definition.
 service MessageHub {
-  // Send file to edges
-  rpc SendFile (SendFileReq) returns (SendFileResp) {
-  }
+    // Send file to edges
+    rpc SendFile (SendFileReq) returns (SendFileResp) {
+    }
 
-  // Send a new task to edges.
-  rpc SendTask (SendTaskReq) returns (SendTaskResp) {
-  }
+    // Send and run a new task to edges.
+    rpc SendTask (SendTaskReq) returns (SendTaskResp) {
+    }
 
-  // Run a task on edges.
-  rpc RunTask (RunTaskReq) returns (RunTaskResp) {
-  }
+    // Stop a task
+    rpc StopTask (StopTaskReq) returns (StopTaskResp) {
+    }
 
-  // Stop a task
-  rpc StopTask (StopTaskReq) returns (StopTaskResp) {
-  }
+    // Send message to cloud
+    rpc SendMessageToCloud (SendMessageToCloudReq) returns (SendMessageToCloudResp) {
+    }
+
+    // Send message to edge
+    rpc SendMessageToEdge (SendMessageToEdgeReq) returns (SendMessageToEdgeResp) {
+    }
+}
+
+message SendMessageToEdgeReq {
+    string message = 1;
+}
+
+message SendMessageToEdgeResp {
+    Response resp = 1;
+}
+
+message SendMessageToCloudReq {
+    string message = 1;
+}
+
+message SendMessageToCloudResp {
+    Response resp = 1;
 }
 
 message SendFileReq {
-  Task task = 1;
-  bytes script = 2;
-  bytes config = 3;
+    Task task = 1;
+    bytes script = 2;
+    bytes config = 3;
 }
 
 message SendFileResp {
-  Response resp = 1;
+    Response resp = 1;
 }
 
 message SendTaskReq {
-  Task task = 1;
+    Task task = 1;
 }
 message SendTaskResp {
-  Task task = 1;
+    Task task = 1;
 }
 
 message RunTaskReq {
-  int64 task_id = 1;
+    int64 task_id = 1;
 }
 message RunTaskResp {
-  Response resp = 1;
+    Response resp = 1;
 }
 
 message StopTaskReq {
-  int64 task_id = 1;
+    int64 task_id = 1;
 }
 message StopTaskResp {
-  Response resp = 1;
+    Response resp = 1;
 }
 
 message Task {
-  int64 task_id = 1;
-  string name = 2;
-  int32 create_time = 3;
-  int32 start_time = 4;
-  int32 union_train = 5;
-  string edgenodes = 6;
-  string file = 7;
+    int64 task_id = 1;
+    string name = 2;
+    int32 create_time = 3;
+    int32 start_time = 4;
+    int32 union_train = 5;
+    string edgenodes = 6;
+    string file = 7;
 }
 
-
 message Response {
-  int32 code = 1;
-  string message = 2;
+    int32 code = 1;
+    string message = 2;
 }
 
 // python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./message_hub/gen/message_hub.proto

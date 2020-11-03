@@ -53,6 +53,11 @@ class TaskController:
             task_id=task_id
         ))
 
+    def send_message(self, msg):
+        return self.stub.SendMessage(task_controller_pb2.SendMessageReq(
+            message=msg
+        ))
+
 
 if __name__ == '__main__':
     tc = TaskController()

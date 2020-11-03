@@ -9,7 +9,7 @@ service TaskController {
     }
 
     // Start a task
-    rpc StartTask(StartTaskReq) returns (StartTaskResp) {
+    rpc StartTask (StartTaskReq) returns (StartTaskResp) {
     }
 
     // Stop a task
@@ -17,7 +17,7 @@ service TaskController {
     }
 
     // It will be called when task finished
-    rpc FinishTask(FinishTaskReq) returns (FinishTaskResp) {
+    rpc FinishTask (FinishTaskReq) returns (FinishTaskResp) {
     }
 
     // Get all tasks
@@ -35,6 +35,17 @@ service TaskController {
     // Add task script log, will be called by task runtime
     rpc AddCustomLogCallback (AddCustomLogCallbackReq) returns (AddCustomLogCallbackResp) {
     }
+
+    rpc SendMessage (SendMessageReq) returns (SendMessageResp) {
+    }
+}
+
+message SendMessageReq {
+    string message = 1;
+}
+
+message SendMessageResp {
+    Response resp = 1;
 }
 
 message FinishTaskReq {
@@ -116,7 +127,6 @@ message Task {
     string edgenodes = 7;
     string file = 8;
 }
-
 
 
 message Response {

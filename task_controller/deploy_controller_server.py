@@ -109,6 +109,13 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
     def UpdateTask(self, request, context):
         return super().UpdateTask(request, context)
 
+    def SendMessage(self, request, context):
+        print("get message: " + request.message)
+        return task_controller_pb2.SendMessageResp(resp=task_controller_pb2.Response(
+            code=0,
+            message="success"
+        ))
+
     # # 工作函数
     # def SayHello(self, request, context):
     #     print(request)

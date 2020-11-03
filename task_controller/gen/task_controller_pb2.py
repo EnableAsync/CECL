@@ -18,28 +18,26 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='TaskController',
   syntax='proto3',
   serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n)task_controller/gen/task_controller.proto\x12\x0eTaskController\" \n\rFinishTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"8\n\x0e\x46inishTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"3\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x12\n\nstart_time\x18\x02 \x01(\x03\"7\n\rStartTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"H\n\x17\x41\x64\x64\x43ustomLogCallbackReq\x12-\n\ncustom_log\x18\x01 \x01(\x0b\x32\x19.TaskController.CustomLog\"B\n\x18\x41\x64\x64\x43ustomLogCallbackResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\";\n\tCustomLog\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\x03\"0\n\nAddTaskReq\x12\"\n\x04task\x18\x01 \x01(\x0b\x32\x14.TaskController.Task\"5\n\x0b\x41\x64\x64TaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"1\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x11\n\tstop_time\x18\x02 \x01(\x03\"6\n\x0cStopTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"\x10\n\x0eGetAllTasksReq\"9\n\x0fGetAllTasksResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"]\n\x0fGetTaskInfoResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\x12\"\n\x04task\x18\x02 \x01(\x0b\x32\x14.TaskController.Task\"3\n\rUpdateTaskReq\x12\"\n\x04task\x18\x01 \x01(\x0b\x32\x14.TaskController.Task\"8\n\x0eUpdateTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"\x96\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x11\n\tedgenodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\x9a\x05\n\x0eTaskController\x12\x44\n\x07\x41\x64\x64Task\x12\x1a.TaskController.AddTaskReq\x1a\x1b.TaskController.AddTaskResp\"\x00\x12J\n\tStartTask\x12\x1c.TaskController.StartTaskReq\x1a\x1d.TaskController.StartTaskResp\"\x00\x12G\n\x08StopTask\x12\x1b.TaskController.StopTaskReq\x1a\x1c.TaskController.StopTaskResp\"\x00\x12M\n\nFinishTask\x12\x1d.TaskController.FinishTaskReq\x1a\x1e.TaskController.FinishTaskResp\"\x00\x12P\n\x0bGetAllTasks\x12\x1e.TaskController.GetAllTasksReq\x1a\x1f.TaskController.GetAllTasksResp\"\x00\x12P\n\x0bGetTaskInfo\x12\x1e.TaskController.GetTaskInfoReq\x1a\x1f.TaskController.GetTaskInfoResp\"\x00\x12M\n\nUpdateTask\x12\x1d.TaskController.UpdateTaskReq\x1a\x1e.TaskController.UpdateTaskResp\"\x00\x12k\n\x14\x41\x64\x64\x43ustomLogCallback\x12\'.TaskController.AddCustomLogCallbackReq\x1a(.TaskController.AddCustomLogCallbackResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n)task_controller/gen/task_controller.proto\x12\x0eTaskController\"!\n\x0eSendMessageReq\x12\x0f\n\x07message\x18\x01 \x01(\t\"9\n\x0fSendMessageResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\" \n\rFinishTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"8\n\x0e\x46inishTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"3\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x12\n\nstart_time\x18\x02 \x01(\x03\"7\n\rStartTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"H\n\x17\x41\x64\x64\x43ustomLogCallbackReq\x12-\n\ncustom_log\x18\x01 \x01(\x0b\x32\x19.TaskController.CustomLog\"B\n\x18\x41\x64\x64\x43ustomLogCallbackResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\";\n\tCustomLog\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\x03\"0\n\nAddTaskReq\x12\"\n\x04task\x18\x01 \x01(\x0b\x32\x14.TaskController.Task\"5\n\x0b\x41\x64\x64TaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"1\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x11\n\tstop_time\x18\x02 \x01(\x03\"6\n\x0cStopTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"\x10\n\x0eGetAllTasksReq\"9\n\x0fGetAllTasksResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"]\n\x0fGetTaskInfoResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\x12\"\n\x04task\x18\x02 \x01(\x0b\x32\x14.TaskController.Task\"3\n\rUpdateTaskReq\x12\"\n\x04task\x18\x01 \x01(\x0b\x32\x14.TaskController.Task\"8\n\x0eUpdateTaskResp\x12&\n\x04resp\x18\x01 \x01(\x0b\x32\x18.TaskController.Response\"\x96\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x05\x12\x12\n\nstart_time\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x11\n\tedgenodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xec\x05\n\x0eTaskController\x12\x44\n\x07\x41\x64\x64Task\x12\x1a.TaskController.AddTaskReq\x1a\x1b.TaskController.AddTaskResp\"\x00\x12J\n\tStartTask\x12\x1c.TaskController.StartTaskReq\x1a\x1d.TaskController.StartTaskResp\"\x00\x12G\n\x08StopTask\x12\x1b.TaskController.StopTaskReq\x1a\x1c.TaskController.StopTaskResp\"\x00\x12M\n\nFinishTask\x12\x1d.TaskController.FinishTaskReq\x1a\x1e.TaskController.FinishTaskResp\"\x00\x12P\n\x0bGetAllTasks\x12\x1e.TaskController.GetAllTasksReq\x1a\x1f.TaskController.GetAllTasksResp\"\x00\x12P\n\x0bGetTaskInfo\x12\x1e.TaskController.GetTaskInfoReq\x1a\x1f.TaskController.GetTaskInfoResp\"\x00\x12M\n\nUpdateTask\x12\x1d.TaskController.UpdateTaskReq\x1a\x1e.TaskController.UpdateTaskResp\"\x00\x12k\n\x14\x41\x64\x64\x43ustomLogCallback\x12\'.TaskController.AddCustomLogCallbackReq\x1a(.TaskController.AddCustomLogCallbackResp\"\x00\x12P\n\x0bSendMessage\x12\x1e.TaskController.SendMessageReq\x1a\x1f.TaskController.SendMessageResp\"\x00\x62\x06proto3'
 )
 
 
 
 
-_FINISHTASKREQ = _descriptor.Descriptor(
-  name='FinishTaskReq',
-  full_name='TaskController.FinishTaskReq',
+_SENDMESSAGEREQ = _descriptor.Descriptor(
+  name='SendMessageReq',
+  full_name='TaskController.SendMessageReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_id', full_name='TaskController.FinishTaskReq.task_id', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
+      name='message', full_name='TaskController.SendMessageReq.message', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -53,7 +51,69 @@ _FINISHTASKREQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=61,
-  serialized_end=93,
+  serialized_end=94,
+)
+
+
+_SENDMESSAGERESP = _descriptor.Descriptor(
+  name='SendMessageResp',
+  full_name='TaskController.SendMessageResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='TaskController.SendMessageResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=96,
+  serialized_end=153,
+)
+
+
+_FINISHTASKREQ = _descriptor.Descriptor(
+  name='FinishTaskReq',
+  full_name='TaskController.FinishTaskReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_id', full_name='TaskController.FinishTaskReq.task_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=155,
+  serialized_end=187,
 )
 
 
@@ -63,7 +123,6 @@ _FINISHTASKRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.FinishTaskResp.resp', index=0,
@@ -71,7 +130,7 @@ _FINISHTASKRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -84,8 +143,8 @@ _FINISHTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=95,
-  serialized_end=151,
+  serialized_start=189,
+  serialized_end=245,
 )
 
 
@@ -95,7 +154,6 @@ _STARTTASKREQ = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='task_id', full_name='TaskController.StartTaskReq.task_id', index=0,
@@ -103,14 +161,14 @@ _STARTTASKREQ = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='start_time', full_name='TaskController.StartTaskReq.start_time', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -123,8 +181,8 @@ _STARTTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=153,
-  serialized_end=204,
+  serialized_start=247,
+  serialized_end=298,
 )
 
 
@@ -134,7 +192,6 @@ _STARTTASKRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.StartTaskResp.resp', index=0,
@@ -142,7 +199,7 @@ _STARTTASKRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -155,8 +212,8 @@ _STARTTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=206,
-  serialized_end=261,
+  serialized_start=300,
+  serialized_end=355,
 )
 
 
@@ -166,7 +223,6 @@ _ADDCUSTOMLOGCALLBACKREQ = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='custom_log', full_name='TaskController.AddCustomLogCallbackReq.custom_log', index=0,
@@ -174,7 +230,7 @@ _ADDCUSTOMLOGCALLBACKREQ = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -187,8 +243,8 @@ _ADDCUSTOMLOGCALLBACKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=263,
-  serialized_end=335,
+  serialized_start=357,
+  serialized_end=429,
 )
 
 
@@ -198,7 +254,6 @@ _ADDCUSTOMLOGCALLBACKRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.AddCustomLogCallbackResp.resp', index=0,
@@ -206,7 +261,7 @@ _ADDCUSTOMLOGCALLBACKRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -219,8 +274,8 @@ _ADDCUSTOMLOGCALLBACKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=337,
-  serialized_end=403,
+  serialized_start=431,
+  serialized_end=497,
 )
 
 
@@ -230,7 +285,6 @@ _CUSTOMLOG = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='task_id', full_name='TaskController.CustomLog.task_id', index=0,
@@ -238,21 +292,21 @@ _CUSTOMLOG = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='content', full_name='TaskController.CustomLog.content', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='time', full_name='TaskController.CustomLog.time', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -265,8 +319,8 @@ _CUSTOMLOG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=405,
-  serialized_end=464,
+  serialized_start=499,
+  serialized_end=558,
 )
 
 
@@ -276,7 +330,6 @@ _ADDTASKREQ = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='task', full_name='TaskController.AddTaskReq.task', index=0,
@@ -284,7 +337,7 @@ _ADDTASKREQ = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -297,8 +350,8 @@ _ADDTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=466,
-  serialized_end=514,
+  serialized_start=560,
+  serialized_end=608,
 )
 
 
@@ -308,7 +361,6 @@ _ADDTASKRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.AddTaskResp.resp', index=0,
@@ -316,7 +368,7 @@ _ADDTASKRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -329,8 +381,8 @@ _ADDTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=516,
-  serialized_end=569,
+  serialized_start=610,
+  serialized_end=663,
 )
 
 
@@ -340,7 +392,6 @@ _STOPTASKREQ = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='task_id', full_name='TaskController.StopTaskReq.task_id', index=0,
@@ -348,14 +399,14 @@ _STOPTASKREQ = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='stop_time', full_name='TaskController.StopTaskReq.stop_time', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -368,8 +419,8 @@ _STOPTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=571,
-  serialized_end=620,
+  serialized_start=665,
+  serialized_end=714,
 )
 
 
@@ -379,7 +430,6 @@ _STOPTASKRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.StopTaskResp.resp', index=0,
@@ -387,7 +437,7 @@ _STOPTASKRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -400,8 +450,8 @@ _STOPTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=622,
-  serialized_end=676,
+  serialized_start=716,
+  serialized_end=770,
 )
 
 
@@ -411,7 +461,6 @@ _GETALLTASKSREQ = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -425,8 +474,8 @@ _GETALLTASKSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=678,
-  serialized_end=694,
+  serialized_start=772,
+  serialized_end=788,
 )
 
 
@@ -436,7 +485,6 @@ _GETALLTASKSRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.GetAllTasksResp.resp', index=0,
@@ -444,78 +492,7 @@ _GETALLTASKSRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=696,
-  serialized_end=753,
-)
-
-
-_GETTASKINFOREQ = _descriptor.Descriptor(
-  name='GetTaskInfoReq',
-  full_name='TaskController.GetTaskInfoReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='task_id', full_name='TaskController.GetTaskInfoReq.task_id', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=755,
-  serialized_end=788,
-)
-
-
-_GETTASKINFORESP = _descriptor.Descriptor(
-  name='GetTaskInfoResp',
-  full_name='TaskController.GetTaskInfoResp',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='resp', full_name='TaskController.GetTaskInfoResp.resp', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='task', full_name='TaskController.GetTaskInfoResp.task', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -529,7 +506,76 @@ _GETTASKINFORESP = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=790,
-  serialized_end=883,
+  serialized_end=847,
+)
+
+
+_GETTASKINFOREQ = _descriptor.Descriptor(
+  name='GetTaskInfoReq',
+  full_name='TaskController.GetTaskInfoReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_id', full_name='TaskController.GetTaskInfoReq.task_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=849,
+  serialized_end=882,
+)
+
+
+_GETTASKINFORESP = _descriptor.Descriptor(
+  name='GetTaskInfoResp',
+  full_name='TaskController.GetTaskInfoResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='TaskController.GetTaskInfoResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='task', full_name='TaskController.GetTaskInfoResp.task', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=884,
+  serialized_end=977,
 )
 
 
@@ -539,7 +585,6 @@ _UPDATETASKREQ = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='task', full_name='TaskController.UpdateTaskReq.task', index=0,
@@ -547,7 +592,7 @@ _UPDATETASKREQ = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -560,8 +605,8 @@ _UPDATETASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=885,
-  serialized_end=936,
+  serialized_start=979,
+  serialized_end=1030,
 )
 
 
@@ -571,7 +616,6 @@ _UPDATETASKRESP = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='resp', full_name='TaskController.UpdateTaskResp.resp', index=0,
@@ -579,7 +623,7 @@ _UPDATETASKRESP = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -592,8 +636,8 @@ _UPDATETASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=938,
-  serialized_end=994,
+  serialized_start=1032,
+  serialized_end=1088,
 )
 
 
@@ -603,7 +647,6 @@ _TASK = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='task_id', full_name='TaskController.Task.task_id', index=0,
@@ -611,56 +654,56 @@ _TASK = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='name', full_name='TaskController.Task.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='create_time', full_name='TaskController.Task.create_time', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='start_time', full_name='TaskController.Task.start_time', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='end_time', full_name='TaskController.Task.end_time', index=4,
       number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='union_train', full_name='TaskController.Task.union_train', index=5,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='edgenodes', full_name='TaskController.Task.edgenodes', index=6,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='file', full_name='TaskController.Task.file', index=7,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -673,8 +716,8 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=997,
-  serialized_end=1147,
+  serialized_start=1091,
+  serialized_end=1241,
 )
 
 
@@ -684,7 +727,6 @@ _RESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='code', full_name='TaskController.Response.code', index=0,
@@ -692,14 +734,14 @@ _RESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='message', full_name='TaskController.Response.message', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -712,10 +754,11 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1149,
-  serialized_end=1190,
+  serialized_start=1243,
+  serialized_end=1284,
 )
 
+_SENDMESSAGERESP.fields_by_name['resp'].message_type = _RESPONSE
 _FINISHTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STARTTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _ADDCUSTOMLOGCALLBACKREQ.fields_by_name['custom_log'].message_type = _CUSTOMLOG
@@ -728,6 +771,8 @@ _GETTASKINFORESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKINFORESP.fields_by_name['task'].message_type = _TASK
 _UPDATETASKREQ.fields_by_name['task'].message_type = _TASK
 _UPDATETASKRESP.fields_by_name['resp'].message_type = _RESPONSE
+DESCRIPTOR.message_types_by_name['SendMessageReq'] = _SENDMESSAGEREQ
+DESCRIPTOR.message_types_by_name['SendMessageResp'] = _SENDMESSAGERESP
 DESCRIPTOR.message_types_by_name['FinishTaskReq'] = _FINISHTASKREQ
 DESCRIPTOR.message_types_by_name['FinishTaskResp'] = _FINISHTASKRESP
 DESCRIPTOR.message_types_by_name['StartTaskReq'] = _STARTTASKREQ
@@ -748,6 +793,20 @@ DESCRIPTOR.message_types_by_name['UpdateTaskResp'] = _UPDATETASKRESP
 DESCRIPTOR.message_types_by_name['Task'] = _TASK
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+SendMessageReq = _reflection.GeneratedProtocolMessageType('SendMessageReq', (_message.Message,), {
+  'DESCRIPTOR' : _SENDMESSAGEREQ,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:TaskController.SendMessageReq)
+  })
+_sym_db.RegisterMessage(SendMessageReq)
+
+SendMessageResp = _reflection.GeneratedProtocolMessageType('SendMessageResp', (_message.Message,), {
+  'DESCRIPTOR' : _SENDMESSAGERESP,
+  '__module__' : 'task_controller.gen.task_controller_pb2'
+  # @@protoc_insertion_point(class_scope:TaskController.SendMessageResp)
+  })
+_sym_db.RegisterMessage(SendMessageResp)
 
 FinishTaskReq = _reflection.GeneratedProtocolMessageType('FinishTaskReq', (_message.Message,), {
   'DESCRIPTOR' : _FINISHTASKREQ,
@@ -890,9 +949,8 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=1193,
-  serialized_end=1859,
+  serialized_start=1287,
+  serialized_end=2035,
   methods=[
   _descriptor.MethodDescriptor(
     name='AddTask',
@@ -902,7 +960,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_ADDTASKREQ,
     output_type=_ADDTASKRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StartTask',
@@ -912,7 +969,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_STARTTASKREQ,
     output_type=_STARTTASKRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StopTask',
@@ -922,7 +978,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_STOPTASKREQ,
     output_type=_STOPTASKRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='FinishTask',
@@ -932,7 +987,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_FINISHTASKREQ,
     output_type=_FINISHTASKRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetAllTasks',
@@ -942,7 +996,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_GETALLTASKSREQ,
     output_type=_GETALLTASKSRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetTaskInfo',
@@ -952,7 +1005,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_GETTASKINFOREQ,
     output_type=_GETTASKINFORESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='UpdateTask',
@@ -962,7 +1014,6 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_UPDATETASKREQ,
     output_type=_UPDATETASKRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='AddCustomLogCallback',
@@ -972,7 +1023,15 @@ _TASKCONTROLLER = _descriptor.ServiceDescriptor(
     input_type=_ADDCUSTOMLOGCALLBACKREQ,
     output_type=_ADDCUSTOMLOGCALLBACKRESP,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SendMessage',
+    full_name='TaskController.TaskController.SendMessage',
+    index=8,
+    containing_service=None,
+    input_type=_SENDMESSAGEREQ,
+    output_type=_SENDMESSAGERESP,
+    serialized_options=None,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_TASKCONTROLLER)
