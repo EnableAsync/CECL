@@ -12,8 +12,21 @@ class MessageHub:
         # self.handler = {}
 
     def send_message_to_edge(self, msg):
-        return self.stub.SendMessage(message_hub_pb2.SendMessageReq(
+        return self.stub.SendMessageToEdge(message_hub_pb2.SendMessageToEdgeReq(
             message=msg
+        ))
+
+    def send_message_to_cloud(self, msg):
+        return self.stub.SendMessageToCloud(message_hub_pb2.SendMessageToCloudReq(
+            message=msg
+        ))
+
+    def send_file(self, task: Task, script):
+        return self.stub.SendFile(message_hub_pb2.SendFileReq(
+            task=message_hub_pb2.Task(
+                task_id=task.task_id
+            ),
+            script=script
         ))
 
     # def register_receive(self, identify, function):

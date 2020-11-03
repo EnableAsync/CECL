@@ -37,6 +37,24 @@ class MessageHub(message_hub_pb2_grpc.MessageHubServicer):
             message=resp.message
         ))
 
+    def SendFile(self, request, context):
+        request_task = request.task
+        task: Task = Task(
+            task_id=request_task.task_id,
+            name=request_task.name,
+            create_time=request_task.create_time,
+            start_time=request_task.start_time,
+            end_time=request_task.end_time,
+            union_train=request_task.union_train,
+            edgenodes=request_task.edgenodes,
+            file=request_task.file,
+            status=0
+        )
+        script = request.script
+        config = request.config
+        resp = self.dr.upload_task(task, script, config).resp
+        return message_hub_pb2.SendFileResp(resp=message_hub_pb2.Response(code=resp.code, message=resp.message))
+
 
 def serve():
     # gRPC 服务器
