@@ -1,9 +1,8 @@
 from __future__ import print_function
 
-import grpc
 import time
-from conf import TASK_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
-from task_runtime.model.task import Task
+from conf import TASK_RUNTIME_SERVER
+from model.task import Task
 
 import grpc
 

@@ -6,7 +6,7 @@ import json
 
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
 from conf import MESSAGE_HUB_SERVER
-from message_hub.model.task import Task
+from model.task import Task
 
 import message_hub.client.deploy_runtime_client
 import message_hub.client.deploy_controller_client

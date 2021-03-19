@@ -8,6 +8,7 @@ from flask_cors import CORS
 import json
 import message_hub.client.deploy_controller_client
 import message_hub.client.deploy_runtime_client
+import time
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -33,10 +34,17 @@ def upload():
     return {'code': 0, 'msg': 'success'}
 
 
+@app.route('/task/git', methods=['POST'])
+def add_task_by_git():
+    name = request.form['name']
+    create_time = int(time.time())
+
+
+
 @app.route('/task', methods=['POST'])
 def add_task():
     name = request.form['name']
-    create_time = int(request.form['create_time'])
+    create_time = int(time.time())
     union_train = int(request.form['union_train'])
     edge_nodes = request.form['edge_nodes']
     file = request.form['file']

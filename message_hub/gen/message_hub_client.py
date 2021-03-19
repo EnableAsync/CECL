@@ -2,7 +2,7 @@ import grpc
 
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
 from conf import MESSAGE_HUB_SERVER
-from message_hub.model.task import Task
+from model.task import Task
 
 
 class MessageHub:

@@ -1,5 +1,5 @@
-from task_runtime.model.custom_log import CustomLog
-from task_runtime.model.task import Task
+from model.custom_log import CustomLog
+from model.task import Task
 from task_runtime.client.task_controller_client import TaskController
 from task_runtime.client.data_manger_client import DataManager
 from task_runtime.util.get_file_path import get_script_path, get_script_work_path

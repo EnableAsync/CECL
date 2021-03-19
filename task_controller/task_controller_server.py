@@ -1,8 +1,7 @@
 from concurrent import futures
 import time
-import json
-from task_controller.model.task import Task
-from task_controller.model.custom_log import CustomLog
+from model.task import Task
+from model.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
 from task_controller.client.data_manger_client import DataManager
 from task_controller.client.task_runtime_client import TaskRuntime

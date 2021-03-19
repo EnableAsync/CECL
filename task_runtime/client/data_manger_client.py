@@ -1,10 +1,9 @@
 from __future__ import print_function
 
 import grpc
-import time
 from data_manager.gen import data_manager_pb2, data_manager_pb2_grpc
-from task_controller.model.task import Task
-from task_controller.model.custom_log import CustomLog
+from model.task import Task
+from model.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
 
 

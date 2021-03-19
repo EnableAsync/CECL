@@ -2,8 +2,8 @@ import pymysql
 # import sqlite3
 import time
 from datetime import datetime
-from data_manager.model.task import Task
-from data_manager.model.custom_log import CustomLog
+from model.task import Task
+from model.custom_log import CustomLog
 from dbutils.pooled_db import PooledDB
 
 

@@ -2,8 +2,8 @@ from concurrent import futures
 import time
 import data_manager.dal.task
 import json
-from data_manager.model.task import Task
-from data_manager.model.custom_log import CustomLog
+from model.task import Task
+from model.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
 
 import grpc
@@ -23,15 +23,15 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
         # status:0 -> ready
         t: Task = request.task
         task_id = self.db.add_task(Task(
-            t.task_id,
-            t.name,
-            t.create_time,
-            t.start_time,
-            t.end_time,
-            t.union_train,
-            t.edgenodes,
-            t.file,
-            0,
+            task_id=t.task_id,
+            name=t.name,
+            create_time=t.create_time,
+            start_time=t.start_time,
+            end_time=t.end_time,
+            union_train=t.union_train,
+            edgenodes=t.edgenodes,
+            file=t.file,
+            status=0,
         ))
         return data_manager_pb2.AddTaskResp(resp=data_manager_pb2.Response(code=0, message=json.dumps(task_id)))
 
@@ -72,15 +72,15 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
     def UpdateTask(self, request, context):
         t: Task = request.task
         self.db.update_task(Task(
-            t.task_id,
-            t.name,
-            t.create_time,
-            t.start_time,
-            t.end_time,
-            t.union_train,
-            t.edgenodes,
-            t.file,
-            t.status,
+            task_id=t.task_id,
+            name=t.name,
+            create_time=t.create_time,
+            start_time=t.start_time,
+            end_time=t.end_time,
+            union_train=t.union_train,
+            edgenodes=t.edgenodes,
+            file=t.file,
+            status=t.status,
         ))
         return data_manager_pb2.UpdateTaskResp(resp=data_manager_pb2.Response(code=0, message="success"))
 

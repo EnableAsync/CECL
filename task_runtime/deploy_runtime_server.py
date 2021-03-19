@@ -3,7 +3,7 @@ import time
 import os
 from task_runtime.util.get_file_path import get_config_path, get_script_path
 from conf import DEPLOY_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
-from task_runtime.model.task import Task
+from model.task import Task
 from task_runtime.logic.task_runner import start_task, stop_task
 
 import grpc

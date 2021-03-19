@@ -1,9 +1,8 @@
 from __future__ import print_function
 
-import grpc
 import time
-from conf import TASK_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
-from task_runtime.model.task import Task
+from conf import TASK_RUNTIME_SERVER
+from model.task import Task
 
 import grpc
 
@@ -64,6 +63,6 @@ if __name__ == '__main__':
         edgenodes='nodes',
         file='train.py'
     )
-    file = open('./test/99.55%.py', 'rb')
+    file = open('task_runtime.proto', 'rb')
     tr.upload_task(task, file.read(), b'')
     print(tr.start_task(1).resp.message)
