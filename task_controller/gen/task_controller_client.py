@@ -2,6 +2,8 @@ from __future__ import print_function
 
 import grpc
 import time
+
+from services_manager import resolver
 from task_controller.gen import task_controller_pb2, task_controller_pb2_grpc
 from common.task import Task
 from common.custom_log import CustomLog
@@ -10,7 +12,9 @@ from conf import TASK_CONTROLLER_SERVER
 
 class TaskController:
     def __init__(self):
-        channel = grpc.insecure_channel(TASK_CONTROLLER_SERVER)
+        ip, port = resolver.get_service(TASK_CONTROLLER_SERVER['name'])
+        print(f"Remote server: {ip}:{port}")
+        channel = grpc.insecure_channel(f"{ip}:{port}")
         self.stub = task_controller_pb2_grpc.TaskControllerStub(channel)
 
     def add_custom_log_callback(self, custom_log: CustomLog):

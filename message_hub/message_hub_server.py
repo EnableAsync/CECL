@@ -2,24 +2,24 @@ from concurrent import futures
 
 import grpc
 import time
-import json
 
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
 from conf import MESSAGE_HUB_SERVER
 from common.task import Task
 
-import message_hub.client.deploy_runtime_client
-import message_hub.client.deploy_controller_client
-import message_hub.client.task_controller_client
+import task_runtime.gen.deploy_runtime_client
+import task_controller.gen.deploy_controller_client
+import task_controller.gen.task_controller_client
+from services_manager import register
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 class MessageHub(message_hub_pb2_grpc.MessageHubServicer):
     def __init__(self):
-        self.dr = message_hub.client.deploy_runtime_client.TaskRuntime()
-        self.dc = message_hub.client.deploy_controller_client.TaskController()
-        self.tc = message_hub.client.task_controller_client.TaskController()
+        self.dr = task_runtime.gen.deploy_runtime_client.TaskRuntime()
+        self.dc = task_controller.gen.deploy_controller_client.TaskController()
+        self.tc = task_controller.gen.task_controller_client.TaskController()
 
     def SendMessageToEdge(self, request, context):
         msg = request.message
@@ -63,12 +63,18 @@ def serve():
         ('grpc.max_receive_message_length', 10 * 1024 * 1024),
     ])
     message_hub_pb2_grpc.add_MessageHubServicer_to_server(MessageHub(), server)
-    server.add_insecure_port(MESSAGE_HUB_SERVER)
-    server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
+    server.add_insecure_port(MESSAGE_HUB_SERVER["port"])
+    register.register(MESSAGE_HUB_SERVER['name'],
+                      MESSAGE_HUB_SERVER['ip'],
+                      int(MESSAGE_HUB_SERVER['port']))
+    server.start()  # start() will not block
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
+        register.unregister(MESSAGE_HUB_SERVER['name'],
+                            MESSAGE_HUB_SERVER['ip'],
+                            int(MESSAGE_HUB_SERVER['port']))
         server.stop(0)
 
 

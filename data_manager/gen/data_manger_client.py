@@ -1,6 +1,8 @@
 from __future__ import print_function
 
 import grpc
+import logging
+
 from data_manager.gen import data_manager_pb2, data_manager_pb2_grpc
 from common.task import Task
 from common.custom_log import CustomLog
@@ -11,6 +13,7 @@ from services_manager import resolver
 class DataManager:
     def __init__(self):
         ip, port = resolver.get_service(DATA_MANAGER_SERVER['name'])
+        logging.info(f"Remote server: {ip}:{port}")
         print(f"Remote server: {ip}:{port}")
         channel = grpc.insecure_channel(f"{ip}:{port}")
         self.stub = data_manager_pb2_grpc.DataManagerStub(channel)

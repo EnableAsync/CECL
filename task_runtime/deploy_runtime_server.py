@@ -1,6 +1,8 @@
 from concurrent import futures
 import time
 import os
+
+from services_manager import register
 from task_runtime.util.get_file_path import get_config_path, get_script_path
 from conf import DEPLOY_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
 from common.task import Task
@@ -130,11 +132,17 @@ def serve():
     ])
     task_runtime_pb2_grpc.add_TaskRuntimeServicer_to_server(TaskRuntime(), server)
     server.add_insecure_port(DEPLOY_RUNTIME_SERVER)
+    register.register(DEPLOY_RUNTIME_SERVER['name'],
+                      DEPLOY_RUNTIME_SERVER['ip'],
+                      int(DEPLOY_RUNTIME_SERVER['port']))
     server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
+        register.register(DEPLOY_RUNTIME_SERVER['name'],
+                          DEPLOY_RUNTIME_SERVER['ip'],
+                          int(DEPLOY_RUNTIME_SERVER['port']))
         server.stop(0)
 
 

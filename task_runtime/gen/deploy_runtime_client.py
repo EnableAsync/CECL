@@ -6,12 +6,18 @@ from common.task import Task
 
 import grpc
 
+from services_manager import resolver
 from task_runtime.gen import task_runtime_pb2, task_runtime_pb2_grpc
 
 
 class TaskRuntime:
     def __init__(self):
-        channel = grpc.insecure_channel(DEPLOY_RUNTIME_SERVER)
+        ip, port = resolver.get_service(DEPLOY_RUNTIME_SERVER['name'])
+        print(f"Remote server: {ip}:{port}")
+        channel = grpc.insecure_channel(f"{ip}:{port}", options=[
+            ('grpc.max_send_message_length', 10 * 1024 * 1024),
+            ('grpc.max_receive_message_length', 10 * 1024 * 1024),
+        ])
         self.stub = task_runtime_pb2_grpc.TaskRuntimeStub(channel)
 
     def upload_task(self, t: Task, script: bytes, config: bytes):
@@ -37,19 +43,6 @@ class TaskRuntime:
     def stop_task(self, task_id: int):
         return self.stub.StopTask(task_runtime_pb2.StopTaskReq(
             task_id=task_id
-        ))
-
-    def get_file(self, t: Task):
-        return self.stub.GetTaskFile(task_runtime_pb2.GetTaskFileReq(
-            task=task_runtime_pb2.Task(
-                task_id=t.task_id,
-                name=t.name,
-                create_time=t.create_time,
-                start_time=0,
-                end_time=0,
-                union_train=t.union_train,
-                edge_nodes=t.edge_nodes,
-                file=t.file),
         ))
 
 

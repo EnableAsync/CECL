@@ -1,7 +1,7 @@
 from common.custom_log import CustomLog
 from common.task import Task
-from task_runtime.client.task_controller_client import TaskController
-from task_runtime.client.data_manger_client import DataManager
+from task_controller.gen.task_controller_client import TaskController
+from data_manager.gen.data_manger_client import DataManager
 from task_runtime.util.get_file_path import get_script_path, get_script_work_path
 import subprocess
 import time

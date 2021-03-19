@@ -1,13 +1,13 @@
 from flask import Flask, request
 from werkzeug.utils import secure_filename
 from server.config.conf import STATIC_PATH
-from server.client.task_controller_client import TaskController, Task
-from server.client.data_manger_client import DataManager
-from server.client.task_runtime_client import TaskRuntime
+from task_controller.gen.task_controller_client import TaskController, Task
+from data_manager.gen.data_manger_client import DataManager
+from task_runtime.gen.task_runtime_client import TaskRuntime
 from flask_cors import CORS
 import json
-import message_hub.client.deploy_controller_client
-import message_hub.client.deploy_runtime_client
+import task_controller.gen.deploy_controller_client
+import task_runtime.gen.deploy_runtime_client
 import time
 
 app = Flask(__name__)
@@ -17,8 +17,8 @@ tc = TaskController()
 dm = DataManager()
 tr = TaskRuntime()
 
-dc = message_hub.client.deploy_controller_client.TaskController()
-dr = message_hub.client.deploy_runtime_client.TaskRuntime()
+dc = task_controller.gen.deploy_controller_client.TaskController()
+dr = task_runtime.gen.deploy_runtime_client.TaskRuntime()
 
 
 @app.route('/')

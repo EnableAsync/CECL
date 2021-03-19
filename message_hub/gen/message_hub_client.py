@@ -3,11 +3,14 @@ import grpc
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
 from conf import MESSAGE_HUB_SERVER
 from common.task import Task
+from services_manager import resolver
 
 
 class MessageHub:
     def __init__(self):
-        channel = grpc.insecure_channel(MESSAGE_HUB_SERVER)
+        ip, port = resolver.get_service(MESSAGE_HUB_SERVER['name'])
+        print(f"Remote server: {ip}:{port}")
+        channel = grpc.insecure_channel(f"{ip}:{port}")
         self.stub = message_hub_pb2_grpc.MessageHubStub(channel)
         # self.handler = {}
 

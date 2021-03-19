@@ -3,8 +3,9 @@ import time
 from common.task import Task
 from common.custom_log import CustomLog
 from conf import DEPLOY_CONTROLLER_SERVER
-from task_controller.client.data_manger_client import DataManager
-from task_controller.client.deploy_runtime_client import TaskRuntime
+from services_manager import register
+from data_manager.gen.data_manger_client import DataManager
+from task_runtime.gen.deploy_runtime_client import TaskRuntime
 # from grpc_reflection.v1alpha import reflection
 
 import grpc
@@ -137,12 +138,18 @@ def serve():
     #     reflection.SERVICE_NAME
     # )
     # reflection.enable_server_reflection(SERVICE_NAMES, server)
-    server.add_insecure_port(DEPLOY_CONTROLLER_SERVER)
+    server.add_insecure_port(DEPLOY_CONTROLLER_SERVER["port"])
+    register.register(DEPLOY_CONTROLLER_SERVER['name'],
+                      DEPLOY_CONTROLLER_SERVER['ip'],
+                      int(DEPLOY_CONTROLLER_SERVER['port']))
     server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
+        register.unregister(DEPLOY_CONTROLLER_SERVER['name'],
+                          DEPLOY_CONTROLLER_SERVER['ip'],
+                          int(DEPLOY_CONTROLLER_SERVER['port']))
         server.stop(0)
 
 
