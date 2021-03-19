@@ -73,18 +73,22 @@ message StopTaskResp {
 }
 
 message Task {
-    int64 task_id = 1;
-    string name = 2;
-    int32 create_time = 3;
-    int32 start_time = 4;
-    int32 union_train = 5;
-    string edgenodes = 6;
-    string file = 7;
+  int64 task_id = 1;
+  string name = 2;
+  int64 create_time = 3;
+  int64 start_time = 4;
+  int64 end_time = 5;
+  int32 union_train = 6;
+  string edge_nodes = 7;
+  string file = 8;
+  int64 status = 9;
+  int64 recent_running_time = 10;
+  int64 last_modified_time = 11;
 }
 
 message Response {
-    int32 code = 1;
-    string message = 2;
+  int32 code = 1;
+  string message = 2;
 }
 
 // python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./message_hub/gen/message_hub.proto

@@ -2,7 +2,7 @@ import grpc
 
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
 from conf import MESSAGE_HUB_SERVER
-from model.task import Task
+from common.task import Task
 
 
 class MessageHub:
@@ -41,7 +41,7 @@ class MessageHub:
     #             start_time=0,
     #             end_time=0,
     #             union_train=t.union_train,
-    #             edgenodes=t.edgenodes,
+    #             edge_nodes=t.edge_nodes,
     #             file=t.file,
     #         )
     #     ))

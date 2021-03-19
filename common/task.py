@@ -5,10 +5,10 @@ class Task:
         self.name = name
         self.create_time = create_time
         self.start_time = start_time
-        self.recent_running_time = recent_running_time
         self.end_time = end_time
         self.union_train = union_train
         self.edge_nodes = edge_nodes
         self.file = file
         self.status = status
+        self.recent_running_time = recent_running_time
         self.last_modified_time = last_modified_time

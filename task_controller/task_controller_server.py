@@ -1,7 +1,7 @@
 from concurrent import futures
 import time
-from model.task import Task
-from model.custom_log import CustomLog
+from common.task import Task
+from common.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
 from task_controller.client.data_manger_client import DataManager
 from task_controller.client.task_runtime_client import TaskRuntime
@@ -38,7 +38,7 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
             start_time=request_task.start_time,
             end_time=request_task.end_time,
             union_train=request_task.union_train,
-            edgenodes=request_task.edgenodes,
+            edge_nodes=request_task.edge_nodes,
             file=request_task.file,
             status=0
         )

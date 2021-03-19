@@ -2,8 +2,8 @@ from __future__ import print_function
 
 import grpc
 from data_manager.gen import data_manager_pb2, data_manager_pb2_grpc
-from model.task import Task
-from model.custom_log import CustomLog
+from common.task import Task
+from common.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
 
 
@@ -21,7 +21,7 @@ class DataManager:
                 start_time=0,
                 end_time=0,
                 union_train=task.union_train,
-                edgenodes=task.edgenodes,
+                edge_nodes=task.edge_nodes,
                 file=task.file,
             )
         ))
@@ -56,7 +56,7 @@ class DataManager:
                 start_time=0,
                 end_time=0,
                 union_train=task.union_train,
-                edgenodes=task.edgenodes,
+                edge_nodes=task.edge_nodes,
                 file=task.file,
             )
         ))
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     #     name="test_task",
     #     create_time=int(time.time()),
     #     union_train=0,
-    #     edgenodes='nodes',
+    #     edge_nodes='nodes',
     #     file='train.py'
     # )
     # dm.add_task(task)

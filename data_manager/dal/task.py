@@ -2,8 +2,8 @@ import pymysql
 # import sqlite3
 import time
 from datetime import datetime
-from model.task import Task
-from model.custom_log import CustomLog
+from common.task import Task
+from common.custom_log import CustomLog
 from dbutils.pooled_db import PooledDB
 
 
@@ -51,7 +51,7 @@ class Db:
         cursor.close()
 
     def add_task(self, task):
-        sql = """insert into cecl.task(name, create_time, union_train, edgenodes, file, status) 
+        sql = """insert into cecl.task(name, create_time, union_train, edge_nodes, file, status) 
         values (%s, %s, %s, %s, %s, %s)"""
         conn, cursor = self.get_conn()
         try:
@@ -61,7 +61,7 @@ class Db:
                     task.name,
                     datetime.fromtimestamp(task.create_time),
                     task.union_train,
-                    task.edgenodes,
+                    task.edge_nodes,
                     task.file,
                     task.status
                 ))
@@ -128,7 +128,7 @@ class Db:
         unix_timestamp(create_time) as create_time, 
         unix_timestamp(start_time) as start_time, 
         unix_timestamp(end_time) as end_time, 
-        union_train, edgenodes, file, status from cecl.task order by id desc"""
+        union_train, edge_nodes, file, status from cecl.task order by id desc"""
         conn, cursor = self.get_conn()
         try:
             cursor.execute(sql)
@@ -153,7 +153,7 @@ class Db:
         sql = """update cecl.task set 
         name = %s, 
         union_train = %s,
-        edgenodes = %s,
+        edge_nodes = %s,
         file = %s,
         status = %s
         where id = %s"""
@@ -164,7 +164,7 @@ class Db:
                 args=(
                     task.name,
                     task.union_train,
-                    task.edgenodes,
+                    task.edge_nodes,
                     task.file,
                     task.status,
                     task.task_id,
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     #     name="test_task",
     #     create_time=int(time.time()),
     #     union_train=0,
-    #     edgenodes='nodes',
+    #     edge_nodes='nodes',
     #     file='train.py'
     # )
     # db.add_task(t)

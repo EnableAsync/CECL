@@ -3,7 +3,7 @@ import time
 import os
 from task_runtime.util.get_file_path import get_config_path, get_script_path
 from conf import DEPLOY_RUNTIME_SERVER, TASK_RUNTIME_UPLOAD_PATH
-from model.task import Task
+from common.task import Task
 from task_runtime.logic.task_runner import start_task, stop_task
 
 import grpc
@@ -26,7 +26,7 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
             start_time=request_task.start_time,
             end_time=request_task.end_time,
             union_train=request_task.union_train,
-            edgenodes=request_task.edgenodes,
+            edge_nodes=request_task.edge_nodes,
             file=request_task.file,
             status=0
         )
@@ -93,7 +93,7 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
             start_time=request_task.start_time,
             end_time=request_task.end_time,
             union_train=request_task.union_train,
-            edgenodes=request_task.edgenodes,
+            edge_nodes=request_task.edge_nodes,
             file=request_task.file,
             status=0
         )

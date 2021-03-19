@@ -1,5 +1,5 @@
 from conf import TASK_RUNTIME_UPLOAD_PATH
-from model.task import Task
+from common.task import Task
 import os.path
 
 

@@ -2,14 +2,17 @@ from __future__ import print_function
 
 import grpc
 from data_manager.gen import data_manager_pb2, data_manager_pb2_grpc
-from model.task import Task
-from model.custom_log import CustomLog
+from common.task import Task
+from common.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
+from services_manager import resolver
 
 
 class DataManager:
     def __init__(self):
-        channel = grpc.insecure_channel(DATA_MANAGER_SERVER)
+        ip, port = resolver.get_service(DATA_MANAGER_SERVER['name'])
+        print(f"Remote server: {ip}:{port}")
+        channel = grpc.insecure_channel(f"{ip}:{port}")
         self.stub = data_manager_pb2_grpc.DataManagerStub(channel)
 
     def add_task(self, task: Task):
@@ -21,7 +24,7 @@ class DataManager:
                 start_time=0,
                 end_time=0,
                 union_train=task.union_train,
-                edgenodes=task.edgenodes,
+                edge_nodes=task.edge_nodes,
                 file=task.file,
             )
         ))
@@ -56,7 +59,7 @@ class DataManager:
                 start_time=0,
                 end_time=0,
                 union_train=task.union_train,
-                edgenodes=task.edgenodes,
+                edge_nodes=task.edge_nodes,
                 file=task.file,
             )
         ))
@@ -83,7 +86,7 @@ if __name__ == '__main__':
     #     name="test_task",
     #     create_time=int(time.time()),
     #     union_train=0,
-    #     edgenodes='nodes',
+    #     edge_nodes='nodes',
     #     file='train.py'
     # )
     # dm.add_task(task)

@@ -72,8 +72,11 @@ message Task {
   int64 start_time = 4;
   int64 end_time = 5;
   int32 union_train = 6;
-  string edgenodes = 7;
+  string edge_nodes = 7;
   string file = 8;
+  int64 status = 9;
+  int64 recent_running_time = 10;
+  int64 last_modified_time = 11;
 }
 
 message Response {
@@ -81,4 +84,4 @@ message Response {
   string message = 2;
 }
 
-// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
+// python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto

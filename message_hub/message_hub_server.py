@@ -6,7 +6,7 @@ import json
 
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
 from conf import MESSAGE_HUB_SERVER
-from model.task import Task
+from common.task import Task
 
 import message_hub.client.deploy_runtime_client
 import message_hub.client.deploy_controller_client
@@ -46,7 +46,7 @@ class MessageHub(message_hub_pb2_grpc.MessageHubServicer):
             start_time=request_task.start_time,
             end_time=request_task.end_time,
             union_train=request_task.union_train,
-            edgenodes=request_task.edgenodes,
+            edge_nodes=request_task.edge_nodes,
             file=request_task.file,
             status=0
         )

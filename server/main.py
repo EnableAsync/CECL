@@ -40,7 +40,6 @@ def add_task_by_git():
     create_time = int(time.time())
 
 
-
 @app.route('/task', methods=['POST'])
 def add_task():
     name = request.form['name']
@@ -50,7 +49,7 @@ def add_task():
     file = request.form['file']
     print(file)
     t: Task = Task(
-        name=name, create_time=create_time, union_train=union_train, edgenodes=edge_nodes, file=file
+        name=name, create_time=create_time, union_train=union_train, edge_nodes=edge_nodes, file=file
     )
     task_id: int = json.loads(tc.add_task(t).resp.message)['id']
     t.task_id = task_id

@@ -31,7 +31,7 @@ CREATE TABLE `task` (
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
   `union_train` tinyint(4) NOT NULL,
-  `edgenodes` varchar(255) DEFAULT NULL,
+  `edge_nodes` varchar(255) DEFAULT NULL,
   `file` text,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)

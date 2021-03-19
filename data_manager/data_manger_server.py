@@ -2,9 +2,10 @@ from concurrent import futures
 import time
 import data_manager.dal.task
 import json
-from model.task import Task
-from model.custom_log import CustomLog
+from common.task import Task
+from common.custom_log import CustomLog
 from conf import DATA_MANAGER_SERVER
+from services_manager import register
 
 import grpc
 
@@ -29,7 +30,7 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             start_time=t.start_time,
             end_time=t.end_time,
             union_train=t.union_train,
-            edgenodes=t.edgenodes,
+            edge_nodes=t.edge_nodes,
             file=t.file,
             status=0,
         ))
@@ -78,7 +79,7 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             start_time=t.start_time,
             end_time=t.end_time,
             union_train=t.union_train,
-            edgenodes=t.edgenodes,
+            edge_nodes=t.edge_nodes,
             file=t.file,
             status=t.status,
         ))
@@ -119,12 +120,18 @@ def serve():
     # gRPC 服务器
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=6))
     data_manager_pb2_grpc.add_DataManagerServicer_to_server(DataManager(), server)
-    server.add_insecure_port(DATA_MANAGER_SERVER)
-    server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
+    server.add_insecure_port(F"{DATA_MANAGER_SERVER['ip']}:{DATA_MANAGER_SERVER['port']}")
+    register.register(DATA_MANAGER_SERVER['name'],
+                      DATA_MANAGER_SERVER['ip'],
+                      int(DATA_MANAGER_SERVER['port']))
+    server.start()  # start() will not block
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
+        register.unregister(DATA_MANAGER_SERVER['name'],
+                            DATA_MANAGER_SERVER['ip'],
+                            int(DATA_MANAGER_SERVER['port']))
         server.stop(0)
 
 

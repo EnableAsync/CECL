@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import time
 from conf import TASK_RUNTIME_SERVER
-from model.task import Task
+from common.task import Task
 
 import grpc
 
@@ -23,7 +23,7 @@ class TaskRuntime:
                 start_time=0,
                 end_time=0,
                 union_train=t.union_train,
-                edgenodes=t.edgenodes,
+                edge_nodes=t.edge_nodes,
                 file=t.file),
             script=script,
             config=config,
@@ -48,7 +48,7 @@ class TaskRuntime:
                 start_time=0,
                 end_time=0,
                 union_train=t.union_train,
-                edgenodes=t.edgenodes,
+                edge_nodes=t.edge_nodes,
                 file=t.file),
         ))
 
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         name="test_task",
         create_time=int(time.time()),
         union_train=0,
-        edgenodes='nodes',
+        edge_nodes='nodes',
         file='train.py'
     )
     file = open('task_runtime.proto', 'rb')
