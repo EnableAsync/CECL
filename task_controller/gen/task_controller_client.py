@@ -40,6 +40,20 @@ class TaskController:
             )
         ))
 
+    def add_task_by_git(self, t: Task):
+        return self.stub.AddTaskByGit(task_controller_pb2.AddTaskByGitReq(
+            task=task_controller_pb2.Task(
+                task_id=t.task_id,
+                name=t.name,
+                create_time=t.create_time,
+                start_time=0,
+                end_time=0,
+                union_train=t.union_train,
+                edge_nodes=t.edge_nodes,
+                file=t.file
+            )
+        ))
+
     def stop_task(self, task_id: int):
         return self.stub.StopTask(task_controller_pb2.StopTaskReq(
             task_id=task_id,

@@ -1,6 +1,7 @@
 from concurrent import futures
 import time
 import os
+from git import Repo
 
 from services_manager import register
 from task_runtime.util.get_file_path import get_config_path, get_script_path, get_script_work_path
@@ -8,6 +9,9 @@ from conf import TASK_RUNTIME_SERVER
 from common.task import Task
 from task_runtime.logic.task_runner import start_task, stop_task
 from task_runtime.gen.task_runtime_pb2 import UploadTaskReq
+from data_manager.gen.data_manger_client import DataManager
+
+from common.custom_log import CustomLog
 
 import grpc
 
@@ -19,6 +23,24 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
     def __init__(self):
         self.tasks: dict = {}
+        self.db = DataManager()
+
+    def AddTaskByGit(self, request, context):
+        request_task: Task = request.task
+        upload_path = get_script_work_path(request_task)
+        if not os.path.exists(upload_path):
+            os.makedirs(upload_path)
+        try:
+            Repo.clone_from("https://github.com/Klas125/calculator.git", "/home/rai/tmp/")
+        except Exception as e:
+            self.db.add_custom_log(task_log=CustomLog(task_id=request_task.task_id, content=e, time=int(time.time())))
+            return task_runtime_pb2.AddTaskByGitResp(
+                resp=task_runtime_pb2.Response(code=10002, message=e))
+        return task_runtime_pb2.AddTaskByGitResp(
+            resp=task_runtime_pb2.Response(code=0, message="clone successfully"))
+
+    def AddTaskByHTTP(self, request, context):
+        return super().AddTaskByHTTP(request, context)
 
     def UploadTask(self, request: UploadTaskReq, context):
         request_task = request.task
@@ -130,7 +152,6 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
             config=b''
         )
 
-    # # 工作函数
     # def SayHello(self, request, context):
     #     print(request)
     #     date_array = datetime.datetime.utcfromtimestamp(request.date)
@@ -140,17 +161,16 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
 
 
 def serve():
-    # gRPC 服务器
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=[
         ('grpc.max_send_message_length', 10 * 1024 * 1024),
         ('grpc.max_receive_message_length', 10 * 1024 * 1024),
     ])
     task_runtime_pb2_grpc.add_TaskRuntimeServicer_to_server(TaskRuntime(), server)
-    server.add_insecure_port(TASK_RUNTIME_SERVER)
+    server.add_insecure_port(f"{TASK_RUNTIME_SERVER['ip']}:{TASK_RUNTIME_SERVER['port']}")
     register.register(TASK_RUNTIME_SERVER['name'],
                       TASK_RUNTIME_SERVER['ip'],
                       int(TASK_RUNTIME_SERVER['port']))
-    server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
+    server.start()  # start() will not block
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)

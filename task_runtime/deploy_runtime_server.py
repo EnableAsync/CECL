@@ -30,7 +30,6 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
             union_train=request_task.union_train,
             edge_nodes=request_task.edge_nodes,
             file=request_task.file,
-            status=0
         )
         script = request.script
         config = request.config
@@ -115,7 +114,6 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
             config=b''
         )
 
-    # # 工作函数
     # def SayHello(self, request, context):
     #     print(request)
     #     date_array = datetime.datetime.utcfromtimestamp(request.date)
@@ -135,7 +133,7 @@ def serve():
     register.register(DEPLOY_RUNTIME_SERVER['name'],
                       DEPLOY_RUNTIME_SERVER['ip'],
                       int(DEPLOY_RUNTIME_SERVER['port']))
-    server.start()  # start() 不会阻塞，如果运行时你的代码没有其它的事情可做，你可能需要循环等待。
+    server.start()  # start() will not block
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)

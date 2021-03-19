@@ -22,6 +22,31 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
         self.runtime = TaskRuntime()
         self.tasks = []
 
+    def AddTaskByGit(self, request, context):
+        request_task: task_controller_pb2.Task = request.task
+        task: Task = Task(
+            task_id=request_task.task_id,
+            name=request_task.name,
+            create_time=request_task.create_time,
+            start_time=request_task.start_time,
+            end_time=request_task.end_time,
+            union_train=request_task.union_train,
+            edge_nodes=request_task.edge_nodes,
+            file=request_task.file,
+            status=0,
+        )
+        self.tasks.append(task)
+        resp = self.db.add_task(task).resp
+        print("add task by git:" + resp.message)
+        resp = self.runtime.add_task_by_git(task).resp
+        return task_controller_pb2.AddTaskByGitResp(resp=task_controller_pb2.Response(
+            code=resp.code,
+            message=resp.message,
+        ))
+
+    def AddTaskByHTTP(self, request, context):
+        return super().AddTaskByHTTP(request, context)
+
     def AddCustomLogCallback(self, request, context):
         log: CustomLog = request.custom_log
         resp = self.db.add_custom_log(log).resp
@@ -66,6 +91,11 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
         task_id: int = request.task_id
         print("start task task id:" + str(task_id))
         resp = self.db.start_task(task_id, int(time.time())).resp
+        if resp.code != 0:
+            return task_controller_pb2.StartTaskResp(resp=task_controller_pb2.Response(
+                code=resp.code,
+                message=resp.message
+            ))
         resp = self.runtime.start_task(task_id).resp
         print("start task runtime code:" + str(resp.code))
         if resp.code != 0:
@@ -138,7 +168,7 @@ def serve():
     #     reflection.SERVICE_NAME
     # )
     # reflection.enable_server_reflection(SERVICE_NAMES, server)
-    server.add_insecure_port(TASK_CONTROLLER_SERVER["port"])
+    server.add_insecure_port(f"{TASK_CONTROLLER_SERVER['ip']}:{TASK_CONTROLLER_SERVER['port']}")
     register.register(TASK_CONTROLLER_SERVER['name'],
                       TASK_CONTROLLER_SERVER['ip'],
                       int(TASK_CONTROLLER_SERVER['port']))

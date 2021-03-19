@@ -6,7 +6,9 @@ from task_runtime.gen import task_runtime_pb2 as task__runtime_dot_gen_dot_task_
 
 
 class TaskRuntimeStub(object):
-    """The task runtime service definition.
+    """python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
+
+    The task runtime service definition.
     """
 
     def __init__(self, channel):
@@ -40,10 +42,22 @@ class TaskRuntimeStub(object):
                 request_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.GetTaskFileReq.SerializeToString,
                 response_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.GetTaskFileResp.FromString,
                 )
+        self.AddTaskByGit = channel.unary_unary(
+                '/TaskRuntime/AddTaskByGit',
+                request_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByGitReq.SerializeToString,
+                response_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByGitResp.FromString,
+                )
+        self.AddTaskByHTTP = channel.unary_unary(
+                '/TaskRuntime/AddTaskByHTTP',
+                request_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByHTTPReq.SerializeToString,
+                response_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByHTTPResp.FromString,
+                )
 
 
 class TaskRuntimeServicer(object):
-    """The task runtime service definition.
+    """python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
+
+    The task runtime service definition.
     """
 
     def UploadTask(self, request, context):
@@ -81,6 +95,18 @@ class TaskRuntimeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddTaskByGit(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddTaskByHTTP(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TaskRuntimeServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -109,6 +135,16 @@ def add_TaskRuntimeServicer_to_server(servicer, server):
                     request_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.GetTaskFileReq.FromString,
                     response_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.GetTaskFileResp.SerializeToString,
             ),
+            'AddTaskByGit': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddTaskByGit,
+                    request_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByGitReq.FromString,
+                    response_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByGitResp.SerializeToString,
+            ),
+            'AddTaskByHTTP': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddTaskByHTTP,
+                    request_deserializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByHTTPReq.FromString,
+                    response_serializer=task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByHTTPResp.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'TaskRuntime', rpc_method_handlers)
@@ -117,7 +153,9 @@ def add_TaskRuntimeServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class TaskRuntime(object):
-    """The task runtime service definition.
+    """python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
+
+    The task runtime service definition.
     """
 
     @staticmethod
@@ -202,5 +240,39 @@ class TaskRuntime(object):
         return grpc.experimental.unary_unary(request, target, '/TaskRuntime/GetTaskFile',
             task__runtime_dot_gen_dot_task__runtime__pb2.GetTaskFileReq.SerializeToString,
             task__runtime_dot_gen_dot_task__runtime__pb2.GetTaskFileResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddTaskByGit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskRuntime/AddTaskByGit',
+            task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByGitReq.SerializeToString,
+            task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByGitResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddTaskByHTTP(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskRuntime/AddTaskByHTTP',
+            task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByHTTPReq.SerializeToString,
+            task__runtime_dot_gen_dot_task__runtime__pb2.AddTaskByHTTPResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

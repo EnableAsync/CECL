@@ -20,6 +20,19 @@ class TaskRuntime:
         ])
         self.stub = task_runtime_pb2_grpc.TaskRuntimeStub(channel)
 
+    def add_task_by_git(self, t: Task):
+        return self.stub.AddTaskByGit(task_runtime_pb2.AddTaskByGitReq(
+            task=task_runtime_pb2.Task(
+                task_id=t.task_id,
+                name=t.name,
+                create_time=t.create_time,
+                start_time=0,
+                end_time=0,
+                union_train=t.union_train,
+                edge_nodes=t.edge_nodes,
+                file=t.file),
+        ))
+
     def upload_task(self, t: Task, script: bytes, config: bytes):
         return self.stub.UploadTask(task_runtime_pb2.UploadTaskReq(
             task=task_runtime_pb2.Task(

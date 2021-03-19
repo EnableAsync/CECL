@@ -38,6 +38,24 @@ def upload():
 def add_task_by_git():
     name = request.form['name']
     create_time = int(time.time())
+    union_train = int(request.form['union_train'])
+    edge_nodes = request.form['edge_nodes']
+    file = request.form['url']
+    print(file)
+    t: Task = Task(
+        name=name, create_time=create_time, union_train=union_train, edge_nodes=edge_nodes, file=file
+    )
+    task_id: int = json.loads(tc.add_task_by_git(t).resp.message)['id']
+    t.task_id = task_id
+
+
+@app.route('task/http', methods=['POST'])
+def add_task_by_http():
+    name = request.form['name']
+    create_time = int(time.time())
+    union_train = int(request.form['union_train'])
+    edge_nodes = request.form['edge_nodes']
+    file = request.form['url']
 
 
 @app.route('/task', methods=['POST'])
@@ -85,7 +103,7 @@ def deploy(task_id):
 
     # create model task
     name = request.form['name']
-    create_time = int(request.form['create_time'])
+    create_time = int(time.time())
     file = secure_filename(request.form['file'])
     print(file)
     t: Task = Task(

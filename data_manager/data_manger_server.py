@@ -19,9 +19,16 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
     def __init__(self):
         self.db = data_manager.dal.task.Db()
 
+    def AddTaskByGit(self, request, context):
+        t: Task = request.task
+        task_id = self.db.add_task_by_git(t)
+        return data_manager_pb2.AddTaskByGitResp(resp=data_manager_pb2.Response(code=0, message=json.dumps(task_id)))
+
+    def AddTaskByHTTP(self, request, context):
+        return super().AddTaskByHTTP(request, context)
+
     def AddTask(self, request, context):
         print(request.task)
-        # status:0 -> ready
         t: Task = request.task
         task_id = self.db.add_task(Task(
             task_id=t.task_id,
@@ -32,7 +39,6 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
             union_train=t.union_train,
             edge_nodes=t.edge_nodes,
             file=t.file,
-            status=0,
         ))
         return data_manager_pb2.AddTaskResp(resp=data_manager_pb2.Response(code=0, message=json.dumps(task_id)))
 
@@ -120,7 +126,7 @@ def serve():
     # gRPC 服务器
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=6))
     data_manager_pb2_grpc.add_DataManagerServicer_to_server(DataManager(), server)
-    server.add_insecure_port(F"{DATA_MANAGER_SERVER['ip']}:{DATA_MANAGER_SERVER['port']}")
+    server.add_insecure_port(f"{DATA_MANAGER_SERVER['ip']}:{DATA_MANAGER_SERVER['port']}")
     register.register(DATA_MANAGER_SERVER['name'],
                       DATA_MANAGER_SERVER['ip'],
                       int(DATA_MANAGER_SERVER['port']))

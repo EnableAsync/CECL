@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+// python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
+
 // The task runtime service definition.
 service TaskRuntime {
   // Add task's file
@@ -21,6 +23,28 @@ service TaskRuntime {
   // Get task file
   rpc GetTaskFile (GetTaskFileReq) returns (GetTaskFileResp) {
   }
+
+  rpc AddTaskByGit (AddTaskByGitReq) returns (AddTaskByGitResp) {
+  }
+
+  rpc AddTaskByHTTP (AddTaskByHTTPReq) returns (AddTaskByHTTPResp) {
+  }
+}
+
+message AddTaskByHTTPReq {
+  Task task = 1;
+}
+
+message AddTaskByHTTPResp {
+  Response resp = 1;
+}
+
+message AddTaskByGitReq {
+  Task task = 1;
+}
+
+message AddTaskByGitResp {
+  Response resp = 1;
 }
 
 message GetTaskFileReq {
@@ -84,4 +108,4 @@ message Response {
   string message = 2;
 }
 
-// python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./task_runtime/gen/task_runtime.proto
+

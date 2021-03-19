@@ -19,10 +19,138 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n#task_runtime/gen/task_runtime.proto\"%\n\x0eGetTaskFileReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"J\n\x0fGetTaskFileResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\"D\n\rUploadTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\")\n\x0eUploadTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1f\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"(\n\rStartTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"*\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\xe0\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x03\x12\x12\n\nstart_time\x18\x04 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x12\n\nedge_nodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\x12\x0e\n\x06status\x18\t \x01(\x03\x12\x1b\n\x13recent_running_time\x18\n \x01(\x03\x12\x1a\n\x12last_modified_time\x18\x0b \x01(\x03\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xff\x01\n\x0bTaskRuntime\x12/\n\nUploadTask\x12\x0e.UploadTaskReq\x1a\x0f.UploadTaskResp\"\x00\x12,\n\tStartTask\x12\r.StartTaskReq\x1a\x0e.StartTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x12\x32\n\x0bGetTaskFile\x12\x0f.GetTaskFileReq\x1a\x10.GetTaskFileResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n#task_runtime/gen/task_runtime.proto\"\'\n\x10\x41\x64\x64TaskByHTTPReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\",\n\x11\x41\x64\x64TaskByHTTPResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"&\n\x0f\x41\x64\x64TaskByGitReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"+\n\x10\x41\x64\x64TaskByGitResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"%\n\x0eGetTaskFileReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\"J\n\x0fGetTaskFileResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\"D\n\rUploadTaskReq\x12\x13\n\x04task\x18\x01 \x01(\x0b\x32\x05.Task\x12\x0e\n\x06script\x18\x02 \x01(\x0c\x12\x0e\n\x06\x63onfig\x18\x03 \x01(\x0c\")\n\x0eUploadTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1f\n\x0cStartTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"(\n\rStartTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\x1e\n\x0bStopTaskReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"\'\n\x0cStopTaskResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"!\n\x0eGetTaskInfoReq\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\"*\n\x0fGetTaskInfoResp\x12\x17\n\x04resp\x18\x01 \x01(\x0b\x32\t.Response\"\xe0\x01\n\x04Task\x12\x0f\n\x07task_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x63reate_time\x18\x03 \x01(\x03\x12\x12\n\nstart_time\x18\x04 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x05 \x01(\x03\x12\x13\n\x0bunion_train\x18\x06 \x01(\x05\x12\x12\n\nedge_nodes\x18\x07 \x01(\t\x12\x0c\n\x04\x66ile\x18\x08 \x01(\t\x12\x0e\n\x06status\x18\t \x01(\x03\x12\x1b\n\x13recent_running_time\x18\n \x01(\x03\x12\x1a\n\x12last_modified_time\x18\x0b \x01(\x03\")\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xf0\x02\n\x0bTaskRuntime\x12/\n\nUploadTask\x12\x0e.UploadTaskReq\x1a\x0f.UploadTaskResp\"\x00\x12,\n\tStartTask\x12\r.StartTaskReq\x1a\x0e.StartTaskResp\"\x00\x12)\n\x08StopTask\x12\x0c.StopTaskReq\x1a\r.StopTaskResp\"\x00\x12\x32\n\x0bGetTaskInfo\x12\x0f.GetTaskInfoReq\x1a\x10.GetTaskInfoResp\"\x00\x12\x32\n\x0bGetTaskFile\x12\x0f.GetTaskFileReq\x1a\x10.GetTaskFileResp\"\x00\x12\x35\n\x0c\x41\x64\x64TaskByGit\x12\x10.AddTaskByGitReq\x1a\x11.AddTaskByGitResp\"\x00\x12\x38\n\rAddTaskByHTTP\x12\x11.AddTaskByHTTPReq\x1a\x12.AddTaskByHTTPResp\"\x00\x62\x06proto3'
 )
 
 
+
+
+_ADDTASKBYHTTPREQ = _descriptor.Descriptor(
+  name='AddTaskByHTTPReq',
+  full_name='AddTaskByHTTPReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task', full_name='AddTaskByHTTPReq.task', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=39,
+  serialized_end=78,
+)
+
+
+_ADDTASKBYHTTPRESP = _descriptor.Descriptor(
+  name='AddTaskByHTTPResp',
+  full_name='AddTaskByHTTPResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='AddTaskByHTTPResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=80,
+  serialized_end=124,
+)
+
+
+_ADDTASKBYGITREQ = _descriptor.Descriptor(
+  name='AddTaskByGitReq',
+  full_name='AddTaskByGitReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task', full_name='AddTaskByGitReq.task', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=126,
+  serialized_end=164,
+)
+
+
+_ADDTASKBYGITRESP = _descriptor.Descriptor(
+  name='AddTaskByGitResp',
+  full_name='AddTaskByGitResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resp', full_name='AddTaskByGitResp.resp', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=166,
+  serialized_end=209,
+)
 
 
 _GETTASKFILEREQ = _descriptor.Descriptor(
@@ -52,8 +180,8 @@ _GETTASKFILEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=39,
-  serialized_end=76,
+  serialized_start=211,
+  serialized_end=248,
 )
 
 
@@ -98,8 +226,8 @@ _GETTASKFILERESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=78,
-  serialized_end=152,
+  serialized_start=250,
+  serialized_end=324,
 )
 
 
@@ -144,8 +272,8 @@ _UPLOADTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=154,
-  serialized_end=222,
+  serialized_start=326,
+  serialized_end=394,
 )
 
 
@@ -176,8 +304,8 @@ _UPLOADTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=224,
-  serialized_end=265,
+  serialized_start=396,
+  serialized_end=437,
 )
 
 
@@ -208,8 +336,8 @@ _STARTTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=267,
-  serialized_end=298,
+  serialized_start=439,
+  serialized_end=470,
 )
 
 
@@ -240,8 +368,8 @@ _STARTTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=300,
-  serialized_end=340,
+  serialized_start=472,
+  serialized_end=512,
 )
 
 
@@ -272,8 +400,8 @@ _STOPTASKREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=342,
-  serialized_end=372,
+  serialized_start=514,
+  serialized_end=544,
 )
 
 
@@ -304,8 +432,8 @@ _STOPTASKRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=374,
-  serialized_end=413,
+  serialized_start=546,
+  serialized_end=585,
 )
 
 
@@ -336,8 +464,8 @@ _GETTASKINFOREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=415,
-  serialized_end=448,
+  serialized_start=587,
+  serialized_end=620,
 )
 
 
@@ -368,8 +496,8 @@ _GETTASKINFORESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=450,
-  serialized_end=492,
+  serialized_start=622,
+  serialized_end=664,
 )
 
 
@@ -470,8 +598,8 @@ _TASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=495,
-  serialized_end=719,
+  serialized_start=667,
+  serialized_end=891,
 )
 
 
@@ -509,10 +637,14 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=721,
-  serialized_end=762,
+  serialized_start=893,
+  serialized_end=934,
 )
 
+_ADDTASKBYHTTPREQ.fields_by_name['task'].message_type = _TASK
+_ADDTASKBYHTTPRESP.fields_by_name['resp'].message_type = _RESPONSE
+_ADDTASKBYGITREQ.fields_by_name['task'].message_type = _TASK
+_ADDTASKBYGITRESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKFILEREQ.fields_by_name['task'].message_type = _TASK
 _GETTASKFILERESP.fields_by_name['resp'].message_type = _RESPONSE
 _UPLOADTASKREQ.fields_by_name['task'].message_type = _TASK
@@ -520,6 +652,10 @@ _UPLOADTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STARTTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _STOPTASKRESP.fields_by_name['resp'].message_type = _RESPONSE
 _GETTASKINFORESP.fields_by_name['resp'].message_type = _RESPONSE
+DESCRIPTOR.message_types_by_name['AddTaskByHTTPReq'] = _ADDTASKBYHTTPREQ
+DESCRIPTOR.message_types_by_name['AddTaskByHTTPResp'] = _ADDTASKBYHTTPRESP
+DESCRIPTOR.message_types_by_name['AddTaskByGitReq'] = _ADDTASKBYGITREQ
+DESCRIPTOR.message_types_by_name['AddTaskByGitResp'] = _ADDTASKBYGITRESP
 DESCRIPTOR.message_types_by_name['GetTaskFileReq'] = _GETTASKFILEREQ
 DESCRIPTOR.message_types_by_name['GetTaskFileResp'] = _GETTASKFILERESP
 DESCRIPTOR.message_types_by_name['UploadTaskReq'] = _UPLOADTASKREQ
@@ -533,6 +669,34 @@ DESCRIPTOR.message_types_by_name['GetTaskInfoResp'] = _GETTASKINFORESP
 DESCRIPTOR.message_types_by_name['Task'] = _TASK
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+AddTaskByHTTPReq = _reflection.GeneratedProtocolMessageType('AddTaskByHTTPReq', (_message.Message,), {
+  'DESCRIPTOR' : _ADDTASKBYHTTPREQ,
+  '__module__' : 'task_runtime.gen.task_runtime_pb2'
+  # @@protoc_insertion_point(class_scope:AddTaskByHTTPReq)
+  })
+_sym_db.RegisterMessage(AddTaskByHTTPReq)
+
+AddTaskByHTTPResp = _reflection.GeneratedProtocolMessageType('AddTaskByHTTPResp', (_message.Message,), {
+  'DESCRIPTOR' : _ADDTASKBYHTTPRESP,
+  '__module__' : 'task_runtime.gen.task_runtime_pb2'
+  # @@protoc_insertion_point(class_scope:AddTaskByHTTPResp)
+  })
+_sym_db.RegisterMessage(AddTaskByHTTPResp)
+
+AddTaskByGitReq = _reflection.GeneratedProtocolMessageType('AddTaskByGitReq', (_message.Message,), {
+  'DESCRIPTOR' : _ADDTASKBYGITREQ,
+  '__module__' : 'task_runtime.gen.task_runtime_pb2'
+  # @@protoc_insertion_point(class_scope:AddTaskByGitReq)
+  })
+_sym_db.RegisterMessage(AddTaskByGitReq)
+
+AddTaskByGitResp = _reflection.GeneratedProtocolMessageType('AddTaskByGitResp', (_message.Message,), {
+  'DESCRIPTOR' : _ADDTASKBYGITRESP,
+  '__module__' : 'task_runtime.gen.task_runtime_pb2'
+  # @@protoc_insertion_point(class_scope:AddTaskByGitResp)
+  })
+_sym_db.RegisterMessage(AddTaskByGitResp)
 
 GetTaskFileReq = _reflection.GeneratedProtocolMessageType('GetTaskFileReq', (_message.Message,), {
   'DESCRIPTOR' : _GETTASKFILEREQ,
@@ -627,8 +791,8 @@ _TASKRUNTIME = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=765,
-  serialized_end=1020,
+  serialized_start=937,
+  serialized_end=1305,
   methods=[
   _descriptor.MethodDescriptor(
     name='UploadTask',
@@ -677,6 +841,26 @@ _TASKRUNTIME = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_GETTASKFILEREQ,
     output_type=_GETTASKFILERESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddTaskByGit',
+    full_name='TaskRuntime.AddTaskByGit',
+    index=5,
+    containing_service=None,
+    input_type=_ADDTASKBYGITREQ,
+    output_type=_ADDTASKBYGITRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddTaskByHTTP',
+    full_name='TaskRuntime.AddTaskByHTTP',
+    index=6,
+    containing_service=None,
+    input_type=_ADDTASKBYHTTPREQ,
+    output_type=_ADDTASKBYHTTPRESP,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -55,6 +55,16 @@ class TaskControllerStub(object):
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackReq.SerializeToString,
                 response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackResp.FromString,
                 )
+        self.AddTaskByGit = channel.unary_unary(
+                '/TaskController.TaskController/AddTaskByGit',
+                request_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByGitReq.SerializeToString,
+                response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByGitResp.FromString,
+                )
+        self.AddTaskByHTTP = channel.unary_unary(
+                '/TaskController.TaskController/AddTaskByHTTP',
+                request_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByHTTPReq.SerializeToString,
+                response_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByHTTPResp.FromString,
+                )
         self.SendMessage = channel.unary_unary(
                 '/TaskController.TaskController/SendMessage',
                 request_serializer=task__controller_dot_gen_dot_task__controller__pb2.SendMessageReq.SerializeToString,
@@ -122,6 +132,18 @@ class TaskControllerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddTaskByGit(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddTaskByHTTP(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SendMessage(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -170,6 +192,16 @@ def add_TaskControllerServicer_to_server(servicer, server):
                     servicer.AddCustomLogCallback,
                     request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackReq.FromString,
                     response_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackResp.SerializeToString,
+            ),
+            'AddTaskByGit': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddTaskByGit,
+                    request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByGitReq.FromString,
+                    response_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByGitResp.SerializeToString,
+            ),
+            'AddTaskByHTTP': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddTaskByHTTP,
+                    request_deserializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByHTTPReq.FromString,
+                    response_serializer=task__controller_dot_gen_dot_task__controller__pb2.AddTaskByHTTPResp.SerializeToString,
             ),
             'SendMessage': grpc.unary_unary_rpc_method_handler(
                     servicer.SendMessage,
@@ -320,6 +352,40 @@ class TaskController(object):
         return grpc.experimental.unary_unary(request, target, '/TaskController.TaskController/AddCustomLogCallback',
             task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackReq.SerializeToString,
             task__controller_dot_gen_dot_task__controller__pb2.AddCustomLogCallbackResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddTaskByGit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskController.TaskController/AddTaskByGit',
+            task__controller_dot_gen_dot_task__controller__pb2.AddTaskByGitReq.SerializeToString,
+            task__controller_dot_gen_dot_task__controller__pb2.AddTaskByGitResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddTaskByHTTP(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskController.TaskController/AddTaskByHTTP',
+            task__controller_dot_gen_dot_task__controller__pb2.AddTaskByHTTPReq.SerializeToString,
+            task__controller_dot_gen_dot_task__controller__pb2.AddTaskByHTTPResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

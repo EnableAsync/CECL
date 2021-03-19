@@ -4,7 +4,7 @@ import grpc
 import time
 
 from message_hub.gen import message_hub_pb2, message_hub_pb2_grpc
-from conf import MESSAGE_HUB_SERVER
+from conf import MESSAGE_HUB_SERVER_2
 from common.task import Task
 
 import task_runtime.gen.deploy_runtime_client
@@ -63,18 +63,18 @@ def serve():
         ('grpc.max_receive_message_length', 10 * 1024 * 1024),
     ])
     message_hub_pb2_grpc.add_MessageHubServicer_to_server(MessageHub(), server)
-    server.add_insecure_port(f"{MESSAGE_HUB_SERVER['ip']}:{MESSAGE_HUB_SERVER['port']}")
-    register.register(MESSAGE_HUB_SERVER['name'],
-                      MESSAGE_HUB_SERVER['ip'],
-                      int(MESSAGE_HUB_SERVER['port']))
+    server.add_insecure_port(f"{MESSAGE_HUB_SERVER_2['ip']}:50099")
+    register.register(MESSAGE_HUB_SERVER_2['name'],
+                      MESSAGE_HUB_SERVER_2['ip'],
+                      50099)
     server.start()  # start() will not block
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
-        register.unregister(MESSAGE_HUB_SERVER['name'],
-                            MESSAGE_HUB_SERVER['ip'],
-                            int(MESSAGE_HUB_SERVER['port']))
+        register.unregister(MESSAGE_HUB_SERVER_2['name'],
+                            MESSAGE_HUB_SERVER_2['ip'],
+                            50099)
         server.stop(0)
 
 

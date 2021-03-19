@@ -4,116 +4,140 @@ package TaskController;
 
 // The task controller service definition.
 service TaskController {
-    // Add a task
-    rpc AddTask (AddTaskReq) returns (AddTaskResp) {
-    }
+  // Add a task
+  rpc AddTask (AddTaskReq) returns (AddTaskResp) {
+  }
 
-    // Start a task
-    rpc StartTask (StartTaskReq) returns (StartTaskResp) {
-    }
+  // Start a task
+  rpc StartTask (StartTaskReq) returns (StartTaskResp) {
+  }
 
-    // Stop a task
-    rpc StopTask (StopTaskReq) returns (StopTaskResp) {
-    }
+  // Stop a task
+  rpc StopTask (StopTaskReq) returns (StopTaskResp) {
+  }
 
-    // It will be called when task finished
-    rpc FinishTask (FinishTaskReq) returns (FinishTaskResp) {
-    }
+  // It will be called when task finished
+  rpc FinishTask (FinishTaskReq) returns (FinishTaskResp) {
+  }
 
-    // Get all tasks
-    rpc GetAllTasks (GetAllTasksReq) returns (GetAllTasksResp) {
-    }
+  // Get all tasks
+  rpc GetAllTasks (GetAllTasksReq) returns (GetAllTasksResp) {
+  }
 
-    // Get task information
-    rpc GetTaskInfo (GetTaskInfoReq) returns (GetTaskInfoResp) {
-    }
+  // Get task information
+  rpc GetTaskInfo (GetTaskInfoReq) returns (GetTaskInfoResp) {
+  }
 
-    // Update a task
-    rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
-    }
+  // Update a task
+  rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskResp) {
+  }
 
-    // Add task script log, will be called by task runtime
-    rpc AddCustomLogCallback (AddCustomLogCallbackReq) returns (AddCustomLogCallbackResp) {
-    }
+  // Add task script log, will be called by task runtime
+  rpc AddCustomLogCallback (AddCustomLogCallbackReq) returns (AddCustomLogCallbackResp) {
+  }
 
-    rpc SendMessage (SendMessageReq) returns (SendMessageResp) {
-    }
+  rpc AddTaskByGit (AddTaskByGitReq) returns (AddTaskByGitResp) {
+  }
+
+  rpc AddTaskByHTTP (AddTaskByHTTPReq) returns (AddTaskByHTTPResp) {
+  }
+
+  rpc SendMessage (SendMessageReq) returns (SendMessageResp) {
+  }
+}
+
+
+
+message AddTaskByHTTPReq {
+  Task task = 1;
+}
+
+message AddTaskByHTTPResp {
+  Response resp = 1;
+}
+
+message AddTaskByGitReq {
+  Task task = 1;
+}
+
+message AddTaskByGitResp {
+  Response resp = 1;
 }
 
 message SendMessageReq {
-    string message = 1;
+  string message = 1;
 }
 
 message SendMessageResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message FinishTaskReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 
 message FinishTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message StartTaskReq {
-    int64 task_id = 1;
-    int64 start_time = 2;
+  int64 task_id = 1;
+  int64 start_time = 2;
 }
 
 message StartTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message AddCustomLogCallbackReq {
-    CustomLog custom_log = 1;
+  CustomLog custom_log = 1;
 }
 
 message AddCustomLogCallbackResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message CustomLog {
-    int64 task_id = 1;
-    string content = 2;
-    int64 time = 3;
+  int64 task_id = 1;
+  string content = 2;
+  int64 time = 3;
 }
 
 message AddTaskReq {
-    Task task = 1;
+  Task task = 1;
 }
 message AddTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message StopTaskReq {
-    int64 task_id = 1;
-    int64 stop_time = 2;
+  int64 task_id = 1;
+  int64 stop_time = 2;
 }
 message StopTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message GetAllTasksReq {
 }
 
 message GetAllTasksResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 message GetTaskInfoReq {
-    int64 task_id = 1;
+  int64 task_id = 1;
 }
 message GetTaskInfoResp {
-    Response resp = 1;
-    Task task = 2;
+  Response resp = 1;
+  Task task = 2;
 }
 
 message UpdateTaskReq {
-    Task task = 1;
+  Task task = 1;
 }
 message UpdateTaskResp {
-    Response resp = 1;
+  Response resp = 1;
 }
 
 

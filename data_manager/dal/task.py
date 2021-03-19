@@ -63,7 +63,7 @@ class Db:
                     task.union_train,
                     task.edge_nodes,
                     task.file,
-                    task.status
+                    task.READY
                 ))
             conn.commit()
             sql = """select max(id) as id from cecl.task"""
@@ -81,7 +81,7 @@ class Db:
                 sql,
                 args=(
                     datetime.fromtimestamp(task.start_time),
-                    1,
+                    task.RUNNING,
                     task.task_id,
                 )
             )
@@ -98,7 +98,7 @@ class Db:
                 sql,
                 args=(
                     datetime.fromtimestamp(task.end_time),
-                    2,
+                    task.FAIL,
                     task.task_id,
                 ))
             conn.commit()
@@ -114,7 +114,7 @@ class Db:
                 sql,
                 args=(
                     datetime.fromtimestamp(task.end_time),
-                    3,
+                    task.FINISHED,
                     task.task_id,
                 ))
             conn.commit()
@@ -203,6 +203,30 @@ class Db:
             return cursor.fetchall()
         except ValueError as e:
             print(e)
+
+    def add_task_by_git(self, t: Task):
+        def add_task(self, task):
+            sql = """insert into cecl.task(name, create_time, union_train, edge_nodes, file, status) 
+            values (%s, %s, %s, %s, %s, %s)"""
+            conn, cursor = self.get_conn()
+            try:
+                cursor.execute(
+                    sql,
+                    args=(
+                        task.name,
+                        datetime.fromtimestamp(task.create_time),
+                        task.union_train,
+                        task.edge_nodes,
+                        task.file,
+                        task.PULLING
+                    ))
+                conn.commit()
+                sql = """select max(id) as id from cecl.task"""
+                cursor.execute(sql)
+                return cursor.fetchone()
+            except ValueError as e:
+                print(e)
+                conn.rollback()
 
 
 if __name__ == '__main__':

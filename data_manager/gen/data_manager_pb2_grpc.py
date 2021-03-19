@@ -60,6 +60,16 @@ class DataManagerStub(object):
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.FromString,
                 )
+        self.AddTaskByGit = channel.unary_unary(
+                '/DataManager.DataManager/AddTaskByGit',
+                request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitReq.SerializeToString,
+                response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitResp.FromString,
+                )
+        self.AddTaskByHTTP = channel.unary_unary(
+                '/DataManager.DataManager/AddTaskByHTTP',
+                request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByHTTPReq.SerializeToString,
+                response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByHTTPResp.FromString,
+                )
 
 
 class DataManagerServicer(object):
@@ -129,6 +139,18 @@ class DataManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddTaskByGit(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddTaskByHTTP(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -176,6 +198,16 @@ def add_DataManagerServicer_to_server(servicer, server):
                     servicer.GetTaskLog,
                     request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.FromString,
                     response_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.SerializeToString,
+            ),
+            'AddTaskByGit': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddTaskByGit,
+                    request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitReq.FromString,
+                    response_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitResp.SerializeToString,
+            ),
+            'AddTaskByHTTP': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddTaskByHTTP,
+                    request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByHTTPReq.FromString,
+                    response_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByHTTPResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -338,5 +370,39 @@ class DataManager(object):
         return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/GetTaskLog',
             data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddTaskByGit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/AddTaskByGit',
+            data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitReq.SerializeToString,
+            data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddTaskByHTTP(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/AddTaskByHTTP',
+            data__manager_dot_gen_dot_data__manager__pb2.AddTaskByHTTPReq.SerializeToString,
+            data__manager_dot_gen_dot_data__manager__pb2.AddTaskByHTTPResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
