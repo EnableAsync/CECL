@@ -31,7 +31,6 @@ class Db:
             # database='../database/data.db'
         )
         conn = self.pool.connection()
-        # self.db = pymysql.connect("localhost", "root", "root", cursorclass=pymysql.cursors.DictCursor)
         cursor = conn.cursor()
         cursor.execute("SELECT VERSION()")
         data = cursor.fetchone()
