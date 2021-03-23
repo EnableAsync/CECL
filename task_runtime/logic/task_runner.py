@@ -2,7 +2,7 @@ from common.custom_log import CustomLog
 from common.task import Task
 from task_controller.gen.task_controller_client import TaskController
 from data_manager.gen.data_manger_client import DataManager
-from task_runtime.util.get_file_path import get_script_path, get_script_work_path
+from task_runtime.util.get_file_path import get_script_path, get_script_work_path, is_git_files
 import subprocess
 import time
 
@@ -20,15 +20,16 @@ def start_task(task: Task):
     dm = DataManager()
     try:
         print('script path:' + get_script_path(task))
-        sub = subprocess.Popen(
-            ['python', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            cwd=get_script_work_path(task), bufsize=1)
-
-        # tc.add_custom_log_callback(CustomLog(
-        #     task_id=task.task_id,
-        #     content=sub.stdout.read().decode('utf8'),
-        #     time=int(time.time())
-        # ))
+        # codes from git which contain docker-compose.yml
+        if is_git_files(task):
+            sub = subprocess.Popen(
+                ['docker-compose', 'up'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                cwd=get_script_work_path(task), bufsize=1)
+        # uploaded codes
+        else:
+            sub = subprocess.Popen(
+                ['python3.6', get_script_path(task)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                cwd=get_script_work_path(task), bufsize=1)
 
         for line in iter(sub.stdout.readline, b''):
             if line:
@@ -39,18 +40,6 @@ def start_task(task: Task):
                     time=int(time.time())
                 ))
         sub.stdout.close()
-        # sub.wait(5)
-
-        # while sub.poll() is None:
-        #     out = sub.stdout.readline()
-        #     line = out.strip()
-        #     if line:
-        #         print(line)
-        #         dm.add_custom_log(CustomLog(
-        #             task_id=task.task_id,
-        #             content=line,
-        #             time=int(time.time())
-        #         ))
 
         if sub.returncode == 0:
             print('Subprogram success')

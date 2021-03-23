@@ -174,6 +174,25 @@ class Db:
             print(e)
             conn.rollback()
 
+    # type = 1
+    def add_pulling_log(self, task_log: CustomLog):
+        sql = """insert into cecl.task_log(task_id, content, time, type) 
+        values (%s, %s, %s, 1)"""
+        conn, cursor = self.get_conn()
+        try:
+            cursor.execute(
+                sql,
+                args=(
+                    task_log.task_id,
+                    task_log.content,
+                    datetime.fromtimestamp(task_log.time),
+                ))
+            conn.commit()
+        except ValueError as e:
+            print(e)
+            conn.rollback()
+
+    # type = 0
     def add_custom_log(self, task_log: CustomLog):
         sql = """insert into cecl.task_log(task_id, content, time) 
         values (%s, %s, %s)"""

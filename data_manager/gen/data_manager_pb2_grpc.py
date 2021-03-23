@@ -60,6 +60,11 @@ class DataManagerStub(object):
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.SerializeToString,
                 response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.FromString,
                 )
+        self.AddPullingLog = channel.unary_unary(
+                '/DataManager.DataManager/AddPullingLog',
+                request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddPullingLogReq.SerializeToString,
+                response_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddPullingLogResp.FromString,
+                )
         self.AddTaskByGit = channel.unary_unary(
                 '/DataManager.DataManager/AddTaskByGit',
                 request_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddTaskByGitReq.SerializeToString,
@@ -139,6 +144,13 @@ class DataManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddPullingLog(self, request, context):
+        """Add task pulling log
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def AddTaskByGit(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -198,6 +210,11 @@ def add_DataManagerServicer_to_server(servicer, server):
                     servicer.GetTaskLog,
                     request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.FromString,
                     response_serializer=data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.SerializeToString,
+            ),
+            'AddPullingLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddPullingLog,
+                    request_deserializer=data__manager_dot_gen_dot_data__manager__pb2.AddPullingLogReq.FromString,
+                    response_serializer=data__manager_dot_gen_dot_data__manager__pb2.AddPullingLogResp.SerializeToString,
             ),
             'AddTaskByGit': grpc.unary_unary_rpc_method_handler(
                     servicer.AddTaskByGit,
@@ -370,6 +387,23 @@ class DataManager(object):
         return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/GetTaskLog',
             data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogReq.SerializeToString,
             data__manager_dot_gen_dot_data__manager__pb2.GetTaskLogResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddPullingLog(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataManager.DataManager/AddPullingLog',
+            data__manager_dot_gen_dot_data__manager__pb2.AddPullingLogReq.SerializeToString,
+            data__manager_dot_gen_dot_data__manager__pb2.AddPullingLogResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

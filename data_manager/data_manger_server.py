@@ -109,6 +109,24 @@ class DataManager(data_manager_pb2_grpc.DataManagerServicer):
         ))
         return data_manager_pb2.AddCustomLogResp(resp=data_manager_pb2.Response(code=0, message="success"))
 
+    def AddPullingLog(self, request, context):
+        t: CustomLog = request.custom_log
+        if t.task_id == 0:
+            return data_manager_pb2.AddCustomLogResp(
+                resp=data_manager_pb2.Response(code=10001, message="task id can't be zero"))
+        if t.content == '':
+            return data_manager_pb2.AddCustomLogResp(
+                resp=data_manager_pb2.Response(code=10001, message="content can't be empty"))
+        if time == 0:
+            return data_manager_pb2.AddCustomLogResp(
+                resp=data_manager_pb2.Response(code=10001, message="time can't be zero"))
+        self.db.add_pulling_log(CustomLog(
+            t.task_id,
+            t.content,
+            t.time
+        ))
+        return data_manager_pb2.AddPullingLogResp(resp=data_manager_pb2.Response(code=0, message="success"))
+
     def GetTaskLog(self, request, context):
         return data_manager_pb2.GetAllTasksResp(
             resp=data_manager_pb2.Response(code=0, message=json.dumps(self.db.get_task_log(request.task_id))))

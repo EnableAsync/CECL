@@ -15,6 +15,14 @@ def get_script_path(task: Task) -> str:
     return '{}/{}'.format(get_script_work_path(task), task.file)
 
 
+def is_git_files(task: Task) -> bool:
+    return task.file.endswith('.git') or task.file.startswith('https://github.com')
+
+
+def get_docker_compose_yml_path(task: Task) -> str:
+    return '{}/{}'.format(get_script_work_path(task), 'docker-compose.yml')
+
+
 def get_config_path(task: Task) -> str:
     return '{}/{}'.format(get_script_work_path(task), 'config.json')
 

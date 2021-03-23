@@ -1,10 +1,12 @@
 from concurrent import futures
 import time
 import os
-from git import Repo
+from threading import Thread
 
 from services_manager import register
-from task_runtime.util.get_file_path import get_config_path, get_script_path, get_script_work_path
+from task_runtime.logic import git_clone
+from task_runtime.util.get_file_path import get_config_path, get_script_path, get_script_work_path, \
+    get_docker_compose_yml_path, is_git_files
 from conf import TASK_RUNTIME_SERVER
 from common.task import Task
 from task_runtime.logic.task_runner import start_task, stop_task
@@ -28,16 +30,40 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
     def AddTaskByGit(self, request, context):
         request_task: Task = request.task
         upload_path = get_script_work_path(request_task)
+
+        if request_task.task_id not in self.tasks:
+            self.tasks[request_task.task_id] = request_task
+
         if not os.path.exists(upload_path):
             os.makedirs(upload_path)
         try:
-            Repo.clone_from("https://github.com/Klas125/calculator.git", "/home/rai/tmp/")
-        except Exception as e:
-            self.db.add_custom_log(task_log=CustomLog(task_id=request_task.task_id, content=e, time=int(time.time())))
+            # clone and response can be parallel
+            print(f"clone to {upload_path}")
+
+            # start clone
+            url = request_task.file
+            path = upload_path
+            clone = Thread(target=git_clone.clone_from_url, args=(url, path, request_task))
+            clone.start()
+
             return task_runtime_pb2.AddTaskByGitResp(
-                resp=task_runtime_pb2.Response(code=10002, message=e))
-        return task_runtime_pb2.AddTaskByGitResp(
-            resp=task_runtime_pb2.Response(code=0, message="clone successfully"))
+                resp=task_runtime_pb2.Response(code=0, message="starting clone"))
+        except Exception as e:
+            return task_runtime_pb2.AddTaskByGitResp(
+                resp=task_runtime_pb2.Response(code=10002, message=str(e)))
+
+    # async def clone_and_response(self, url, path):
+    #     tasks = [
+    #         asyncio.create_task(git_clone.clone_from_url(url=url, path=path)),
+    #         asyncio.create_task(self.response_to_grpc_client())
+    #     ]
+    #     done, pending = await asyncio.wait(tasks, timeout=0.1)
+    #     print(done)
+
+    # @staticmethod
+    # async def response_to_grpc_client():
+    #     await task_runtime_pb2.AddTaskByGitResp(
+    #         resp=task_runtime_pb2.Response(code=0, message="starting clone"))
 
     def AddTaskByHTTP(self, request, context):
         return super().AddTaskByHTTP(request, context)
@@ -94,12 +120,21 @@ class TaskRuntime(task_runtime_pb2_grpc.TaskRuntimeServicer):
 
         task: Task = self.tasks[task_id]
         print(task)
-        # script_path = '{}/{}/{}'.format(TASK_RUNTIME_UPLOAD_PATH, task.task_id, task.file)
-        script_path = get_script_path(task)
-        print("start file: " + script_path)
-        if not os.path.exists(script_path):
-            return task_runtime_pb2.StartTaskResp(
-                resp=task_runtime_pb2.Response(code=10000, message="Script not uploaded"))
+
+        # uploaded file
+        if is_git_files(task):
+            docker_compose_path = get_docker_compose_yml_path(task)
+            print(docker_compose_path)
+            if not os.path.exists(docker_compose_path):
+                return task_runtime_pb2.StartTaskResp(
+                    resp=task_runtime_pb2.Response(code=10000, message="Docker compose file not uploaded"))
+        else:
+            script_path = get_script_path(task)
+            print("start file: " + script_path)
+            if not os.path.exists(script_path):
+                return task_runtime_pb2.StartTaskResp(
+                    resp=task_runtime_pb2.Response(code=10000, message="Script not uploaded"))
+
         start_task(task)
         return task_runtime_pb2.StartTaskResp(
             resp=task_runtime_pb2.Response(code=0, message="success"))

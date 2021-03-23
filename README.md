@@ -1,3 +1,6 @@
+TODO:
+为日志添加类型，记录Task日志在哪个阶段产生
+思考分布式工作流调度
 # CECL
 
 [![CECL](https://github.com/wingsjj/CECL/workflows/Python%20application/badge.svg)](https://github.com/wingsjj/CECL/actions)

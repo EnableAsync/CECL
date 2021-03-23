@@ -18,6 +18,15 @@ class DataManager:
         channel = grpc.insecure_channel(f"{ip}:{port}")
         self.stub = data_manager_pb2_grpc.DataManagerStub(channel)
 
+    def add_pulling_log(self, task_log: CustomLog):
+        return self.stub.AddPullingLog(data_manager_pb2.AddPullingLogReq(
+            custom_log=data_manager_pb2.CustomLog(
+                task_id=task_log.task_id,
+                content=task_log.content,
+                time=task_log.time,
+            )
+        ))
+
     def add_task(self, task: Task):
         return self.stub.AddTask(data_manager_pb2.AddTaskReq(
             task=data_manager_pb2.Task(
@@ -64,6 +73,7 @@ class DataManager:
                 union_train=task.union_train,
                 edge_nodes=task.edge_nodes,
                 file=task.file,
+                status=task.status,
             )
         ))
 

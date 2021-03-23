@@ -43,11 +43,23 @@ service DataManager {
   rpc GetTaskLog(GetTaskLogReq) returns (GetTaskLogResp) {
   }
 
+  // Add task pulling log
+  rpc AddPullingLog (AddPullingLogReq) returns (AddPullingLogResp) {
+  }
+
   rpc AddTaskByGit (AddTaskByGitReq) returns (AddTaskByGitResp) {
   }
 
   rpc AddTaskByHTTP (AddTaskByHTTPReq) returns (AddTaskByHTTPResp) {
   }
+}
+
+message AddPullingLogReq {
+  CustomLog custom_log = 1;
+}
+
+message AddPullingLogResp {
+  Response resp = 1;
 }
 
 message AddTaskByHTTPReq {

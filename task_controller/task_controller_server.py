@@ -1,5 +1,6 @@
 from concurrent import futures
 import time
+import json
 from common.task import Task
 from common.custom_log import CustomLog
 from conf import TASK_CONTROLLER_SERVER
@@ -8,6 +9,7 @@ from data_manager.gen.data_manger_client import DataManager
 from task_runtime.gen.task_runtime_client import TaskRuntime
 # from grpc_reflection.v1alpha import reflection
 
+import asyncio
 import grpc
 
 from task_controller.gen import task_controller_pb2, task_controller_pb2_grpc
@@ -24,6 +26,7 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
 
     def AddTaskByGit(self, request, context):
         request_task: task_controller_pb2.Task = request.task
+        # wrap to task
         task: Task = Task(
             task_id=request_task.task_id,
             name=request_task.name,
@@ -35,13 +38,28 @@ class TaskController(task_controller_pb2_grpc.TaskControllerServicer):
             file=request_task.file,
             status=0,
         )
+
+        # add to db
         self.tasks.append(task)
         resp = self.db.add_task(task).resp
         print("add task by git:" + resp.message)
-        resp = self.runtime.add_task_by_git(task).resp
+        print(resp)
+        if resp.code != 0:
+            return task_controller_pb2.AddTaskByGitResp(resp=task_controller_pb2.Response(
+                code=resp.code,
+                message="add task to db fail",
+            ))
+
+        # get id from db
+        task.task_id = json.loads(resp.message)['id']
+
+        # clone
+        self.runtime.add_task_by_git(task)
+
+        # response
         return task_controller_pb2.AddTaskByGitResp(resp=task_controller_pb2.Response(
-            code=resp.code,
-            message=resp.message,
+            code=0,
+            message="start cloning",
         ))
 
     def AddTaskByHTTP(self, request, context):
