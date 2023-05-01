@@ -1,6 +1,6 @@
 DBUtils==2.0
 werkzeug==0.16.0
-flask==1.1.1
+flask==2.3.2
 pymysql==0.9.3
 grpcio==1.29.0
 flask_cors==3.0.9
